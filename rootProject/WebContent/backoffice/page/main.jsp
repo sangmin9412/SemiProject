@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                        	페이지 타이틀... <small>타이틀 내용...</small>
+                        	페이지 타이틀... <small>타이틀 내용... 수정수정</small>
                         </h1>
                     </div>
                 </div>
