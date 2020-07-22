@@ -23,7 +23,7 @@ public class NoticeBoardDAO extends DataBaseInfo {
 			System.out.println(i + " 개의 공지사항이 등록되었습니다.");
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
 			close();
 		}

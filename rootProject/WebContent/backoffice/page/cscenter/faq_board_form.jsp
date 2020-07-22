@@ -19,14 +19,14 @@
 	                    <div class="panel panel-default">
 	                        <div class="panel-heading"></div>
 	                        <div class="panel-body">
-	                            <form action="" name="" method="" role="form">
+	                            <form action="faqBoardWrite.bofb" name="frm" method="post" role="form">
 	                                <div class="form-group">
 	                                    <label>제목</label>
-	                                    <input type="text" class="form-control" name="" id="" value="">
+	                                    <input type="text" class="form-control" name="boardSubject" id="" value="">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>내용</label>
-	                                    <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+	                                    <textarea name="boardContent" class="form-control" id="" cols="30" rows="10"></textarea>
 	                                </div>
 	                                <button type="submit" class="btn btn-default">확인</button>
 	                                <button type="reset" class="btn btn-default">초기화</button>

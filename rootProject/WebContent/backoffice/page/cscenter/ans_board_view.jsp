@@ -22,26 +22,24 @@
 	                            <form action="" name="" method="" role="form">
 	                                <div class="form-group">
 	                                    <label>제목</label>
-	                                    <p class="form-control-static">테스트 제목</p>
+	                                    <p class="form-control-static">${ answerList.boardSubject }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>날짜</label>
-	                                    <p class="form-control-static">20-07-10</p>
+	                                    <p class="form-control-static">
+	                                    	<fmt:formatDate value="${ answerList.boardDate }" pattern="yyyy-MM-dd"/>
+	                                    </p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>내용</label>
 	                                    <p class="form-control-static">
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용
+	                                    	${fn:replace(answerList.boardContent,cn,br)}
 	                                    </p>
+	                                    <img src="page/cscenter/answerupload/${ answerList.storeFileName }" alt="${ answerList.storeFileName }" />
 	                                </div>
 	                                <a href="answerBoardList.boab" class="btn btn-default">목록으로</a>
-	                                <a href="answerBoardModify.boab" class="btn btn-default">수정</a>
-	                                <a href="answerBoardReply.boab" class="btn btn-default">답변</a>
+	                                <a href="answerBoardModify.boab?boardNum=${ answerList.boardNum }" class="btn btn-default">수정</a>
+	                                <a href="answerBoardReply.boab?boardNum=${ answerList.boardNum }" class="btn btn-default">답변</a>
 	                                <a href="#" class="btn btn-default">삭제</a>
 	                            </form>
 	                        </div>

@@ -22,26 +22,23 @@
 	                            <form action="" name="" method="" role="form">
 	                                <div class="form-group">
 	                                    <label>제목</label>
-	                                    <p class="form-control-static">테스트 제목</p>
+	                                    <p class="form-control-static">${ faqList.boardSubject }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>날짜</label>
-	                                    <p class="form-control-static">20-07-10</p>
+	                                    <p class="form-control-static">
+	                                    	<fmt:formatDate value="${ faqList.boardDate }" pattern="yyyy-MM-dd"/>
+	                                    </p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>내용</label>
 	                                    <p class="form-control-static">
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용
+	                                    	${fn:replace(faqList.boardContent,cn,br)}
 	                                    </p>
 	                                </div>
 	                                <a href="faqBoardList.bofb" class="btn btn-default">목록으로</a>
-	                                <a href="faqBoardModify.bofb" class="btn btn-default">수정</a>
-	                                <a href="#" class="btn btn-default">삭제</a>
+	                                <a href="faqBoardModify.bofb?boardNum=${ faqList.boardNum }" class="btn btn-default">수정</a>
+	                                <a href="#" class="btn btn-default delete-btn" data-url="faqBoardDelete.bofb?boardNum=${ faqList.boardNum }" data-toggle="modal" data-target="#ModalConfirm" onclick="modelDelete()">삭제</a>
 	                            </form>
 	                        </div>
 	                        <!-- /.panel-body -->

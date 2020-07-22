@@ -31,24 +31,21 @@
 		                                    </tr>
 		                                </thead>
 		                                <tbody>
-		                                    <tr>
-		                                        <td>1</td>
-		                                        <td>test4</td>
-		                                        <td><a href="answerBoardView.boab">1:1문의 제목</a></td>
-		                                        <td>20-07-10</td>
-		                                    </tr>
-		                                    <tr>
-		                                        <td>2</td>
-		                                        <td>test4</td>
-		                                        <td><a href="answerBoardView.boab">1:1문의 제목</a></td>
-		                                        <td>20-07-10</td>
-		                                    </tr>
-		                                    <tr>
-		                                        <td>3</td>
-		                                        <td>test4</td>
-		                                        <td><a href="answerBoardView.boab">1:1문의 제목</a></td>
-		                                        <td>20-07-10</td>
-		                                    </tr>
+		                                    <c:if test="${ empty answerList }">
+		                                		<tr>
+		                                			<td colspan="9" style="padding:30px 0; text-align:center;">등록된 글이 없습니다.</td>
+		                                		</tr>
+		                                	</c:if>
+		                                	<c:if test="${ !empty answerList }">
+		                                	<c:forEach items="${ answerList }" var="list" varStatus="cnt">
+			                                    <tr>
+			                                        <td>${ ((page-1) * limit) + cnt.count }</td>
+			                                        <td>${ list.userId }</td>
+			                                        <td><a href="answerBoardView.boab?boardNum=${ list.boardNum }">${ list.boardSubject }</a></td>
+			                                        <td><fmt:formatDate value="${ list.boardDate }" pattern="yyyy-MM-dd" /></td>
+			                                    </tr>
+		                                    </c:forEach>
+		                                    </c:if>
 		                                </tbody>
 		                            </table>
 		                            <div class="row">

@@ -2,9 +2,9 @@ package model.DTO;
 
 import java.sql.Timestamp;
 
-public class FaqBoardDTO {
+public class AnswerBoardDTO {
 	Long boardNum;
-	String adminId;
+	String userId;
 	String boardName;
 	String boardPass;
 	String boardSubject;
@@ -12,6 +12,12 @@ public class FaqBoardDTO {
 	Timestamp boardDate;
 	String ipAddr;
 	Long readCount;
+	String originalFileName;
+	String storeFileName;
+	Long fileSize;
+	Integer boardReRef;
+	Integer boardReLev;
+	Integer boardReSeq;
 	
 	public Long getBoardNum() {
 		return boardNum;
@@ -19,11 +25,11 @@ public class FaqBoardDTO {
 	public void setBoardNum(Long boardNum) {
 		this.boardNum = boardNum;
 	}
-	public String getAdminId() {
-		return adminId;
+	public String getUserId() {
+		return userId;
 	}
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getBoardName() {
 		return boardName;
@@ -67,4 +73,41 @@ public class FaqBoardDTO {
 	public void setReadCount(Long readCount) {
 		this.readCount = readCount;
 	}
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
+	public String getStoreFileName() {
+		return storeFileName;
+	}
+	public void setStoreFileName(String storeFileName) {
+		this.storeFileName = storeFileName;
+	}
+	public Long getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(Long fileSize) {
+		this.fileSize = fileSize;
+	}
+	public Integer getBoardReRef() {
+		return boardReRef;
+	}
+	public void setBoardReRef(Integer boardReRef) {
+		this.boardReRef = boardReRef;
+	}
+	public Integer getBoardReLev() {
+		return boardReLev;
+	}
+	public void setBoardReLev(Integer boardReLev) {
+		this.boardReLev = boardReLev;
+	}
+	public Integer getBoardReSeq() {
+		return boardReSeq;
+	}
+	public void setBoardReSeq(Integer boardReSeq) {
+		this.boardReSeq = boardReSeq;
+	}
+	
 }

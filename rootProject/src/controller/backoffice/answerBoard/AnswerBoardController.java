@@ -17,11 +17,15 @@ public class AnswerBoardController extends HttpServlet implements Servlet {
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		if (command.equals("/backoffice/answerBoardList.boab")) {
+			AnswerListAction action = new AnswerListAction();
+			action.execute(request);
 			String path = "/backoffice/page/cscenter/ans_board_list.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
 		} else if (command.equals("/backoffice/answerBoardView.boab")) {
+			AnswerDetailAction action = new AnswerDetailAction();
+			action.execute(request);
 			String path = "/backoffice/page/cscenter/ans_board_view.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
@@ -30,6 +34,11 @@ public class AnswerBoardController extends HttpServlet implements Servlet {
 			String path = "/backoffice/page/cscenter/ans_board_form.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
+			
+		} else if (command.equals("/backoffice/answerBoardWrite.boab")) {
+			AnswerWriteAction action = new AnswerWriteAction();
+			action.execute(request);
+			response.sendRedirect("answerBoardList.boab");
 			
 		} else if (command.equals("/backoffice/answerBoardModify.boab")) {
 			String path = "/backoffice/page/cscenter/ans_board_modify.jsp";
