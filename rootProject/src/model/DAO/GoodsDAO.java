@@ -107,7 +107,7 @@ public class GoodsDAO extends DataBaseInfo{
 	
 	public void GoodsUpdate(GoodsDTO dto) {
 		conn = getConnection();
-		sql = " update goods set book_isbn=?, book_name=?, book_author_name=?, book_category=?, partner_name=?, book_date=?, book_price=?, book_page_num=?, book_length=?, book_sub=?, book_image=?, book_intro=?, book_author_intro=?, book_list=?, book_count=? ";
+		sql = " update goods set book_isbn=?, book_name=?, book_author_name=?, book_category=?, partner_name=?, book_date=?, book_price=?, book_page_num=?, book_length=?, book_sub=?, book_image=?, book_intro=?, book_author_intro=?, book_list=?, book_count=? where book_num=? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getBookIsbn());
@@ -125,6 +125,7 @@ public class GoodsDAO extends DataBaseInfo{
 			pstmt.setString(13, dto.getBookAuthorIntro());
 			pstmt.setString(14, dto.getBookList());
 			pstmt.setString(15, dto.getBookCount());
+			pstmt.setString(16, dto.getBookNum());
 			int i = pstmt.executeUpdate();
 			System.out.println(i + "개가 수정되었습니다.");
 			

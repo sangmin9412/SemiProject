@@ -42,7 +42,7 @@
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>출판일자</label>
-	                                    <p class="form-control-static">${list[0].bookDate }</p>
+	                                    <p class="form-control-static"><fmt:formatDate value="${list[0].bookDate }" pattern="yyyy-MM-dd"/></p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>가격</label>

@@ -13,6 +13,5 @@ public class GoodsViewAction {
 		GoodsDAO dao = new GoodsDAO();
 		List<GoodsDTO> list = dao.goodsSelect(1, 1, bookNum);
 		request.setAttribute("list", list);
-		System.out.println(123);
 	}
 }

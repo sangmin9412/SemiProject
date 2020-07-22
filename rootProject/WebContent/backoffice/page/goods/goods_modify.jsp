@@ -20,6 +20,7 @@
 	                        <div class="panel-heading"></div>
 	                        <div class="panel-body">
 	                            <form action="goodsModifyPro.bogd" name="" method="post" role="form" enctype="multipart/form-data">
+	                            <input type="hidden" name="bookNum" value="${list[0].bookNum }">
 	                            	<div class="form-group">
 	                                    <label>ISBN</label>
 	                                    <input type="text" class="form-control" name="bookIsbn" id="" value="${list[0].bookIsbn }">
@@ -42,7 +43,7 @@
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>출판일자</label>
-	                                    <input type="date" class="form-control" name="bookDate" id="" value="${list[0].bookDate }">
+	                                    <input type="date" class="form-control" name="bookDate" id="" value="<fmt:formatDate value="${list[0].bookDate }" pattern="yyyy-MM-dd"/>">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>가격</label>
@@ -62,7 +63,14 @@
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>표지 이미지</label>
-	                                    <input type="file" class="form-control" name="bookImage" id="" value="${list[0].bookImage }">
+	                                    <div class="row">
+	                                    	<div class="col-md-6">
+	                                    		<input type="text" class="form-control" name="" id="" value="${list[0].bookImage }" disabled>
+	                                    	</div>
+	                                    	<div class="col-md-6">
+	                                    		<input type="file" class="form-control" name="bookImage" id="" value="">
+	                                    	</div>
+	                                    </div>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>책 소개</label>

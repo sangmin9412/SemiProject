@@ -23,8 +23,11 @@ public class GoodsModifyProAction {
 		MultipartRequest multi = null;
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
+		String bookNum = null;
 		try {
 			multi = new MultipartRequest(request, realPath, limitSize, "utf-8", new DefaultFileRenamePolicy());
+			bookNum = multi.getParameter("bookNum");
+			System.out.println(bookNum);
 			String bookIsbn = multi.getParameter("bookIsbn");
 			String bookName = multi.getParameter("bookName");
 			String bookAuthorName = multi.getParameter("bookAuthorName");
@@ -59,7 +62,7 @@ public class GoodsModifyProAction {
 			dto.setBookAuthorIntro(bookAuthorIntro);
 			dto.setBookList(bookList);
 			dto.setBookCount(bookCount);
-
+			dto.setBookNum(bookNum);
 			dao.GoodsUpdate(dto);
 			if(multi.getFile("bookImage") != null) {
 				System.out.println("111");
@@ -78,7 +81,6 @@ public class GoodsModifyProAction {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(multi.getParameter("bookNum"));
-		return multi.getParameter("bookNum");
+		return bookNum;
 	}
 }
