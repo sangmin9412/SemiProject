@@ -13,6 +13,5 @@ public class PartnerViewAction {
 		PartnerDAO dao = new PartnerDAO();
 		List<PartnerDTO> list = dao.partnerSelect(1, 1, partnerNum);
 		request.setAttribute("list", list);
-		
 	}
 }
