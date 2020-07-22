@@ -19,7 +19,9 @@
 	                    <div class="panel panel-default">
 	                        <div class="panel-heading"></div>
 	                        <div class="panel-body">
-	                            <form action="" name="" method="" role="form">
+	                            <form action="answerBoardDelete.boab" name="frm" method="post" role="form">
+	                            	<input type="hidden" name="boardNum" value="${ answerList.boardNum }" />
+	                            	<input type="hidden" name="boardPass" />
 	                                <div class="form-group">
 	                                    <label>제목</label>
 	                                    <p class="form-control-static">${ answerList.boardSubject }</p>
@@ -40,7 +42,7 @@
 	                                <a href="answerBoardList.boab" class="btn btn-default">목록으로</a>
 	                                <a href="answerBoardModify.boab?boardNum=${ answerList.boardNum }" class="btn btn-default">수정</a>
 	                                <a href="answerBoardReply.boab?boardNum=${ answerList.boardNum }" class="btn btn-default">답변</a>
-	                                <a href="#" class="btn btn-default">삭제</a>
+	                                <a href="#" class="btn btn-default delete-btn" data-url="" data-toggle="modal" data-target="#ModalPassConfirm" onclick="modalDelete('boardPass')">삭제</a>
 	                            </form>
 	                        </div>
 	                        <!-- /.panel-body -->

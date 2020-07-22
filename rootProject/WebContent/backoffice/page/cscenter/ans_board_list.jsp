@@ -26,6 +26,7 @@
 		                                    <tr>
 		                                        <th>No</th>
 		                                        <th>ID</th>
+		                                        <th>작성자</th>
 		                                        <th>제목</th>
 		                                        <th>날짜</th>
 		                                    </tr>
@@ -41,6 +42,7 @@
 			                                    <tr>
 			                                        <td>${ ((page-1) * limit) + cnt.count }</td>
 			                                        <td>${ list.userId }</td>
+			                                        <td>${ list.boardName }</td>
 			                                        <td><a href="answerBoardView.boab?boardNum=${ list.boardNum }">${ list.boardSubject }</a></td>
 			                                        <td><fmt:formatDate value="${ list.boardDate }" pattern="yyyy-MM-dd" /></td>
 			                                    </tr>
@@ -48,26 +50,7 @@
 		                                    </c:if>
 		                                </tbody>
 		                            </table>
-		                            <div class="row">
-			                            <div class="col-sm-12">
-			                            	<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-			                            		<ul class="pagination">
-			                            			<li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
-			                            				<a href="#">Previous</a>
-			                            			</li>
-			                            			<li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a></li>
-			                            			<li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
-			                            				<a href="#">Next</a>
-			                            			</li>
-			                            		</ul>
-			                            	</div>
-			                           </div>
-									</div>
+		                            <%@ include file = "/backoffice/include/paging.jsp" %>
 		                        </div>
 	                        </div>
 	                        <!-- /.panel-body -->

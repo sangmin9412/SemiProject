@@ -41,15 +41,32 @@ public class AnswerBoardController extends HttpServlet implements Servlet {
 			response.sendRedirect("answerBoardList.boab");
 			
 		} else if (command.equals("/backoffice/answerBoardModify.boab")) {
+			AnswerDetailAction action = new AnswerDetailAction();
+			action.execute(request);
 			String path = "/backoffice/page/cscenter/ans_board_modify.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
+		} else if (command.equals("/backoffice/answerBoardModifyPro.boab")) {
+			AnswerModifyAction action = new AnswerModifyAction();
+			action.execute(request, response);
+			
 		} else if (command.equals("/backoffice/answerBoardReply.boab")) {
+			AnswerDetailAction action = new AnswerDetailAction();
+			action.execute(request);
 			String path = "/backoffice/page/cscenter/ans_board_reply.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
+		} else if (command.equals("/backoffice/answerBoardReplyPro.boab")) {
+			AnswerReplyAction action = new AnswerReplyAction();
+			action.execute(request);
+			response.sendRedirect("answerBoardList.boab");
+			
+		} else if (command.equals("/backoffice/answerBoardDelete.boab")) {
+			AnswerDeleteAction action = new AnswerDeleteAction();
+			String path = action.execute(request);
+			response.sendRedirect(path);
 		}
 		
 	}

@@ -19,7 +19,8 @@
 	                    <div class="panel panel-default">
 	                        <div class="panel-heading"></div>
 	                        <div class="panel-body">
-	                        	<form action="partnerList.bopt" name="" method="post" role="form" enctype="multipart/form-data">
+	                        	<form action="partnerDelete.bopt" name="frm" method="post" role="form">
+	                        		<input type="hidden" name="partnerNum" value="${list[0].partnerNum }" />
 	                                <div class="form-group">
 	                                    <label>상호</label>
 	                                    <p class="form-control-static">${list[0].partnerName }</p>
@@ -82,7 +83,7 @@
 	                                </div>
 	                                <a href="partnerList.bopt" class="btn btn-default">목록으로</a>
 	                           		<a href="partnerModify.bopt?partnerNum=${list[0].partnerNum }" class="btn btn-default">수정</a>
-	                           		<a href="#" class="btn btn-default delete-btn" data-url="partnerDelete.bopt?partnerNum=${list[0].partnerNum }" data-toggle="modal" data-target="#ModalConfirm" onclick="modelDelete()">삭제</a>
+	                           		<a href="#" class="btn btn-default delete-btn" data-url="" data-toggle="modal" data-target="#ModalConfirm" onclick="modalDelete()">삭제</a>
 	                            </form>
 	                        </div>
 	                        <!-- /.panel-body -->

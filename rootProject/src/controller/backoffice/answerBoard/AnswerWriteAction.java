@@ -28,6 +28,7 @@ public class AnswerWriteAction {
 		try {
 			MultipartRequest multi = new MultipartRequest(request, realPath, fileLimit, "utf-8", new DefaultFileRenamePolicy());
 			String boardPass = multi.getParameter("boardPass");
+			String boardName = multi.getParameter("boardName");
 			String boardSubject = multi.getParameter("boardSubject");
 			String boardContent= multi.getParameter("boardContent");
 			String originalFileName = multi.getOriginalFileName("fileUp");
@@ -37,6 +38,7 @@ public class AnswerWriteAction {
 			
 			dto.setUserId(userId);
 			dto.setBoardPass(boardPass);
+			dto.setBoardName(boardName);
 			dto.setBoardSubject(boardSubject);
 			dto.setBoardContent(boardContent);
 			dto.setOriginalFileName(originalFileName);

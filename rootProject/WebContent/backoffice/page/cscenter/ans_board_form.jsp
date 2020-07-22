@@ -25,6 +25,10 @@
 	                                    <input type="text" class="form-control" name="boardSubject" id="" value="">
 	                                </div>
 	                                <div class="form-group">
+	                                    <label>작성자</label>
+	                                    <input type="text" class="form-control" name="boardName" id="" value="">
+	                                </div>
+	                                <div class="form-group">
 	                                    <label>비밀번호</label>
 	                                    <input type="password" class="form-control" name="boardPass" id="" value="">
 	                                </div>
