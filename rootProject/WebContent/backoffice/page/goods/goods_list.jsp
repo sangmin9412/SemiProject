@@ -49,33 +49,17 @@
 		                                    </tr>
 		                                </thead>
 		                                <tbody>
+		                                	<c:forEach var="dto" items="${goodsList}" varStatus="cnt">
 		                                    <tr>
-		                                        <td>1</td>
-		                                        <td><a href="goodsView.bogd">책이름이름</a></td>
-		                                        <td>저자이름이름</td>
-		                                        <td>출판사이름이름</td>
-		                                        <td>100000</td>
-		                                        <td><img src="" alt="" /></td>
-		                                        <td>20</td>
+		                                        <td>${cnt.count }</td>
+		                                        <td><a href="goodsView.bogd?bookNum=${dto.bookNum }">${dto.bookName }</a></td>
+		                                        <td>${dto.bookAuthorName }</td>
+		                                        <td>${dto.partnerName }</td>
+		                                        <td>${dto.bookPrice }</td>
+		                                        <td><img src="/backoffice/page/goods/upload/${ dto.bookImage }" width="60" /></td>
+		                                        <td>${dto.bookCount }</td>
 		                                    </tr>
-		                                    <tr>
-		                                        <td>2</td>
-		                                        <td><a href="goodsView.bogd">책이름이름</a></td>
-		                                        <td>저자이름이름</td>
-		                                        <td>출판사이름이름</td>
-		                                        <td>100000</td>
-		                                        <td><img src="" alt="" /></td>
-		                                        <td>20</td>
-		                                    </tr>
-		                                    <tr>
-		                                        <td>3</td>
-		                                        <td><a href="goodsView.bogd">책이름이름</a></td>
-		                                        <td>저자이름이름</td>
-		                                        <td>출판사이름이름</td>
-		                                        <td>100000</td>
-		                                        <td><img src="" alt="" /></td>
-		                                        <td>20</td>
-		                                    </tr>
+		                                   	</c:forEach>
 		                                </tbody>
 		                            </table>
 		                            <div class="row">

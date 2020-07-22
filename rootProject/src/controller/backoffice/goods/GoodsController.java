@@ -17,11 +17,15 @@ public class GoodsController extends HttpServlet implements Servlet {
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		if (command.equals("/backoffice/goodsList.bogd")) {
+			GoodsListAction action = new GoodsListAction();
+			action.execute(request);
 			String path = "/backoffice/page/goods/goods_list.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
 		} else if (command.equals("/backoffice/goodsView.bogd")) {
+			GoodsViewAction action = new GoodsViewAction();
+			action.execute(request);
 			String path = "/backoffice/page/goods/goods_view.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
@@ -31,10 +35,22 @@ public class GoodsController extends HttpServlet implements Servlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
-		} else if (command.equals("/backoffice/goodsModify.bogd")) {
+		} else if (command.equals("/backoffice/goodsWrite.bogd")) {
+			GoodsWriteAction action = new GoodsWriteAction();
+			action.execute(request);
+			response.sendRedirect("/backoffice/goodsList.bogd");
+			
+		} else if (command.equals("/backoffice/goodsModify.bogd"))  {
+			GoodsViewAction action = new GoodsViewAction();
+			action.execute(request);
 			String path = "/backoffice/page/goods/goods_modify.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
+			
+		} else if (command.equals("/backoffice/goodsModifyPro.bogd")) {
+			GoodsModifyProAction action = new GoodsModifyProAction();
+			String bookNum = action.execute(request);
+			response.sendRedirect("goodsView.bogd?bookNum="+bookNum);
 			
 		} else if (command.equals("/backoffice/goodsInventoryList.bogd")) {
 			String path = "/backoffice/page/goods/goods_inventory.jsp";
@@ -62,7 +78,7 @@ public class GoodsController extends HttpServlet implements Servlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.doPost(request, response);
+		doGet(request, response);
 	}
 	
 }

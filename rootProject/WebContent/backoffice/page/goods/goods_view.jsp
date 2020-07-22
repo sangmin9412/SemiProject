@@ -19,71 +19,71 @@
 	                    <div class="panel panel-default">
 	                        <div class="panel-heading"></div>
 	                        <div class="panel-body">
-	                        	<form action="" name="" method="" role="form">
+	                        	<form action="goodsList.bogd" name="" method="post" role="form" enctype="multipart/form-data">
 	                                <div class="form-group">
 	                                    <label>ISBN</label>
-	                                    <p class="form-control-static">02023021</p>
+	                                    <p class="form-control-static">${list[0].bookIsbn }</p>
 	                                </div>
 	                                <div class="form-group">
-	                                    <label>도서</label>
-	                                    <p class="form-control-static">책이름</p>
+	                                    <label>도서명</label>
+	                                    <p class="form-control-static">${list[0].bookName }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>저자</label>
-	                                    <p class="form-control-static">저자이름</p>
+	                                    <p class="form-control-static">${list[0].bookAuthorName }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>분야</label>
-	                                    <p class="form-control-static">분야내용</p>
+	                                    <p class="form-control-static">${list[0].bookCategory }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>출판사</label>
-	                                    <p class="form-control-static">출판사이름</p>
+	                                    <p class="form-control-static">${list[0].partnerName }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>출판일자</label>
-	                                    <p class="form-control-static">2020-01-10</p>
+	                                    <p class="form-control-static">${list[0].bookDate }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>가격</label>
-	                                    <p class="form-control-static">100000원</p>
+	                                    <p class="form-control-static">${list[0].bookPrice }원</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>페이지수</label>
-	                                    <p class="form-control-static">321</p>
+	                                    <p class="form-control-static">${list[0].bookPageNum }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>도서 길이</label>
-	                                    <p class="form-control-static">30x60</p>
+	                                    <p class="form-control-static">${list[0].bookLength }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>부록</label>
-	                                    <p class="form-control-static">부록내용</p>
+	                                    <p class="form-control-static">${list[0].bookSub }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>표지 이미지</label>
 	                                    <p class="form-control-static">
-	                                    	<img src="" alt="" />
+	                                    	<img src="/backoffice/page/goods/upload/${list[0].bookImage }" alt="" />
 	                                    </p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>책 소개</label>
-	                                    <p class="form-control-static">책 소개 내용</p>
+	                                    <p class="form-control-static">${list[0].bookIntro }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>저자 소개</label>
-	                                    <p class="form-control-static">저자 소개 내용</p>
+	                                    <p class="form-control-static">${list[0].bookAuthorIntro }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>목차</label>
-	                                    <p class="form-control-static">목차 내용</p>
+	                                    <p class="form-control-static">${list[0].bookList }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>재고</label>
-	                                    <p class="form-control-static">20</p>
+	                                    <p class="form-control-static">${list[0].bookCount }권</p>
 	                                </div>
 	                                <a href="goodsList.bogd" class="btn btn-default">목록으로</a>
-	                                <a href="goodsModify.bogd" class="btn btn-default">수정</a>
+	                                <a href="goodsModify.bogd?bookNum=${list[0].bookNum }" class="btn btn-default">수정</a>
 	                            </form>
 	                        </div>
 	                        <!-- /.panel-body -->

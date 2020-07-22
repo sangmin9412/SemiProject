@@ -72,10 +72,5 @@ public class PartnerWriteAction {
 		PartnerDAO dao = new PartnerDAO();
 		dao.partnerInsert(dto);
 		
-		
-		
-		
-		
-		
 	}
 }
