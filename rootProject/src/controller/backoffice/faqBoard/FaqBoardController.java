@@ -17,11 +17,15 @@ public class FaqBoardController extends HttpServlet implements Servlet {
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		if (command.equals("/backoffice/faqBoardList.bofb")) {
+			FaqListAction action = new FaqListAction();
+			action.execute(request);
 			String path = "/backoffice/page/cscenter/faq_board_list.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
 		} else if (command.equals("/backoffice/faqBoardView.bofb")) {
+			FaqDetailAction action = new FaqDetailAction();
+			action.execute(request);
 			String path = "/backoffice/page/cscenter/faq_board_view.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
@@ -31,10 +35,27 @@ public class FaqBoardController extends HttpServlet implements Servlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
+		} else if (command.equals("/backoffice/faqBoardWrite.bofb")) {
+			FaqWriteAction action = new FaqWriteAction();
+			action.execute(request);
+			response.sendRedirect("faqBoardList.bofb");
+			
 		} else if (command.equals("/backoffice/faqBoardModify.bofb")) {
+			FaqDetailAction action = new FaqDetailAction();
+			action.execute(request);
 			String path = "/backoffice/page/cscenter/faq_board_modify.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
+			
+		} else if (command.equals("/backoffice/faqBoardModifyPro.bofb")) {
+			FaqModifyAction action = new FaqModifyAction();
+			String path = action.execute(request);
+			response.sendRedirect(path);
+			
+		} else if (command.equals("/backoffice/faqBoardDelete.bofb")) {
+			FaqDeleteAction action = new FaqDeleteAction();
+			action.execute(request);
+			response.sendRedirect("faqBoardList.bofb");
 			
 		}
 		

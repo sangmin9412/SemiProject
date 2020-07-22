@@ -2,43 +2,7 @@
     pageEncoding="UTF-8"%>
     
     <!-- Modal -->
-	<div class="modal fade" id="ModalConfirm" role="dialog">
-		<div class="modal-dialog modal-sm">
-		
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-body">
-				<p>삭제하시겠습니까?</p>
-			</div>
-			<div class="modal-footer">
-			<a href="#" class="btn btn-default btn-primary model-delete-btn">예</a>
-				<button type="button" class="btn btn-default" data-dismiss="modal">아니요</button>
-			</div>
-		</div>
-		  
-		</div>
-	</div>
-	
-	
-	<!-- 
-	<div class="modal fade" id="ModalConfirm" role="dialog">
-		<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title"></h4>
-			</div>
-			<div class="modal-body">
-				<p>Some text in the modal.</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-		  
-		</div>
-	</div>
-	 -->
+	<%@ include file = "/backoffice/include/modal.jsp" %>
 	 
 	<!-- JS Scripts-->
     <!-- Bootstrap Js -->
@@ -58,14 +22,5 @@
 	
     <!-- Custom Js -->
     <script src="/backoffice/assets/js/custom-scripts.js"></script>
-	 
-	 <script>
-	 	function modelDelete() {
-	 		const url = event.target.dataset.url;
-	 		const target = document.querySelector(event.target.dataset.target);
-	 		const childrenBtn = target.querySelector(".model-delete-btn");
-	 		childrenBtn.setAttribute('href', url);
-	 	}
-	 </script>
 </body>
 </html>
