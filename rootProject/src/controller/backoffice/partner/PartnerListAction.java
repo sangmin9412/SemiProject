@@ -23,6 +23,8 @@ public class PartnerListAction {
 		Integer count = dao.partnerCount();
 		request.setAttribute("partnerList", list);
 		request.setAttribute("count", count);
+		request.setAttribute("page", page);
+		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
 		pageAction.page(request, count, limit, limitPage, page, "partnerList.bopt");

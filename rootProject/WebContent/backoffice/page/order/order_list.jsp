@@ -14,7 +14,7 @@
                         	<c:if test="${ sort eq 'return' }">반품/교환 리스트</c:if>
                         </h1>
                     </div>
-                </div>
+                </div>  
                 
                 <div class="row">
 	                <div class="col-lg-12">

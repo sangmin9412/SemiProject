@@ -34,7 +34,7 @@
 		                                <tbody>
 		                                	<c:forEach var="dto" items="${partnerList}" varStatus="cnt">
 		                                    <tr>
-		                                        <td>${cnt.count }</td>
+		                                        <td>${ ((page-1) * limit) + cnt.count }</td>
 		                                        <td>${dto.partnerName }</td>
 		                                        <td><a href="partnerView.bopt?partnerNum=${dto.partnerNum }">${dto.partnerNum }</a></td>
 		                                        <td>${dto.partnerCeo }</td>
