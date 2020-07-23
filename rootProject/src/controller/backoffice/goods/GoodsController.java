@@ -53,22 +53,44 @@ public class GoodsController extends HttpServlet implements Servlet {
 			response.sendRedirect("goodsView.bogd?bookNum="+bookNum);
 			
 		} else if (command.equals("/backoffice/goodsInventoryList.bogd")) {
+			GoodsListAction action = new GoodsListAction();
+			action.execute(request);
 			String path = "/backoffice/page/goods/goods_inventory.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
 		} else if (command.equals("/backoffice/goodsInventoryForm.bogd")) {
+			GoodsViewAction action = new GoodsViewAction();
+			action.execute(request);
+			request.setAttribute("partnerNum", request.getParameter("partnerNum"));
+			request.setAttribute("bookNum", request.getParameter("bookNum"));
 			String path = "/backoffice/page/goods/goods_inventory_form.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
+		} else if (command.equals("/backoffice/goodsInventoryFormPro.bogd")) {
+			GoodsInvertoryProAction action = new GoodsInvertoryProAction();
+			action.execute(request);
+			response.sendRedirect("/backoffice/goodsInventoryList.bogd");
+			
 		} else if (command.equals("/backoffice/goodsIpgo.bogd")) {
+			GoodsIbgoListAction action = new GoodsIbgoListAction();
+			action.execute(request);
 			String path = "/backoffice/page/goods/goods_ipgo.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
 		} else if (command.equals("/backoffice/goodsIpgoModify.bogd")) {
+			GoodsIbgoModifyAction action = new GoodsIbgoModifyAction();
+			action.execute(request);
 			String path = "/backoffice/page/goods/goods_ipgo_modify.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
+			
+		} else if (command.equals("/backoffice/goodsIpgoModify.bogd")) {
+			GoodsIbgoModifyProAction action = new GoodsIbgoModifyProAction();
+			action.execute(request);
+			String path = "/backoffice/page/goods/goods_ipgo.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			

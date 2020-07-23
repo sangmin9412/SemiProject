@@ -31,6 +31,7 @@
 		                                <thead>
 		                                    <tr>
 		                                        <th>No</th>
+		                                        <th>표지이미지</th>
 		                                        <th>도서</th>
 		                                        <th>출판사</th>
 		                                        <th>재고</th>
@@ -38,49 +39,19 @@
 		                                    </tr>
 		                                </thead>
 		                                <tbody>
+		                                	<c:forEach var="dto" items="${list}" varStatus="cnt">
 		                                    <tr>
-		                                        <td>1</td>
-		                                        <td>책이름이름</td>
-		                                        <td>출판사이름이름</td>
-		                                        <td>20</td>
-		                                        <td class="text-center"><a href="goodsInventoryForm.bogd" class="btn btn-default">발주</a></td>
+		                                        <td>${ ((page-1) * limit) + cnt.count }</td>
+		                                        <td><img src="/backoffice/page/goods/upload/${ dto.bookImage }" width="60" /></td>
+		                                        <td>${dto.bookName }</td>
+		                                        <td>${dto.partnerName }</td>
+		                                        <td>${dto.bookCount }</td>
+		                                        <td class="text-center"><a href="goodsInventoryForm.bogd?partnerNum=${dto.partnerNum }&bookNum=${dto.bookNum}" class="btn btn-default">발주</a></td>
 		                                    </tr>
-		                                    <tr>
-		                                        <td>2</td>
-		                                        <td>책이름이름</td>
-		                                        <td>출판사이름이름</td>
-		                                        <td>20</td>
-		                                        <td class="text-center"><a href="goodsInventoryForm.bogd" class="btn btn-default">발주</a></td>
-		                                    </tr>
-		                                    <tr>
-		                                        <td>3</td>
-		                                        <td>책이름이름</td>
-		                                        <td>출판사이름이름</td>
-		                                        <td>20</td>
-		                                        <td class="text-center"><a href="goodsInventoryForm.bogd" class="btn btn-default">발주</a></td>
-		                                    </tr>
+		                                    </c:forEach>
 		                                </tbody>
 		                            </table>
-		                            <div class="row">
-			                            <div class="col-sm-12">
-			                            	<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-			                            		<ul class="pagination">
-			                            			<li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
-			                            				<a href="#">Previous</a>
-			                            			</li>
-			                            			<li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a></li>
-			                            			<li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
-			                            				<a href="#">Next</a>
-			                            			</li>
-			                            		</ul>
-			                            	</div>
-			                           </div>
-									</div>
+		                            <%@ include file = "/backoffice/include/paging.jsp" %>
 		                        </div>
 	                        </div>
 	                        <!-- /.panel-body -->
