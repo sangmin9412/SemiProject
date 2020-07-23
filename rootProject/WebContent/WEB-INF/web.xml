@@ -11,6 +11,42 @@
   </welcome-file-list>
   
   <servlet>
+  	<servlet-name>poOrder</servlet-name>
+  	<servlet-class>controller.partnerBo.order.OrderController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>poOrder</servlet-name>
+  	<url-pattern>*.pood</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>poGoods</servlet-name>
+  	<servlet-class>controller.partnerBo.goods.GoodsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>poGoods</servlet-name>
+  	<url-pattern>*.pogd</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>poPartner</servlet-name>
+  	<servlet-class>controller.partnerBo.partner.PartnerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>poPartner</servlet-name>
+  	<url-pattern>*.popt</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>poMain</servlet-name>
+  	<servlet-class>controller.partnerBo.main.MainController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>poMain</servlet-name>
+  	<url-pattern>*.pomain</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>boMember</servlet-name>
   	<servlet-class>controller.backoffice.member.MemberController</servlet-class>
   </servlet>

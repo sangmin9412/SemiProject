@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file = "/backoffice/include/head.jsp" %>
+<%@ include file = "/partnerBo/include/head.jsp" %>
 	<div id="wrapper">
-		<%@ include file = "/backoffice/include/header.jsp" %>		
+		<%@ include file = "/partnerBo/include/header.jsp" %>		
 		<div id="page-wrapper">
             <div id="page-inner">
 				
@@ -21,7 +21,7 @@
 	                        <div class="panel-body">
 	                        	<div class="row">
 	                        		<div class="col-md-6">
-	                        			<a href="goodsForm.bogd" class="btn btn-default" style="margin-bottom: 10px;">제품등록</a>
+	                        			<a href="goodsForm.pogd" class="btn btn-default" style="margin-bottom: 10px;">제품등록</a>
 	                        		</div>
 	                        		<div class="col-md-6">
 	                        			<form action="" method="" name="">
@@ -49,20 +49,27 @@
 		                                    </tr>
 		                                </thead>
 		                                <tbody>
+		                                	<c:if test="${ empty goodsList }">
+		                                		<tr>
+		                                			<td colspan="9" style="padding:30px 0; text-align:center;">등록된 글이 없습니다.</td>
+		                                		</tr>
+		                                	</c:if>
+		                                	<c:if test="${ !empty goodsList }">
 		                                	<c:forEach var="dto" items="${goodsList}" varStatus="cnt">
 		                                    <tr>
 		                                        <td>${cnt.count }</td>
-		                                        <td><a href="goodsView.bogd?bookNum=${dto.bookNum }">${dto.bookName }</a></td>
+		                                        <td><a href="goodsView.pogd?bookNum=${dto.bookNum }">${dto.bookName }</a></td>
 		                                        <td>${dto.bookAuthorName }</td>
 		                                        <td>${dto.partnerName }</td>
 		                                        <td>${dto.bookPrice }</td>
-		                                        <td><img src="/backoffice/page/goods/upload/${ dto.bookImage }" width="60" /></td>
+		                                        <td><img src="/partnerBo/page/goods/upload/${ dto.bookImage }" width="60" /></td>
 		                                        <td>${dto.bookCount }</td>
 		                                    </tr>
 		                                   	</c:forEach>
+		                                   	</c:if>
 		                                </tbody>
 		                            </table>
-		                            <%@ include file = "/backoffice/include/paging.jsp" %>
+		                            <%@ include file = "/partnerBo/include/paging.jsp" %>
 		                        </div>
 	                        </div>
 	                        <!-- /.panel-body -->
@@ -71,9 +78,9 @@
 	                </div>
                 </div>
 				
-				<%@ include file = "/backoffice/include/footer.jsp" %>
+				<%@ include file = "/partnerBo/include/footer.jsp" %>
             </div>
             <!-- /. PAGE INNER  -->
         </div>
         <!-- /. PAGE WRAPPER  -->
-<%@ include file = "/backoffice/include/script.jsp" %>
+<%@ include file = "/partnerBo/include/script.jsp" %>

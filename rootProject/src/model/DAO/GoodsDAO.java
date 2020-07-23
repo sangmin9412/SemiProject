@@ -10,7 +10,7 @@ public class GoodsDAO extends DataBaseInfo{
 	
 	public void goodsInsert(GoodsDTO dto) {
 		conn = getConnection();
-		sql = " insert into goods (" +COLUMNS+ ") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate,?,(select nvl(max(book_num),0)+1 from goods))";
+		sql = " insert into goods (" +COLUMNS+ ") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate,?,(select nvl(max(to_number(book_num)),0)+1 from goods))";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getBookIsbn());
@@ -28,7 +28,7 @@ public class GoodsDAO extends DataBaseInfo{
 			pstmt.setString(13, dto.getBookAuthorIntro());
 			pstmt.setString(14, dto.getBookList());
 			pstmt.setString(15, "20");
-			pstmt.setString(16, "1");
+			pstmt.setString(16, dto.getPartnerNum());
 //			pstmt.setString(17, dto.getBookNum());
 			int i = pstmt.executeUpdate();
 			System.out.println(i + "개가 저장되었습니다.");
@@ -44,7 +44,9 @@ public class GoodsDAO extends DataBaseInfo{
 		int startRow = (page - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
 		String condition = "";
-		if(bookNum != null) condition = " and book_num = ?";
+		if (bookNum != null) {
+			condition = " and book_num = ?";
+		}
 		conn = getConnection();
 		sql = " select * from ( select rownum rn, "+COLUMNS+" from ( select "+COLUMNS+" from goods where 1=1 "+condition+" order by book_regist desc )) where rn between ? and ? ";
 		try {
@@ -152,6 +154,77 @@ public class GoodsDAO extends DataBaseInfo{
 			close();
 		}
 		return i;
+	}
+
+	public List<GoodsDTO> goodsPartnerSelect(int page, int limit, String bookNum, String partnerNum) {
+		List<GoodsDTO> list = new ArrayList<GoodsDTO>();
+		int startRow = (page - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		String condition = "";
+		if(bookNum != null) condition = " and book_num = ?";
+		conn = getConnection();
+		sql = " select * from ( select rownum rn, "+COLUMNS+" from ( select "+COLUMNS+" from goods where partner_num = ? "+condition+" order by book_regist desc )) where rn between ? and ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			if(bookNum != null) {
+				pstmt.setString(1, bookNum);
+				pstmt.setString(2, partnerNum);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+			}else {
+				pstmt.setString(1, partnerNum);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+			}
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				GoodsDTO dto = new GoodsDTO();
+				dto.setBookIsbn(rs.getString("book_isbn"));
+				dto.setBookName(rs.getString("book_name"));
+				dto.setBookAuthorName(rs.getString("book_author_name"));
+				dto.setBookCategory(rs.getString("book_category"));
+				dto.setPartnerName(rs.getString("partner_name"));
+				dto.setBookDate(rs.getTimestamp("book_date"));
+				dto.setBookPrice(rs.getString("book_price"));
+				dto.setBookPageNum(rs.getString("book_page_num"));
+				dto.setBookLength(rs.getString("book_length"));
+				dto.setBookSub(rs.getString("book_sub"));
+				dto.setBookImage(rs.getString("book_image"));
+				dto.setBookIntro(rs.getString("book_intro"));
+				dto.setBookAuthorIntro(rs.getString("book_author_intro"));
+				dto.setBookList(rs.getString("book_list"));
+				dto.setBookCount(rs.getString("book_count"));
+				dto.setBookRegist(rs.getTimestamp("book_regist"));
+				dto.setPartnerNum(rs.getString("partner_num"));
+				dto.setBookNum(rs.getString("book_num"));
+				list.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+
+	public int goodsDelete(String partnerNum, String bookNum) {
+		int result = 0;
+		conn = getConnection();
+		sql = "delete from goods where partner_num = ? and book_num = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, partnerNum);
+			pstmt.setString(2, bookNum);
+			result = pstmt.executeUpdate();
+			System.out.println(result + " 개의 상품이 삭제되었습니다.");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return result;
 	}
 	
 	

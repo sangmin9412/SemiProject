@@ -170,6 +170,34 @@ public class PartnerDAO extends DataBaseInfo{
 		} 
 		return i;
 	}
+
+	public Integer partnerLogInChk(String partnerId, String partnerPw) {
+		Integer result = -1;
+		conn = getConnection();
+		sql = "select partner_pw from partner where partner_num = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, partnerId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (partnerPw.equals(rs.getString("partner_pw"))) {
+					result = 1; // 로그인 성공
+				} else {
+					result = 0; // 비밀번호가 다름
+				}
+				
+			} else {
+				result = -1; // 아이디가 다름
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return result;
+	}
 	
 	
 	
