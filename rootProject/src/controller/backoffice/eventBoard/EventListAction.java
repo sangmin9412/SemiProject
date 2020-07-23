@@ -1,14 +1,14 @@
-package controller.backoffice.answerBoard;
+package controller.backoffice.eventBoard;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import controller.PageAction;
-import model.DAO.AnswerBoardDAO;
-import model.DTO.AnswerBoardDTO;
+import model.DAO.EventBoardDAO;
+import model.DTO.EventBoardDTO;
 
-public class AnswerListAction {
+public class EventListAction {
 
 	public void execute(HttpServletRequest request) {
 		int page = 1;
@@ -18,18 +18,18 @@ public class AnswerListAction {
 		int limit = 10;
 		int limitPage = 10;
 		
-		AnswerBoardDAO dao = new AnswerBoardDAO();
-		int count = dao.selectListCount("answerboard");
-		List<AnswerBoardDTO> list = dao.answerSelectAll(page, limitPage, null);
+		EventBoardDAO dao = new EventBoardDAO();
+		List<EventBoardDTO> list = dao.eventSelectAll(page, limit, null);
+		int count = dao.selectListCount("eventboard");
 		
-		request.setAttribute("answerList", list);
+		request.setAttribute("eventList", list);
 		request.setAttribute("count", count);
 		request.setAttribute("page", page);
 		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "answerBoardList.boab");
+		pageAction.page(request, count, limit, limitPage, page, "eventBoardList.boeb");
 		
 	}
-	
+
 }
