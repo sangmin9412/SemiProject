@@ -17,6 +17,8 @@ public class MemberController extends HttpServlet implements Servlet {
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		if (command.equals("/backoffice/memberList.bomem")) {
+			MemberListAction action = new MemberListAction();
+			action.execute(request);
 			String path = "/backoffice/page/member/member_list.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
