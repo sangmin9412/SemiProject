@@ -34,7 +34,7 @@ public class AnswerBoardDAO extends DataBaseInfo {
 		
 	}
 	
-	public List<AnswerBoardDTO> ansSelectAll(int page, int limit, String num) {
+	public List<AnswerBoardDTO> answerSelectAll(int page, int limit, String num) {
 		int startRow = (page - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
 		

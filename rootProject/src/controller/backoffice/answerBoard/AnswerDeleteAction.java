@@ -20,7 +20,7 @@ public class AnswerDeleteAction {
 		String boardNum = request.getParameter("boardNum");
 		
 		AnswerBoardDAO dao = new AnswerBoardDAO();
-		List<AnswerBoardDTO> list = dao.ansSelectAll(1, 1, boardNum);
+		List<AnswerBoardDTO> list = dao.answerSelectAll(1, 1, boardNum);
 		
 		int i = dao.answerDelete(userId, boardPass, boardNum);
 		String realPath = request.getServletContext().getRealPath("/backoffice/page/cscenter/answerupload/");

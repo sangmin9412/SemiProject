@@ -19,36 +19,38 @@
 	                    <div class="panel panel-default">
 	                        <div class="panel-heading"></div>
 	                        <div class="panel-body">
-	                            <form action="" name="" method="" role="form">
+	                            <form action="eventBoardDelete.boeb" name="frm" method="post" role="form">
+	                            	<input type="hidden" name="boardNum" value="${ eventList.boardNum }" />
 	                                <div class="form-group">
 	                                    <label>제목</label>
-	                                    <p class="form-control-static">테스트 제목</p>
+	                                    <p class="form-control-static">${ eventList.boardSubject }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>조회수</label>
-	                                    <p class="form-control-static">0</p>
+	                                    <p class="form-control-static">${ eventList.readCount + 1 }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>시작</label>
-	                                    <p class="form-control-static">20-07-10</p>
+	                                    <p class="form-control-static">
+	                                    	<fmt:formatDate value="${ eventList.startDate }" pattern="yyyy-MM-dd" />
+	                                    </p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>마감</label>
-	                                    <p class="form-control-static">20-07-17</p>
+	                                    <p class="form-control-static">
+	                                    	<fmt:formatDate value="${ eventList.endDate }" pattern="yyyy-MM-dd" />
+	                                    </p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>내용</label>
 	                                    <p class="form-control-static">
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용<br>
-	                                    	테스트 내용
+	                                    	${fn:replace(eventList.boardContent,cn,br)}
 	                                    </p>
+	                                    <img src="/backoffice/page/cscenter/eventupload/${eventList.storeFileName }" alt="" />
 	                                </div>
 	                                <a href="eventBoardList.boeb" class="btn btn-default">목록으로</a>
-	                                <a href="eventBoardModify.boeb" class="btn btn-default">수정하기</a>
+	                                <a href="eventBoardModify.boeb?boardNum=${ eventList.boardNum }" class="btn btn-default">수정</a>
+	                                <a href="#" class="btn btn-default delete-btn" data-url="" data-toggle="modal" data-target="#ModalConfirm" onclick="modalDelete()">삭제</a>
 	                            </form>
 	                        </div>
 	                        <!-- /.panel-body -->

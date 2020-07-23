@@ -19,26 +19,26 @@
 	                    <div class="panel panel-default">
 	                        <div class="panel-heading"></div>
 	                        <div class="panel-body">
-	                            <form action="" name="" method="" role="form">
+	                            <form action="eventBoardWrite.boeb" name="frm" method="post" role="form" enctype="multipart/form-data">
 	                                <div class="form-group">
 	                                    <label>제목</label>
-	                                    <input type="text" class="form-control" name="" id="" value="">
+	                                    <input type="text" class="form-control" name="boardSubject" id="" value="">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>내용</label>
-	                                    <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+	                                    <textarea name="boardContent" class="form-control" id="" cols="30" rows="10"></textarea>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>시작</label>
-	                                    <input type="date" class="form-control" name="" id="" value="">
+	                                    <input type="date" class="form-control" name="startDate" id="" value="">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>마감</label>
-	                                    <input type="date" class="form-control" name="" id="" value="">
+	                                    <input type="date" class="form-control" name="endDate" id="" value="">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>이미지</label>
-	                                    <input type="file" class="form-control" name="" id="" value="">
+	                                    <input type="file" class="form-control" name="fileUp" id="" value="">
 	                                </div>
 	                                <button type="submit" class="btn btn-default">확인</button>
 	                                <button type="reset" class="btn btn-default">초기화</button>

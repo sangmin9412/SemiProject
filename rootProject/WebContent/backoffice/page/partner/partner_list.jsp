@@ -44,7 +44,7 @@
 		                                   	</c:forEach>
 		                                </tbody>
 		                            </table>
-		                           <%@ include file = "/backoffice/include/paging.jsp" %>
+		                            <%@ include file = "/backoffice/include/paging.jsp" %>
 		                        </div>
 	                        </div>
 	                        <!-- /.panel-body -->

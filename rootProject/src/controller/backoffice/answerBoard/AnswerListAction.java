@@ -20,7 +20,7 @@ public class AnswerListAction {
 		
 		AnswerBoardDAO dao = new AnswerBoardDAO();
 		int count = dao.selectListCount("answerboard");
-		List<AnswerBoardDTO> list = dao.ansSelectAll(page, limitPage, null);
+		List<AnswerBoardDTO> list = dao.answerSelectAll(page, limitPage, null);
 		
 		request.setAttribute("answerList", list);
 		request.setAttribute("count", count);
