@@ -10,7 +10,7 @@ public class GoodsDAO extends DataBaseInfo{
 	
 	public void goodsInsert(GoodsDTO dto) {
 		conn = getConnection();
-		sql = " insert into goods (" +COLUMNS+ ") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate,?,(select nvl(max(book_num),0)+1 from goods))";
+		sql = " insert into goods (" +COLUMNS+ ") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate,?,(select nvl(max(to_number(book_num)),0)+1 from goods))";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getBookIsbn());

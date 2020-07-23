@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                        	제품명
+                        	${list[0].bookName }
                         </h1>
                     </div>
                 </div>
