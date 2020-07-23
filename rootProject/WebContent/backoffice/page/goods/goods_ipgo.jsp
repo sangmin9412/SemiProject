@@ -34,9 +34,10 @@
 		                                </thead>
 		                                <tbody>
 		                                	<c:forEach var="dto" items="${list}" varStatus="cnt">
-		                                    <tr style="cursor: pointer;" onclick="location.href='goodsIpgoModify.bogd'">
+		                                    <tr>
 		                                        <td>${ ((page-1) * limit) + cnt.count }</td>
-		                                        <td>${dto.partnerName }</td>
+		                                        <!--<td><a href="goodsIpgoModify.bogd?partnerNum=${ dto.partnerNum }&bookNum=${ dto.bookNum }">${dto.partnerName }</a></td> -->
+		                                        <td><a href="goodsIpgoModify.bogd?pOrderNum=${ dto.pOrderNum }">${dto.partnerName }</a></td>
 		                                        <td>
 		                                        	${dto.bookName }<br>
 		                                        	재고 : ${dto.bookCount }

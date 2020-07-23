@@ -31,18 +31,18 @@ public class PartnerOrderDAO extends DataBaseInfo{
 		}
 	}
 	
-	public List<PartnerOrderDTO> partnerIbgoSelect(int page, int limit, String bookNum){
+	public List<PartnerOrderDTO> partnerIbgoSelect(int page, int limit, String pOrderNum){
 		List<PartnerOrderDTO> list = new ArrayList<PartnerOrderDTO>();
 		int startRow = (page - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
 		String condition = "";
-		if(bookNum != null) condition = " and book_num = ?";
+		if(pOrderNum != null) condition = " and p_order_num = ?";
 		conn = getConnection();
 		sql = " select * from ( select rownum rn, " +COLUMNS+ " from ( select " +COLUMNS+ " from partnerorder where 1=1 " +condition+ " order by p_order_date desc )) where rn between ? and ? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			if(bookNum != null) {
-				pstmt.setString(1, bookNum);
+			if(pOrderNum != null) {
+				pstmt.setString(1, pOrderNum);
 				pstmt.setInt(2, startRow);
 				pstmt.setInt(3, endRow);
 			}else {
@@ -92,32 +92,35 @@ public class PartnerOrderDAO extends DataBaseInfo{
 		return result;
 	}
 	
-	public void pOrderReOkInsert(PartnerOrderDTO dto) {
+	public void pOrderReOkUpdate(PartnerOrderDTO dto) {
 		conn = getConnection();
-		sql = " insert into partnerorder (" +COLUMNS+ ") values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, null, ? ) ";
+		sql = " update partnerorder set "
+				+ "p_order_re_qty=?, "
+				+ "p_order_ok_qty=?, "
+				+ "p_order_re_date=sysdate, "
+				+ "book_count = book_count + ? "
+				+ "where p_order_num=? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getPartnerName());
-			pstmt.setString(2, dto.getPartnerNum());
-			pstmt.setString(3, dto.getBookName());
-			pstmt.setString(4, dto.getBookNum());
-			pstmt.setString(5, dto.getBookCount());
-			pstmt.setString(6, dto.getpOrderNum());
-			pstmt.setString(7, dto.getpOrderQty());
-			pstmt.setTimestamp(8,  dto.getpOrderDate());
-			pstmt.setString(9, dto.getpOrderReQty());
-			pstmt.setTimestamp(10, dto.getpOrderReDate());
-			pstmt.setNString(11,  dto.getpOrderOkQty());
-			pstmt.setString(12, "0");
+			
+			pstmt.setString(1, dto.getpOrderReQty());
+			pstmt.setString(2,  dto.getpOrderOkQty());
+			pstmt.setString(3, dto.getpOrderOkQty());
+			pstmt.setString(4, dto.getpOrderNum());
 			
 			int i = pstmt.executeUpdate();
-			System.out.println(i + "항목이 반품 입하되었습니다.");
+			System.out.println(i + "] 항목이 반품 입하되었습니다.");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			close();
 		}
 		
+		
+		
+	}
+
+	public void bookCountUpdate(PartnerOrderDTO dto) {
 		
 		
 	}

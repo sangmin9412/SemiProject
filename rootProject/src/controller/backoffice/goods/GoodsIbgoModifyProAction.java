@@ -27,9 +27,11 @@ public class GoodsIbgoModifyProAction {
 		dto.setpOrderOkQty(request.getParameter("pOrderOkQty"));
 		dto.setBookNum(request.getParameter("bookNum"));
 		dto.setPartnerNum(request.getParameter("partnerNum"));
+		dto.setpOrderNum(request.getParameter("pOrderNum"));
 		
 		PartnerOrderDAO dao = new PartnerOrderDAO();
-		dao.pOrderReOkInsert(dto);
+		dao.pOrderReOkUpdate(dto);
+		dao.bookCountUpdate(dto);
 		
 		
 	}

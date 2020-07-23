@@ -9,9 +9,9 @@ import model.DTO.PartnerOrderDTO;
 
 public class GoodsIbgoModifyAction {
 	public void execute(HttpServletRequest request) {
-		String bookNum = request.getParameter("bookNum");
+		String pOrderNum = request.getParameter("pOrderNum");
 		PartnerOrderDAO dao = new PartnerOrderDAO();
-		List<PartnerOrderDTO> list = dao.partnerIbgoSelect(1, 1, bookNum);
+		List<PartnerOrderDTO> list = dao.partnerIbgoSelect(1, 1, pOrderNum);
 		request.setAttribute("list", list);
 		
 		

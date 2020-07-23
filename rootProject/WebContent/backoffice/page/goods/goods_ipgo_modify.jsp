@@ -20,6 +20,10 @@
 	                        <div class="panel-heading"></div>
 	                        <div class="panel-body">
 	                            <form action="goodsIpgoModifyPro.bogd" name="" method="post" role="form">
+	                            	<input type="hidden" name="partnerNum" value="${list[0].partnerNum}"/>
+	                            	<input type="hidden" name="bookNum" value="${list[0].bookNum}"/>
+	                            	<input type="hidden" name="pOrderNum" value="${list[0].pOrderNum}"/>
+	                            	
 	                            	<div class="form-group">
 	                                    <label>출판사명</label>
 	                                    <input type="text" class="form-control" name="partnerName" id="" value="${list[0].partnerName }" readonly>
