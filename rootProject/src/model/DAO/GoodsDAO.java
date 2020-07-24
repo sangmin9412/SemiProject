@@ -227,6 +227,64 @@ public class GoodsDAO extends DataBaseInfo{
 		return result;
 	}
 	
+	public void goodsIpgoPtOk(String pOrderNum, String partnerNum) {
+		conn = getConnection();
+		sql = " update partnerorder set "
+				+ " p_order_chk = 1 "
+				+ " where p_order_num = ? and partner_num = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pOrderNum);
+			pstmt.setString(2, partnerNum);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + " 개의 발주가 완료되었습니다. - 출판사");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+	}
+
+	public void goodsIpgoOk(String pOrderNum) {
+		conn = getConnection();
+		sql = " update partnerorder set "
+				+ " p_order_chk = 2 "
+				+ " where p_order_num = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pOrderNum);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + " 개의 입하가 완료되었습니다.");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+	}
+	
+	public void goodsIpgoReOk(String pOrderNum) {
+		conn = getConnection();
+		sql = " update partnerorder set "
+				+ " p_order_chk = 3 "
+				+ " where p_order_num = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pOrderNum);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + " 개의 반품이 완료되었습니다.");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+	}
+	
 	
 	
 	

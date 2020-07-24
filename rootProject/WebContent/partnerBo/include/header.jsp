@@ -67,7 +67,7 @@
 	                </a>
 	                <ul class="nav nav-second-level">
 	                    <li>
-	                        <a href="#">발주내역</a>
+	                        <a href="goodsIpgo.pogd">발주내역</a>
 	                    </li>
 	                </ul>
 	            </li>

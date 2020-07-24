@@ -46,7 +46,7 @@
 		                                        <td>${dto.bookName }</td>
 		                                        <td>${dto.partnerName }</td>
 		                                        <td>${dto.bookCount }</td>
-		                                        <td class="text-center"><a href="goodsInventoryForm.bogd?partnerNum=${dto.partnerNum }&bookNum=${dto.bookNum}" class="btn btn-default">발주</a></td>
+		                                        <td class="text-center" style="width:80px;"><a href="goodsInventoryForm.bogd?partnerNum=${dto.partnerNum }&bookNum=${dto.bookNum}" class="btn btn-default">발주</a></td>
 		                                    </tr>
 		                                    </c:forEach>
 		                                </tbody>
