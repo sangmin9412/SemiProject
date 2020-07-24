@@ -6,7 +6,7 @@ public class MemberDTO {
 	String userId;
 	String userPw;
 	String userName;
-	String userBirth;
+	Timestamp userBirth;
 	String userGender;
 	String userAddr;
 	String userPh1;
@@ -14,9 +14,7 @@ public class MemberDTO {
 	Timestamp userRegist;
 	String userEmail;
 	String joinOk;
-	
-	
-	
+	String interest;
 	
 	public String getUserId() {
 		return userId;
@@ -36,10 +34,10 @@ public class MemberDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUserBirth() {
+	public Timestamp getUserBirth() {
 		return userBirth;
 	}
-	public void setUserBirth(String userBirth) {
+	public void setUserBirth(Timestamp userBirth) {
 		this.userBirth = userBirth;
 	}
 	public String getUserGender() {
@@ -84,13 +82,16 @@ public class MemberDTO {
 	public void setJoinOk(String joinOk) {
 		this.joinOk = joinOk;
 	}
+	public String getInterest() {
+		return interest;
+	}
+	public void setInterest(String interest) {
+		this.interest = interest;
+	}
 
 	
 	
-	
-	
-	
-	
+
 	
 	
 	
