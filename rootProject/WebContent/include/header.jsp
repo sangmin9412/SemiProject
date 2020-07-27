@@ -4,8 +4,8 @@
 	<div class="global">
 		<div class="contain">
 			<div class="events">
-				<a href="#" class="event active">이벤트</a>
-				<a href="#">회원혜택</a>
+				<a href="/cscenter/eventList.eb" class="event active">이벤트</a>
+				<a href="javascript:alert('준비중 입니다.');">회원혜택</a>
 			</div>
 			<div class="util">
 				<ul>
@@ -14,16 +14,17 @@
 					<li><a href="/mem/memberForm.mem">회원가입</a></li>
 					</c:if>
 					<c:if test="${ !empty logId }">
+					<li><a>${ logId }님</a></li>
 					<li><a href="/mainLogOut.main">로그아웃</a></li>
 					<li><a href="/mem/memberModify.mem">정보수정</a></li>
-					<li><a href="/script/mypage/">마이페이지</a></li>
+					<li><a href="/mem/memberMyPage.mem">마이페이지</a></li>
 					</c:if>
-					<li class="cs"><a href="/script/cscenter/faq.asp">고객센터</a>
+					<li class="cs"><a href="javascript:void(0);">고객센터</a>
 						<div class="csmenu">
 							<ul>
-								<li><a href="#">자주묻는 질문</a></li>
-								<li><a href="#">1:1 문의</a></li>
-								<li><a href="#">공지사항</a></li>
+								<li><a href="/cscenter/faqList.fb">자주묻는 질문</a></li>
+								<li><a href="/cscenter/asnwerList.ab">1:1 문의</a></li>
+								<li><a href="/cscenter/noticeList.nb">공지사항</a></li>
 							</ul>
 						</div>
 					</li>
@@ -36,28 +37,13 @@
 			<h1 class="logo"><a href="/">그냥 서점</a></h1>
 			<div id="gnb2">
 				<ul>
-					<li class="m1"><a href="/goods/goodsList.gd">국내도서</a></li>
-					<li class="m2"><a href="#">메뉴 02</a>
-						<div class="submenu">
-							<ul>
-								<li><a href="#">서브 메뉴</a></li>
-								<li><a href="#">서브 메뉴</a></li>
-								<li><a href="#">서브 메뉴</a></li>
-							</ul>
-						</div>
-					</li>
+					<li class="m1"><a href="/goods/goodsList.gd?category=국내도서">국내도서</a></li>
+					<li class="m2"><a href="/goods/goodsList.gd?category=외국도서">외국도서</a></li>
 					<li class="m3"><a href="#">메뉴 03</a></li>
-					<li class="m4"><a href="#">메뉴 04</a>
-						<div class="submenu">
-							<ul>
-								<li><a href="#">서브 메뉴</a></li>
-								<li><a href="#">서브 메뉴</a></li>
-								<li><a href="#">서브 메뉴</a></li>
-							</ul>
-						</div>
-					</li>
+					<li class="m4"><a href="#">메뉴 04</a></li>
 					<li class="m5"><a href="#">메뉴 05</a></li>
 					<li class="m6"><a href="#">메뉴 06</a>
+						<!-- 
 						<div class="submenu">
 							<ul>
 								<li><a href="#">서브 메뉴</a></li>
@@ -65,9 +51,10 @@
 								<li><a href="#">서브 메뉴</a></li>
 							</ul>
 						</div>
+						 -->
 					</li>
-					<li class="m7"><a href="#">1:1 문의</a></li>
-					<li class="m8"><a href="#">구매후기</a></li>
+					<li class="m7"><a href="/cscenter/asnwerList.ab">1:1 문의</a></li>
+					<li class="m8"><a href="javascript:alert('준비중 입니다.');">구매후기</a></li>
 				</ul>
 			</div>
 			<div class="search-btn">

@@ -42,7 +42,7 @@
 		                                	<c:forEach var="dto" items="${list}" varStatus="cnt">
 		                                    <tr>
 		                                        <td>${ ((page-1) * limit) + cnt.count }</td>
-		                                        <td><img src="/backoffice/page/goods/upload/${ dto.bookImage }" width="60" /></td>
+		                                        <td><img src="/partnerBo/page/goods/upload/${ dto.bookImage }" width="60" /></td>
 		                                        <td>${dto.bookName }</td>
 		                                        <td>${dto.partnerName }</td>
 		                                        <td>${dto.bookCount }</td>

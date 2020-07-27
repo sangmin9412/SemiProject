@@ -604,6 +604,10 @@ select[disabled]{background:#ddd; opacity:0.5;}
 .top-btn a{display:block; width:50px; height:50px; font-size:0; line-height:0; background:#111 url("/static/image/renewal2019/common/btn_top.png") 0 0 no-repeat; background-size:100% auto; border-radius:50%;}
 .top-btn a:hover{background-color:#5b1eaa;}
 
+.paginate {width:100%;margin:60px auto 0;padding-bottom:90px;text-align:center;font-size:0;line-height:0;}
+.paginate a {display:inline-block;vertical-align:top;margin:0 2px;width:40px;height:40px;font-family:"campton";font-size:12px;color:#8a8a8a;line-height:42px;border:1px solid #eee;color:#999;}
+.paginate a:hover, .paginate a.on {color:#111;border-color:#111;}
+.paginate .first, .paginate .last, .paginate .prev, .paginate .next{font-family:"NanumGothic"; line-height:40px;}
 
 
 /* 버튼 오버 색상 */
@@ -613,6 +617,7 @@ select[disabled]{background:#ddd; opacity:0.5;}
 
 .btn-over.purple.active,
 .btn-over.purple:hover{background-color:#5b1eaa !important; border-color:#5b1eaa !important; color:#fff !important;}
+
 
 /* 메인 팝업 */
 .main-pop{display:none;}

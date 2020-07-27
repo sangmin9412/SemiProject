@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import controller.main.goods.GoodsListAction;
+
 public class MainController extends HttpServlet implements Servlet {
 	
 	@Override
@@ -18,6 +20,8 @@ public class MainController extends HttpServlet implements Servlet {
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		if (command.equals("/main.main")) {
+			GoodsListAction action = new GoodsListAction();
+			action.execute(request);
 			String path = "/main/main.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);

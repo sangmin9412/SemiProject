@@ -7,21 +7,22 @@
 		<main id="container">
 			<div class="sub-title">
 				<div class="contain">
-					<h2>국내도서 <span class="num">(0)</span></h2>
+					<h2>${ bookCategory } <span class="num">(${ count })</span></h2>
 				</div>
 			</div>
 			
 			<div class="goods-area">
 				<div class="card-list type2">
 					<ul>
+						<c:forEach items="${ list }" var="dto">
 						<li class="item">
 							<div class="thumb">
 								<div class="img">
-									<a href="goodsView.gd?bookNum=" style="background-color:#F7F7F7;">
+									<a href="goodsView.gd?bookNum=${ dto.bookNum }" style="background-color:#F7F7F7;">
 										<div class="pos">
 											<div class="tb">
 												<div class="cell">
-													<img src="http://image.kyobobook.co.kr/images/book/large/721/l9788997924721.jpg" alt="">
+													<img src="/partnerBo/page/goods/upload/${ dto.bookImage }" alt="">
 												</div>
 											</div>
 										</div>
@@ -34,17 +35,19 @@
 							</div>
 							<div class="info">
 								<ul>
-									<li class="tit">책이름</li>
+									<li class="tit">${ dto.bookName }</li>
 									<li class="spec">
-										<span>저자이름</span>
+										<span>${ dto.bookAuthorName }</span>
 									</li>
-									<li class="price"><span class="cmp">10,000</span>원</li>
+									<li class="price"><span class="cmp"><fmt:formatNumber value="${ dto.bookPrice }" type="number" /></span>원</li>
 								</ul>
 							</div>
 						</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
+			<%@ include file = "/include/paging.jsp" %>
 			
 		</main>
 		

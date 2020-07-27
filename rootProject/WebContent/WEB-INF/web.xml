@@ -146,12 +146,39 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>event</servlet-name>
+  	<servlet-class>controller.main.eventBoard.EventController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>event</servlet-name>
+  	<url-pattern>*.eb</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>faq</servlet-name>
+  	<servlet-class>controller.main.faqBoard.FaqController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>faq</servlet-name>
+  	<url-pattern>*.fb</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>answer</servlet-name>
+  	<servlet-class>controller.main.answerBoard.AnswerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>answer</servlet-name>
+  	<url-pattern>*.ab</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>notice</servlet-name>
   	<servlet-class>controller.main.noticeBoard.NoticeController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>notice</servlet-name>
-  	<url-pattern>*.nd</url-pattern>
+  	<url-pattern>*.nb</url-pattern>
   </servlet-mapping>
   
   <servlet>

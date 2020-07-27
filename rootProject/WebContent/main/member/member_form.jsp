@@ -220,13 +220,16 @@
 					var idChk = $("[name='idChkValue']");
 					var Id = $("[name='userId']").val();
 					
+					if (Id === "") {
+						return;
+					}
+					
 					$.ajax({
 						type: 'post',
 						url: 'memberIdchk.mem',
 						data : {userId: Id},
 						dataType: 'html',
 						success: function(res) {
-							console.log(res);
 							if (res.indexOf("사용가능한") > -1) {
 								idChk.val("2");
 								idText.css("color", "blue");

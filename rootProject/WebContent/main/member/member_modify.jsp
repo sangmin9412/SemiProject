@@ -96,7 +96,7 @@
 							<input type="text" class="input" name="userPh2" placeholder="Ex) 010-0000-0000" maxlength="13" value="${ list.userPh2 }" />
 						</div>
 						<div class="form-group">
-							<input type="text" class="input" name="userEmail" placeholder="이메일" value="${ list.userEmail }" />
+							<input type="text" class="input" name="userEmail" placeholder="이메일" value="${ list.userEmail }" readonly />
 						</div>
 						<div class="btn-group col-2">
 							<button type="button" class="btn submit">확인</button>

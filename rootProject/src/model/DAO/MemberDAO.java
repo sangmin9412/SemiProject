@@ -8,7 +8,7 @@ import model.DTO.MemberDTO;
 public class MemberDAO extends DataBaseInfo {
 final String COLUMNS = " USER_ID, USER_PW, USER_NAME, USER_BIRTH, USER_GENDER, USER_ADDR, USER_PH1, USER_PH2, USER_REGIST, USER_EMAIL, JOIN_OK ";
 	
-	public void memberInsert(MemberDTO dto) {
+	public int memberInsert(MemberDTO dto) {
 		Integer i = null; 
 		conn = getConnection();
 		sql = "insert into member ( "+ COLUMNS +" )"
@@ -30,7 +30,8 @@ final String COLUMNS = " USER_ID, USER_PW, USER_NAME, USER_BIRTH, USER_GENDER, U
 			e.printStackTrace();
 		}finally {
 			close();
-		}		
+		}
+		return i;
 	}
 	
 	public List<MemberDTO> memberSelect(int page, int limit, String userId ) {

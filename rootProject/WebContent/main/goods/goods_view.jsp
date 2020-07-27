@@ -11,13 +11,13 @@
 					<div class="img-area">
 						<div id="divDetBig">
 							<ul>
-								<li class="big-list active"><img src="http://image.kyobobook.co.kr/images/book/xlarge/721/x9788997924721.jpg" name="ImgDetBig" alt=""></li>
+								<li class="big-list active"><img src="/partnerBo/page/goods/upload/${ list.bookImage }" name="ImgDetBig" alt=""></li>
 							</ul>
 						</div>
 					</div>
-					<div class="view-summary">
+					<div class="view-summary" style="min-height:600px;">
 						<div class="head">
-							<div class="tit">책 이름</div>
+							<div class="tit">${ list.bookName }</div>
 						</div>
 						<div class="con">
 							<div class="row">
@@ -31,7 +31,7 @@
 											<tr class="pb16">
 												<th scope="row">소비자가</th>
 												<td>
-													<span class="cmp">1,700</span>원
+													<span class="cmp" id="bPrice"><fmt:formatNumber value="${ list.bookPrice }" type="number" /></span>원
 												</td>
 											</tr>
 											<tr class="tr_select pb16">
@@ -61,8 +61,18 @@
 										</colgroup>
 										<tbody>
 											<tr>
+												<th scope="row">출판사</th>
+												<td>${ list.partnerName }</td>
+											</tr>
+											<tr>
 												<th scope="row">저자</th>
-												<td><span class="p-code">저자이름</span></td>
+												<td>${ list.bookAuthorName }</td>
+											</tr>
+											<tr>
+												<th scope="row" style="vertical-align: top;">책소개</th>
+												<td>
+													${ fn:replace(list.bookIntro,cn,br) }
+												</td>
 											</tr>
 											<tr>
 												<th scope="row">배송안내</th>
@@ -83,11 +93,16 @@
 		</main>
 		
 		<script>
+			function numberWithCommas(x) {
+			    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			
 			function onchangeQtyClick(id,num){
-				
-				var y = Number($("#"+id+"").val()) + num;			
+				var y = Number($("#"+id+"").val()) + num;		
 				if(y < 1) y = 1;
-				$("#"+id+"").val(y);			
+				$("#"+id+"").val(y);
+				var price = ${ list.bookPrice } * y;
+				$("#bPrice").text(numberWithCommas(price));
 			}
 		</script>
 		

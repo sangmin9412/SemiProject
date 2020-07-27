@@ -25,8 +25,7 @@ public class MemberController extends HttpServlet implements Servlet {
 			
 		} else if (command.equals("/mem/memberFormPro.mem")) {
 			MemberInsertAction action = new MemberInsertAction();
-			action.execute(request);
-			response.sendRedirect("/main.main");
+			action.execute(request, response);
 			
 		} else if (command.equals("/mem/memberIdchk.mem")) {
 			MemberIdCheckAction action = new MemberIdCheckAction();
