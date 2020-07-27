@@ -21,7 +21,7 @@ input[type="checkbox"] {border-radius:0;background:#fff;}
 header, section, article,aside, nav, footer{display:block;}
 hr,caption,legend {font-size:0; height:0; line-height: 0; width: 0;}
 label{vertical-align:middle;}
-
+.input[readonly]{background:#f1f1f1 !important;}
 
 
 

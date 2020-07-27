@@ -9,11 +9,15 @@
 			</div>
 			<div class="util">
 				<ul>
-					<li><a href="/script/membership/logout.asp">로그아웃</a></li>
-					<li><a href="/script/membership/login.asp">로그인</a></li>
-					<li><a href="/script/mypage/memberedit.asp">정보수정</a></li>
-					<li><a href="/script/membership/memberRegStep1.asp">회원가입</a></li>
+					<c:if test="${ empty logId }">
+					<li><a href="/main.main">로그인</a></li>
+					<li><a href="/mem/memberForm.mem">회원가입</a></li>
+					</c:if>
+					<c:if test="${ !empty logId }">
+					<li><a href="/mainLogOut.main">로그아웃</a></li>
+					<li><a href="/mem/memberModify.mem">정보수정</a></li>
 					<li><a href="/script/mypage/">마이페이지</a></li>
+					</c:if>
 					<li class="cs"><a href="/script/cscenter/faq.asp">고객센터</a>
 						<div class="csmenu">
 							<ul>

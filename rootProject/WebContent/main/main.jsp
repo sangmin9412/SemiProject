@@ -46,10 +46,20 @@
 				.login-area .checkbox {
 					vertical-align: middle;
 				}
+				.login-link {
+					display:inline-block;
+					vertical-align: top;
+					margin-top: 1px;
+					margin-left: 10px;
+					color:#000;
+				}
+				a.login-link:hover{
+					text-decoration: underline;
+				}
 			</style>
 			
 			<div class="login-area">
-				<form action="#" method="post" name="frm" id="frm">
+				<form action="mainLogIn.main" method="post" name="frm" id="frm">
 					<div class="inner">
 						<div class="form-group">
 							<input type="text" class="input" name="userId" id="" value="" placeholder="ID" />
@@ -62,6 +72,7 @@
 						</div>
 						<label for="ic1">아이디저장</label>
 						<input type="checkbox" name="saveId" id="ic1" class="checkbox" value="" />
+						<a href="/mem/memberForm.mem" class="login-link">회원가입</a>
 					</div>
 				</form>
 			</div>
