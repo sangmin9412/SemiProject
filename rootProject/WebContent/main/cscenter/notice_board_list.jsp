@@ -24,8 +24,8 @@
 				/* 리스트 */
 				.board-list {max-width:1140px; margin:0 auto;}
 				.board-list table {width:100%; border-collapse:collapse; border-spacing:0px; border-top:1px solid #898989;}
-				.board-list table thead th {height:45px; border-bottom:1px solid #ddd; color:#454545; font-size:15px; font-weight:400; text-align: center; background:#f5f5f5;}
-				.board-list table tbody td {padding:12px 0; border-bottom:1px solid #ddd; text-align:center; font-size:15px; line-height:20px; color:#747474;}
+				.board-list table thead th {height:45px; border-bottom:1px solid #ddd; color:#454545; font-family: 'Noto Sans KR'; font-size:15px; font-weight:500; text-align: center; background:#f5f5f5;}
+				.board-list table tbody td {padding:12px 0; border-bottom:1px solid #ddd; text-align:center; font-family: 'Noto Sans KR'; font-size:15px; line-height:20px; color:#747474;}
 				.board-list table tbody td.subject {text-align:left; padding-left:15px;}
 				.board-list table tbody td img {vertical-align:middle;}
 				.board-list table tbody td a {text-decoration:none; color:inherit;}

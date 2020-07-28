@@ -24,12 +24,12 @@ public class GoodsListAction {
 		String bookNum = null;
 		GoodsDAO dao = new GoodsDAO();
 		List<GoodsDTO> list = dao.goodsPartnerSelect(page, limit, bookNum, partnerNum);
-		Integer count = dao.goodsCount();
+		Integer count = dao.goodsPartnerCount(partnerNum);
 		request.setAttribute("goodsList", list);
 		request.setAttribute("count", count);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "goodList.popt");
+		pageAction.page(request, count, limit, limitPage, page, "goodsList.pogd");
 		
 	}
 }

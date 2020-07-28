@@ -8,7 +8,7 @@
 			<div class="sub-title">
 				<div class="contain">
 					<c:if test="${ empty logId }"><h2 style="text-align: center;">로그인</h2></c:if>
-					<c:if test="${ !empty logId }"><h2>전체도서</h2></c:if>
+					<c:if test="${ !empty logId }"><h2>전체도서  <span class="num">(${ count })</span></h2></c:if>
 				</div>
 			</div>
 			<c:if test="${ empty logId }">
@@ -138,7 +138,7 @@
 					</ul>
 				</div>
 			</div>
-			<%@ include file = "/include/paging.jsp" %>
+			<%// @ include file = "/include/paging.jsp" %>
 			</c:if>
 			
 		</main>

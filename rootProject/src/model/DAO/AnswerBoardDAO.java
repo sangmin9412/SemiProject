@@ -87,6 +87,66 @@ public class AnswerBoardDAO extends DataBaseInfo {
 		return list;
 	}
 	
+	public List<AnswerBoardDTO> answerUserSelectAll(int page, int limit, String userId) {
+		int startRow = (page - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		String condition = "";
+		if (userId != null) {
+			condition = " and board_re_ref in ( select board_re_ref from answerboard where user_id = ? ) ";
+		}
+		List<AnswerBoardDTO> list = new ArrayList<AnswerBoardDTO>();
+		// sql = "select * from answerboard where 1=1 " + condition;
+		sql = " select * "
+				+ " from ( select rownum rn, " + COLUMNS
+				+ " 		from ( select " + COLUMNS + " from answerboard "
+				+ " 				where 1=1" + condition
+				+ " 				order by board_re_ref desc, board_re_seq asc ) "
+				+ " ) "
+				+ " where rn between ? and ? ";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			if (userId != null) {
+				pstmt.setString(1, userId);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+			} else {
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, endRow);
+			}
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				AnswerBoardDTO dto = new AnswerBoardDTO();
+				dto.setBoardNum(rs.getLong("board_num"));
+				dto.setUserId(rs.getString("user_id"));
+				dto.setBoardName(rs.getString("board_name"));
+				dto.setBoardPass(rs.getString("board_pass"));
+				dto.setBoardSubject(rs.getString("board_subject"));
+				dto.setBoardContent(rs.getString("board_content"));
+				dto.setBoardDate(rs.getTimestamp("board_date"));
+				dto.setIpAddr(rs.getString("ip_addr"));
+				dto.setReadCount(rs.getLong("read_count"));
+				dto.setOriginalFileName(rs.getString("original_file_name"));
+				dto.setStoreFileName(rs.getString("store_file_name"));
+				dto.setFileSize(rs.getLong("file_size"));
+				dto.setBoardReRef(rs.getInt("board_re_ref"));
+				dto.setBoardReLev(rs.getInt("board_re_lev"));
+				dto.setBoardReSeq(rs.getInt("board_re_seq"));
+				list.add(dto);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return list;
+	}
+	
 	public int answerDelete(String userId, String boardPass, String num) {
 		int result = 0;
 		conn = getConnection();

@@ -23,7 +23,7 @@
 						<div class="csmenu">
 							<ul>
 								<li><a href="/cscenter/faqList.fb">자주묻는 질문</a></li>
-								<li><a href="/cscenter/asnwerList.ab">1:1 문의</a></li>
+								<li><a href="/cscenter/answerList.ab">1:1 문의</a></li>
 								<li><a href="/cscenter/noticeList.nb">공지사항</a></li>
 							</ul>
 						</div>
@@ -37,12 +37,12 @@
 			<h1 class="logo"><a href="/">그냥 서점</a></h1>
 			<div id="gnb2">
 				<ul>
-					<li class="m1"><a href="/goods/goodsList.gd?category=국내도서">국내도서</a></li>
-					<li class="m2"><a href="/goods/goodsList.gd?category=외국도서">외국도서</a></li>
-					<li class="m3"><a href="#">메뉴 03</a></li>
-					<li class="m4"><a href="#">메뉴 04</a></li>
-					<li class="m5"><a href="#">메뉴 05</a></li>
-					<li class="m6"><a href="#">메뉴 06</a>
+					<li class="m1"><a href="/goods/goodsList.gd?category=경제/경영">경제/경영</a></li>
+					<li class="m2"><a href="/goods/goodsList.gd?category=자기계발">자기계발</a></li>
+					<li class="m3"><a href="/goods/goodsList.gd?category=소설">소설</a></li>
+					<li class="m4"><a href="/goods/goodsList.gd?category=과학/기술">과학/기술</a></li>
+					<li class="m5"><a href="/goods/goodsList.gd?category=인문/사회">인문/사회</a></li>
+					<li class="m6"><a href="/goods/goodsList.gd?category=잡지">잡지</a>
 						<!-- 
 						<div class="submenu">
 							<ul>

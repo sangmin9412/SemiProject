@@ -137,6 +137,15 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>order</servlet-name>
+  	<servlet-class>controller.main.order.OrderController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>order</servlet-name>
+  	<url-pattern>*.od</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>goods</servlet-name>
   	<servlet-class>controller.main.goods.GoodsController</servlet-class>
   </servlet>
