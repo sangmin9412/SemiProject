@@ -160,9 +160,6 @@ public class PartnerOrderDAO extends DataBaseInfo{
 		}finally {
 			close();
 		}
-		
-		
-		
 	}
 
 	public void bookCountUpdate(PartnerOrderDTO dto) {

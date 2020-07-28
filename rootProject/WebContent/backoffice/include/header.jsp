@@ -103,19 +103,13 @@
 	                        <a href="/backoffice/orderList.bood?sort=all">전체주문조회</a>
 	                    </li>
 	                    <li>
-	                        <a href="/backoffice/orderList.bood?sort=prev">이전주문조회</a>
-	                    </li>
-	                    <li>
 	                        <a href="/backoffice/orderList.bood?sort=new">신규주문</a>
 	                    </li>
 	                    <li>
-	                        <a href="/backoffice/orderShippingList.bood?stm=prev">배송준비</a>
+	                        <a href="/backoffice/orderShippingList.bood?sort=ing">배송중</a>
 	                    </li>
 	                    <li>
-	                        <a href="/backoffice/orderShippingList.bood?stm=ing">배송중</a>
-	                    </li>
-	                    <li>
-	                        <a href="/backoffice/orderShippingList.bood?stm=post">배송완료</a>
+	                        <a href="/backoffice/orderShippingList.bood?sort=end">배송완료</a>
 	                    </li>
 	                    <li>
 	                        <a href="/backoffice/orderCancelList.bood">주문취소</a>
