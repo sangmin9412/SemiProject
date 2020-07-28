@@ -17,14 +17,18 @@ public class FaqController extends HttpServlet implements Servlet {
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		if (command.equals("/cscenter/faqList.fb")) {
+			FaqListAction action = new FaqListAction();
+			action.execute(request);
 			String path = "/main/cscenter/faq_board_list.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
+			
 		} else if (command.equals("/cscenter/faqView.fb")) {
-			
-			
-		} else if (command.equals("/cscenter/faqModify.fb")) {
-			
+			FaqDetailAction action = new FaqDetailAction();
+			action.execute(request);
+			String path = "/main/cscenter/faq_board_view.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
 			
 		}
 	}

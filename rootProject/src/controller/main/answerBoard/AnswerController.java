@@ -17,14 +17,33 @@ public class AnswerController extends HttpServlet implements Servlet {
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		if (command.equals("/cscenter/answerList.ab")) {
+			AnswerListAction action = new AnswerListAction();
+			action.execute(request);
 			String path = "/main/cscenter/answer_board_list.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 		} else if (command.equals("/cscenter/answerView.ab")) {
+			AnswerDetailAction action = new AnswerDetailAction();
+			action.execute(request);
+			String path = "/main/cscenter/answer_board_view.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
 			
+		} else if (command.equals("/cscenter/answerFormPro.ab")) {
+			AnswerWriteAction action = new AnswerWriteAction();
+			action.execute(request);
+			response.sendRedirect("answerList.ab");
 			
 		} else if (command.equals("/cscenter/answerModify.ab")) {
+			AnswerDetailAction action = new AnswerDetailAction();
+			action.execute(request);
+			String path = "/main/cscenter/answer_board_modify.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
 			
+		} else if (command.equals("/cscenter/answerModifyPro.ab")) {
+			AnswerModifyAction action = new AnswerModifyAction();
+			action.execute(request, response);
 			
 		}
 	}

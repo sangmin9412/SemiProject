@@ -15,7 +15,7 @@ public class GoodsIbgoListAction {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		int limit = 5;
+		int limit = 10;
 		int limitPage = 10;
 		
 		HttpSession session = request.getSession();
@@ -23,7 +23,7 @@ public class GoodsIbgoListAction {
 		String partnerNum = session.getAttribute("logId").toString();
 		String bookNum = null;
 		PartnerOrderDAO dao = new PartnerOrderDAO();
-		List<PartnerOrderDTO> list = dao.partnerIbgoSelect(page, limit, bookNum, partnerNum);
+		List<PartnerOrderDTO> list = dao.partnerIbgoSelect(page, limit, bookNum, partnerNum);		
 		Integer count = dao.partnerIbgoCount();
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
@@ -31,7 +31,7 @@ public class GoodsIbgoListAction {
 		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "goodsIpgo.bogd");
+		pageAction.page(request, count, limit, limitPage, page, "goodsIpgo.pogd");
 
 	}
 }

@@ -14,7 +14,7 @@ public class GoodsListAction {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		int limit = 5;
+		int limit = 10;
 		int limitPage = 10;
 		
 		String bookNum = null;

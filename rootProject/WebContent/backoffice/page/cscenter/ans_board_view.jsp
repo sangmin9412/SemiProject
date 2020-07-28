@@ -37,7 +37,7 @@
 	                                    <p class="form-control-static">
 	                                    	${fn:replace(answerList.boardContent,cn,br)}
 	                                    </p>
-	                                    <img src="page/cscenter/answerupload/${ answerList.storeFileName }" alt="${ answerList.storeFileName }" />
+	                                    <img src="/main/cscenter/answerupload/${ answerList.storeFileName }" alt="${ answerList.storeFileName }" />
 	                                </div>
 	                                <a href="answerBoardList.boab" class="btn btn-default">목록으로</a>
 	                                <a href="answerBoardModify.boab?boardNum=${ answerList.boardNum }" class="btn btn-default">수정</a>

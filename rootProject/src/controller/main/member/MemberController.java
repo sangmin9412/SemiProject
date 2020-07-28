@@ -51,8 +51,10 @@ public class MemberController extends HttpServlet implements Servlet {
 		} else if (command.equals("/mem/memberPwFind.mem")) {
 			
 			
-		} else if (command.equals("/mem/memberList.mem")) {
-			
+		} else if (command.equals("/mem/memberMyPage.mem")) {
+			String path = "/main/member/member_mypage.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
 			
 		} else if (command.equals("/mem/memberList.mem")) {
 			

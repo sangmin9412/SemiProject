@@ -11,6 +11,7 @@ public class PageAction {
 		if (endPage > maxPage) {
 			endPage = maxPage;
 		}
+		
 		request.setAttribute("maxPage", maxPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);

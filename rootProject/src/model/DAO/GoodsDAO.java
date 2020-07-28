@@ -133,6 +133,24 @@ public class GoodsDAO extends DataBaseInfo{
 		return list;
 	}
 	
+	public Integer goodsPartnerCount(String partnerNum) {
+		Integer result = 0;
+		conn = getConnection();
+		sql = "select count(*) from goods where partner_num = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, partnerNum);
+			rs = pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt(1);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return result;
+	}
+	
 	public Integer goodsCount() {
 		Integer result = 0;
 		conn = getConnection();
