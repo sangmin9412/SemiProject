@@ -345,18 +345,26 @@ public class GoodsDAO extends DataBaseInfo{
 		}
 	}
 	
-	public List<GoodsDTO> goodsPartnerSelect(int page, int limit, String partnerName) {
+	public List<GoodsDTO> goodsListPartnerSelect(int page, int limit, String partnerName , String serchValue) {
 		List<GoodsDTO> list = new ArrayList<GoodsDTO>();
 		int startRow = (page - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		if (partnerName != null) {
+		String condition = "";
+		if(!serchValue.equals("")) { condition = " and book_name like ? ";}
 			conn = getConnection();
-			sql = " select * from ( select rownum rn, " + COLUMNS + " from ( select " + COLUMNS + " from goods where 1=1 and partner_name = ? order by book_regist desc )) where rn between ? and ? ";
+			sql = " select * from ( select rownum rn, " + COLUMNS + " from ( select " + COLUMNS + " from goods where 1=1 and partner_name = ? " + condition + " order by book_regist desc )) where rn between ? and ? ";
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, partnerName);
-				pstmt.setInt(2, startRow);
-				pstmt.setInt(3, endRow);
+				if(!serchValue.equals("")) {
+					pstmt.setString(1, partnerName);
+					pstmt.setString(2, "%"+serchValue+"%");
+					pstmt.setInt(3, startRow);
+					pstmt.setInt(4, endRow);
+				}else {
+					pstmt.setString(1, partnerName);
+					pstmt.setInt(2, startRow);
+					pstmt.setInt(3, endRow);
+				}
 
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
@@ -386,7 +394,6 @@ public class GoodsDAO extends DataBaseInfo{
 			}finally {
 			close();
 			}
-		}
 		return list;
 	}
 

@@ -18,20 +18,23 @@ public class GoodsListAction {
 		int limitPage = 10;
 		
 		String partnerName = request.getParameter("partnerName");
+		String serchValue = request.getParameter("serchValue");
 		
 		String bookNum = null;
 		GoodsDAO dao = new GoodsDAO();
-		List<GoodsDTO> list2 = dao.goodsPnameSelect();
-		Integer count = dao.goodsCount();
 		List<GoodsDTO> list = null;
 		if (request.getParameter("partnerName") != null) {
 			request.setAttribute("pName", partnerName);
-			list = dao.goodsPartnerSelect(page, limit, partnerName);
+			list = dao.goodsListPartnerSelect(page, limit, partnerName, serchValue);
 		} else {			
 			list = dao.goodsSelect(page, limit, bookNum);
 		}
-		request.setAttribute("list", list);
+		
+		
+		Integer count = dao.goodsCount();
+		List<GoodsDTO> list2 = dao.goodsPnameSelect();
 		request.setAttribute("list2", list2);
+		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		request.setAttribute("page", page);
 		request.setAttribute("limit", limit);
