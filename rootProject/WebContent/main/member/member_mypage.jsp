@@ -90,9 +90,10 @@
 					<h2>${ logId },  님</h2>
 					<div class="cs_menu">
 						<ul>
-							<li><a href="#">장바구니</a></li>
+							<li><a href="memberMyPage.mem">장바구니</a></li>
 							<li><a href="/cscenter/answerList.ab" class="">1:1 문의</a></li>
 							<li><a href="memberModify.mem" class="">정보수정</a></li>
+							<li><a href="orderCancle.od" class="">주문취소</a></li>
 						</ul>
 					</div>
 				</div>

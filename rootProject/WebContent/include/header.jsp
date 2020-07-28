@@ -53,7 +53,7 @@
 						</div>
 						 -->
 					</li>
-					<li class="m7"><a href="/cscenter/asnwerList.ab">1:1 문의</a></li>
+					<li class="m7"><a href="/cscenter/answerList.ab">1:1 문의</a></li>
 					<li class="m8"><a href="javascript:alert('준비중 입니다.');">구매후기</a></li>
 				</ul>
 			</div>
