@@ -72,7 +72,7 @@
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>재고</label>
-	                                    <p class="form-control-static">${dto.bookCount }</p>
+	                                    <p class="form-control-static">${list[0].bookCount }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>구매가격</label>
@@ -92,7 +92,11 @@
                                         	</c:if>
 	                                    </p>
 	                                </div>
-	                                <a href="orderList.bood" class="btn btn-default">목록으로</a>
+	                                <a href="orderList.bood?sort=${ sortVal }" class="btn btn-default">목록으로</a>
+	                                <c:if test="${ sortVal eq 'all' || sortVal eq 'new' }">
+	                                <a href="orderViewPro.bood?orderNum=${list[0].orderNum }" class="btn btn-default">상품배송</a>
+	                                </c:if>
+	                                <!-- <a href="javascript:history.back()" class="btn btn-default">목록으로</a> -->
 	                            </form>
 	                        </div>
 	                        <!-- /.panel-body -->

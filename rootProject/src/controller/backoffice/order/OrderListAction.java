@@ -38,6 +38,7 @@ public class OrderListAction {
 		request.setAttribute("count", count);
 		request.setAttribute("page", page);
 		request.setAttribute("limit", limit);
+		request.setAttribute("sortVal", sort);
 		
 		
 		PageAction pageAction = new PageAction();

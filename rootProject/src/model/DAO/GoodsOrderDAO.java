@@ -128,6 +128,22 @@ public class GoodsOrderDAO extends DataBaseInfo{
 		return list;
 	}
 	
+	public List<GoodsOrderDTO> goodsOrderShipping(String orderNum) {
+		List<GoodsOrderDTO> list = new ArrayList<GoodsOrderDTO>();
+		conn = getConnection(); 
+		sql = " update goodsorder set order_delivery_num=2 where order_num=? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, orderNum);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개가 배송처리 되었습니다.");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
 	
 	
 	

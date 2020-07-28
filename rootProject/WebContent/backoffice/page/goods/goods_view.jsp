@@ -63,7 +63,7 @@
 	                                <div class="form-group">
 	                                    <label>표지 이미지</label>
 	                                    <p class="form-control-static">
-	                                    	<img src="/backoffice/page/goods/upload/${list[0].bookImage }" alt="" />
+	                                    	<img src="${imagePath }/partnerBo/page/goods/upload/${list[0].bookImage }" alt="" />
 	                                    </p>
 	                                </div>
 	                                <div class="form-group">
