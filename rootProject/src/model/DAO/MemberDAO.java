@@ -6,9 +6,9 @@ import java.util.List;
 import model.DTO.MemberDTO;
 
 public class MemberDAO extends DataBaseInfo {
-	final String COLUMNS = " USER_ID, USER_PW, USER_NAME, USER_BIRTH, USER_GENDER, USER_ADDR, USER_PH1, USER_PH2, USER_REGIST, USER_EMAIL, JOIN_OK ";
+final String COLUMNS = " USER_ID, USER_PW, USER_NAME, USER_BIRTH, USER_GENDER, USER_ADDR, USER_PH1, USER_PH2, USER_REGIST, USER_EMAIL, JOIN_OK ";
 	
-	public void memberInsert(MemberDTO dto) {
+	public int memberInsert(MemberDTO dto) {
 		Integer i = null; 
 		conn = getConnection();
 		sql = "insert into member ( "+ COLUMNS +" )"
@@ -30,7 +30,8 @@ public class MemberDAO extends DataBaseInfo {
 			e.printStackTrace();
 		}finally {
 			close();
-		}		
+		}
+		return i;
 	}
 	
 	public List<MemberDTO> memberSelect(int page, int limit, String userId ) {
@@ -92,9 +93,10 @@ public class MemberDAO extends DataBaseInfo {
 		return result;
 	}
 	
-	public void memberUpdate(MemberDTO dto) {
+	public int memberUpdate(MemberDTO dto) {
+		int result = 0;
 		conn = getConnection();
-		sql = " update member set user_id=?, user_pw=?, user_name=?, user_ph1=?, user_ph2=?, user_birth=?, user_email=?, user_addr=? where user_id=? ";
+		sql = " update member set user_id=?, user_pw=?, user_name=?, user_ph1=?, user_ph2=?, user_birth=?, user_email=?, user_addr=? where user_id=? and user_pw=? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -107,13 +109,16 @@ public class MemberDAO extends DataBaseInfo {
 			pstmt.setString(7, dto.getUserEmail());
 			pstmt.setString(8, dto.getUserAddr());
 			pstmt.setString(9, dto.getUserId());
-			int i = pstmt.executeUpdate();
-			System.out.println(i + "개의 유저 정보가 변경되었습니다.");
+			pstmt.setString(10, dto.getUserPw());
+			result = pstmt.executeUpdate();
+			System.out.println(result + "개의 유저 정보가 변경되었습니다.");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			close();
 		}
+		
+		return result;
 	}
 	
 	public void memberDelete(String userId) {
@@ -130,6 +135,57 @@ public class MemberDAO extends DataBaseInfo {
 			close();
 		}
 	}
+
+	public String memberIdChk(String userId) {
+		String result = "";
+		conn = getConnection();
+		sql = "select 'x' as chk from member where user_id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getString("chk");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return result;
+	}
+
+	public Integer memberLogInChk(String userId, String userPw) {
+		Integer result = -1;
+		conn = getConnection();
+		sql = "select user_pw from member where user_id = ? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (rs.getString("user_pw").equals(userPw)) {
+					result = 1; // 로그인 성공.
+				} else {
+					result = 0; // 비밀번호가 틀렸습니다.
+				}
+			} else {
+				result = -1; // 아이디가 틀렸습니다. 
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return result;
+	}
+	
 	
 	
 }

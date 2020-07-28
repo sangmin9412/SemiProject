@@ -83,14 +83,22 @@ public class GoodsController extends HttpServlet implements Servlet {
 		} else if (command.equals("/backoffice/goodsIpgoModify.bogd")) {
 			GoodsIbgoModifyAction action = new GoodsIbgoModifyAction();
 			action.execute(request);
-			//request.setAttribute("partnerNum", request.getParameter("partnerNum"));
-			//request.setAttribute("bookNum", request.getParameter("bookNum"));
 			String path = "/backoffice/page/goods/goods_ipgo_modify.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
 		} else if (command.equals("/backoffice/goodsIpgoModifyPro.bogd")) {
 			GoodsIbgoModifyProAction action = new GoodsIbgoModifyProAction();
+			action.execute(request);
+			response.sendRedirect("/backoffice/goodsIpgo.bogd");
+			
+		} else if (command.equals("/backoffice/goodsIpgoOk.bogd")) {
+			GoodsIbgoOkAction action = new GoodsIbgoOkAction();
+			action.execute(request);
+			response.sendRedirect("/backoffice/goodsIpgo.bogd");
+			
+		} else if (command.equals("/backoffice/goodsIpgoReOk.bogd")) {
+			GoodsIbgoReOkAction action = new GoodsIbgoReOkAction();
 			action.execute(request);
 			response.sendRedirect("/backoffice/goodsIpgo.bogd");
 			

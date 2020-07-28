@@ -42,11 +42,11 @@
 		                                	<c:forEach var="dto" items="${list}" varStatus="cnt">
 		                                    <tr>
 		                                        <td>${ ((page-1) * limit) + cnt.count }</td>
-		                                        <td><img src="/backoffice/page/goods/upload/${ dto.bookImage }" width="60" /></td>
+		                                        <td><img src="/partnerBo/page/goods/upload/${ dto.bookImage }" width="60" /></td>
 		                                        <td>${dto.bookName }</td>
 		                                        <td>${dto.partnerName }</td>
 		                                        <td>${dto.bookCount }</td>
-		                                        <td class="text-center"><a href="goodsInventoryForm.bogd?partnerNum=${dto.partnerNum }&bookNum=${dto.bookNum}" class="btn btn-default">발주</a></td>
+		                                        <td class="text-center" style="width:80px;"><a href="goodsInventoryForm.bogd?partnerNum=${dto.partnerNum }&bookNum=${dto.bookNum}" class="btn btn-default">발주</a></td>
 		                                    </tr>
 		                                    </c:forEach>
 		                                </tbody>

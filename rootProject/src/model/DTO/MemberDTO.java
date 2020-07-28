@@ -88,12 +88,4 @@ public class MemberDTO {
 	public void setInterest(String interest) {
 		this.interest = interest;
 	}
-
-	
-	
-
-	
-	
-	
-	
 }

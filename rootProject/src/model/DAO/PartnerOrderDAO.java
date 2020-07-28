@@ -75,6 +75,51 @@ public class PartnerOrderDAO extends DataBaseInfo{
 		return list;
 	}
 	
+	public List<PartnerOrderDTO> partnerIbgoSelect(int page, int limit, String pOrderNum, String partnerNum){
+		List<PartnerOrderDTO> list = new ArrayList<PartnerOrderDTO>();
+		int startRow = (page - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		String condition = "";
+		if(pOrderNum != null) condition = " and p_order_num = ?";
+		conn = getConnection();
+		sql = " select * from ( select rownum rn, " +COLUMNS+ " from ( select " +COLUMNS+ " from partnerorder where partner_num = ? " +condition+ " order by p_order_date desc )) where rn between ? and ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, partnerNum);
+			if(pOrderNum != null) {
+				pstmt.setString(2, pOrderNum);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+			}else {
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+			}
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				PartnerOrderDTO dto = new PartnerOrderDTO();
+				dto.setPartnerName(rs.getString("partner_name"));
+				dto.setPartnerNum(rs.getString("partner_num"));
+				dto.setBookName(rs.getString("book_name"));
+				dto.setBookNum(rs.getString("book_num"));
+				dto.setBookCount(rs.getString("book_count"));
+				dto.setpOrderNum(rs.getString("p_order_num"));
+				dto.setpOrderQty(rs.getString("p_order_qty"));
+				dto.setpOrderDate(rs.getTimestamp("p_order_date"));
+				dto.setpOrderReQty(rs.getString("p_order_re_qty"));
+				dto.setpOrderReDate(rs.getTimestamp("p_order_re_date"));
+				dto.setpOrderOkQty(rs.getString("p_order_ok_qty"));
+				dto.setpOrderOkDate(rs.getTimestamp("p_order_ok_date"));
+				dto.setpOrderChk(rs.getString("p_order_chk"));
+				list.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+	
 	public Integer partnerIbgoCount() {
 		Integer result = 0;
 		conn = getConnection();
@@ -118,7 +163,23 @@ public class PartnerOrderDAO extends DataBaseInfo{
 	}
 
 	public void bookCountUpdate(PartnerOrderDTO dto) {
+		conn = getConnection();
+		sql = " update goods set "
+				+ " book_count = book_count + ? "
+				+ " where book_num = ? ";
 		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getpOrderOkQty());
+			pstmt.setString(2, dto.getBookNum());
+			int i = pstmt.executeUpdate();
+			System.out.println(i + " 개의 상품재고가 수정되었습니다.");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 		
 	}
 	

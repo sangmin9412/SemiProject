@@ -16,14 +16,14 @@ public class DataBaseInfo {
 	
 	public DataBaseInfo() {
 		jdbcDriver = "oracle.jdbc.driver.OracleDriver";
-		jdbcUrl = "jdbc:oracle:thin:@172.16.3.18:1521:xe";
+		jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	}
 	
 	public Connection getConnection() {
 		Connection con = null;
 		try {
 			Class.forName(jdbcDriver);
-			con = DriverManager.getConnection(jdbcUrl, "semi", "1234");
+			con = DriverManager.getConnection(jdbcUrl, "semi", "semi");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

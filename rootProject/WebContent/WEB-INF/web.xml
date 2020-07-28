@@ -128,6 +128,60 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>member</servlet-name>
+  	<servlet-class>controller.main.member.MemberController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>member</servlet-name>
+  	<url-pattern>*.mem</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>goods</servlet-name>
+  	<servlet-class>controller.main.goods.GoodsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>goods</servlet-name>
+  	<url-pattern>*.gd</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>event</servlet-name>
+  	<servlet-class>controller.main.eventBoard.EventController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>event</servlet-name>
+  	<url-pattern>*.eb</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>faq</servlet-name>
+  	<servlet-class>controller.main.faqBoard.FaqController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>faq</servlet-name>
+  	<url-pattern>*.fb</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>answer</servlet-name>
+  	<servlet-class>controller.main.answerBoard.AnswerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>answer</servlet-name>
+  	<url-pattern>*.ab</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>notice</servlet-name>
+  	<servlet-class>controller.main.noticeBoard.NoticeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>notice</servlet-name>
+  	<url-pattern>*.nb</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>main</servlet-name>
   	<servlet-class>controller.main.MainController</servlet-class>
   </servlet>

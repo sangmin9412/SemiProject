@@ -16,7 +16,7 @@ import model.DTO.GoodsDTO;
 public class GoodsModifyProAction {
 	public String execute(HttpServletRequest request) {
 		
-		String realPath = request.getServletContext().getRealPath("/backoffice/page/goods/upload");
+		String realPath = request.getServletContext().getRealPath("/partnerBo/page/goods/upload");
 		int limitSize = 1024 * 1024 * 5;
 		GoodsDTO dto = new GoodsDTO();
 		GoodsDAO dao = new GoodsDAO();
@@ -38,7 +38,7 @@ public class GoodsModifyProAction {
 			String bookPageNum = multi.getParameter("bookPageNum");
 			String bookLength = multi.getParameter("bookLength");
 			String bookSub = multi.getParameter("bookSub");
-			String bookImage = multi.getFilesystemName("bookImage");
+			// String bookImage = multi.getFilesystemName("bookImage");
 			String bookIntro = multi.getParameter("bookIntro");
 			String bookAuthorIntro = multi.getParameter("bookAuthorIntro");
 			String bookList = multi.getParameter("bookList");
@@ -57,15 +57,15 @@ public class GoodsModifyProAction {
 			dto.setBookPageNum(bookPageNum);
 			dto.setBookLength(bookLength);
 			dto.setBookSub(bookSub);
-			dto.setBookImage(bookImage);
+			// dto.setBookImage(bookImage);
 			dto.setBookIntro(bookIntro);
 			dto.setBookAuthorIntro(bookAuthorIntro);
 			dto.setBookList(bookList);
 			dto.setBookCount(bookCount);
 			dto.setBookNum(bookNum);
 			dao.GoodsUpdate(dto);
+			
 			if(multi.getFile("bookImage") != null) {
-				System.out.println("111");
 				dto.setBookImage(multi.getFilesystemName("bookImage"));
 				int i = dao.fileUpdate(dto);
 				File file = null;
@@ -75,8 +75,8 @@ public class GoodsModifyProAction {
 					if(file.exists()) file.delete();
 					else System.out.println("파일이 없습니다.");
 				}
-			}else {
-				System.out.println("222");
+			} else {
+				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

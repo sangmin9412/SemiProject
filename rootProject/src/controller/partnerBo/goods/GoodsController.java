@@ -57,17 +57,9 @@ public class GoodsController extends HttpServlet implements Servlet {
 			action.execute(request);
 			response.sendRedirect("goodsList.pogd");
 			
-		} else if (command.equals("/partnerBo/goodsInventoryList.pogd")) {
-			String path = "/partnerBo/page/goods/goods_inventory.jsp";
-			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-			dispatcher.forward(request, response);
-			
-		} else if (command.equals("/partnerBo/goodsInventoryForm.pogd")) {
-			String path = "/partnerBo/page/goods/goods_inventory_form.jsp";
-			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-			dispatcher.forward(request, response);
-			
 		} else if (command.equals("/partnerBo/goodsIpgo.pogd")) {
+			GoodsIbgoListAction action = new GoodsIbgoListAction();
+			action.execute(request);
 			String path = "/partnerBo/page/goods/goods_ipgo.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
@@ -77,6 +69,10 @@ public class GoodsController extends HttpServlet implements Servlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
+		} else if (command.equals("/partnerBo/goodsIpgoOk.pogd")) {
+			GoodsIbgoOkAction action = new GoodsIbgoOkAction();
+			action.execute(request);
+			response.sendRedirect("goodsIpgo.pogd");
 		}
 		
 	}
