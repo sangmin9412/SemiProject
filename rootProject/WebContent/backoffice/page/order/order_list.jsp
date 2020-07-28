@@ -52,7 +52,7 @@
 		                                	<c:forEach var="dto" items="${list}" varStatus="cnt">
 		                                    <tr>
 		                                        <td>${dto.orderNum }</td>
-		                                        <td><a href="orderView.bood?orderNum=${dto.orderNum }">${ dto.bookName }</a></td>
+		                                        <td><a href="orderView.bood?sort=${ sortVal }&orderNum=${dto.orderNum }">${ dto.bookName }</a></td>
 		                                        <td>${dto.userName }</td>
 		                                        <td>${dto.orderQty }</td>
 		                                        <td>${dto.orderTotalPrice }</td>

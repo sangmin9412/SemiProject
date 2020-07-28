@@ -11,7 +11,7 @@
 					<div class="img-area">
 						<div id="divDetBig">
 							<ul>
-								<li class="big-list active"><img src="/partnerBo/page/goods/upload/${ list.bookImage }" name="ImgDetBig" alt=""></li>
+								<li class="big-list active"><img src="${ imagePath }/partnerBo/page/goods/upload/${ list.bookImage }" name="ImgDetBig" alt=""></li>
 							</ul>
 						</div>
 					</div>

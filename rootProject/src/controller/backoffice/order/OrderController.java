@@ -50,6 +50,11 @@ public class OrderController extends HttpServlet implements Servlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
+		} else if (command.equals("/backoffice/orderViewPro.bood")) {
+			OrderViewProAction action = new OrderViewProAction();
+			action.execute(request);
+			response.sendRedirect("/backoffice/orderView.bood");
+			
 		}
 		
 	}

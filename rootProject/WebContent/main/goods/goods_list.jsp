@@ -22,7 +22,7 @@
 										<div class="pos">
 											<div class="tb">
 												<div class="cell">
-													<img src="/partnerBo/page/goods/upload/${ dto.bookImage }" alt="">
+													<img src="${imagePath }/partnerBo/page/goods/upload/${ dto.bookImage }" alt="">
 												</div>
 											</div>
 										</div>

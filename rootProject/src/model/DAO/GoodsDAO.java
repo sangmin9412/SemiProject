@@ -343,10 +343,72 @@ public class GoodsDAO extends DataBaseInfo{
 		} finally {
 			close();
 		}
-		
 	}
 	
-	
+	public List<GoodsDTO> goodsPartnerSelect(int page, int limit, String partnerName) {
+		List<GoodsDTO> list = new ArrayList<GoodsDTO>();
+		int startRow = (page - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		if (partnerName != null) {
+			conn = getConnection();
+			sql = " select * from ( select rownum rn, " + COLUMNS + " from ( select " + COLUMNS + " from goods where 1=1 and partner_name = ? order by book_regist desc )) where rn between ? and ? ";
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, partnerName);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					GoodsDTO dto = new GoodsDTO();
+					dto.setBookIsbn(rs.getString("book_isbn"));
+					dto.setBookName(rs.getString("book_name"));
+					dto.setBookAuthorName(rs.getString("book_author_name"));
+					dto.setBookCategory(rs.getString("book_category"));
+					dto.setPartnerName(rs.getString("partner_name"));
+					dto.setBookDate(rs.getTimestamp("book_date"));
+					dto.setBookPrice(rs.getString("book_price"));
+					dto.setBookPageNum(rs.getString("book_page_num"));
+					dto.setBookLength(rs.getString("book_length"));
+					dto.setBookSub(rs.getString("book_sub"));
+					dto.setBookImage(rs.getString("book_image"));
+					dto.setBookIntro(rs.getString("book_intro"));
+					dto.setBookAuthorIntro(rs.getString("book_author_intro"));
+					dto.setBookList(rs.getString("book_list"));
+					dto.setBookCount(rs.getString("book_count"));
+					dto.setBookRegist(rs.getTimestamp("book_regist"));
+					dto.setPartnerNum(rs.getString("partner_num"));
+					dto.setBookNum(rs.getString("book_num"));
+					list.add(dto);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+			close();
+			}
+		}
+		return list;
+	}
+
+	public List<GoodsDTO> goodsPnameSelect() {
+		List<GoodsDTO> list = new ArrayList<GoodsDTO>();
+		conn = getConnection();
+		sql = " select partner_name from partner";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				GoodsDTO dto = new GoodsDTO();
+				dto.setPartnerName(rs.getString("partner_name"));
+				list.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+		close();
+		}
+		return list;
+	}
 	
 	
 	

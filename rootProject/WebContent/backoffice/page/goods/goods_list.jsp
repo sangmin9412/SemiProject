@@ -20,29 +20,26 @@
 	                        <div class="panel-heading"></div>
 	                        <div class="panel-body">
 	                        	<div class="row">
-	                        		<div class="col-md-8">
-	                        			<form action="#" name="frm" method="get">
-	                        			<a href="goodsForm.bogd" class="btn btn-default" style="margin-bottom: 10px;">제품등록</a>
-	                        			<select class="form-control" name="partnerSort" style="display:inline-block; vertical-align:top; max-width:200px;">
-	                        				<option hidden>전체검색</option>
-	                                        <option>출판사1</option>
-	                                        <option>출판사2</option>
-	                                        <option>출판사3</option>
-	                                    </select>
-	                                    <button type="submit" class="btn btn-default" style="margin-bottom: 10px;">확인</button>
-	                                    </form>
-	                        		</div>
-	                        		<div class="col-md-4">
-	                        			<form action="" method="" name="frm2">
+	                        		<form action="goodsList.bogd" name="frm" method="get">
+		                        		<div class="col-md-8">
+		                        			<a href="goodsForm.bogd" class="btn btn-default" style="margin-bottom: 10px;">제품등록</a>
+		                        			<select class="form-control" name="partnerName" style="display:inline-block; vertical-align:top; max-width:200px;" onchange="document.frm.submit();">
+		                        				<c:forEach items="${ list2 }" var="plist">
+		                        					<option value="${ plist.partnerName }" <c:if test="${ pName eq plist.partnerName }">selected</c:if>>${ plist.partnerName }</option>
+		                        				</c:forEach>
+		                                    </select>
+		                                    <!-- <button type="submit" class="btn btn-default" style="margin-bottom: 10px;">확인</button> -->
+		                        		</div>
+		                        		<div class="col-md-4">
 		                        			<div class="form-group input-group">
-	                                            <input type="text" class="form-control">
+	                                            <input type="text" name="serchValue" class="form-control">
 	                                            <span class="input-group-btn">
 	                                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
 	                                                </button>
 	                                            </span>
 	                                        </div>
-                                        </form>
-	                        		</div>
+		                        		</div>
+                                	</form>
 	                        	</div>
 	                        	<div class="table-responsive">
 		                            <table class="table table-striped table-bordered table-hover">
@@ -61,7 +58,7 @@
 		                                	<c:forEach var="dto" items="${list}" varStatus="cnt">
 		                                    <tr>
 		                                        <td>${ ((page-1) * limit) + cnt.count }</td>
-		                                        <td><img src="/partnerBo/page/goods/upload/${ dto.bookImage }" width="60" /></td>
+		                                        <td><img src="${imagePath }/partnerBo/page/goods/upload/${ dto.bookImage }" width="60" /></td>
 		                                        <td><a href="goodsView.bogd?bookNum=${dto.bookNum }">${dto.bookName }</a></td>
 		                                        <td>${dto.bookAuthorName }</td>
 		                                        <td>${dto.partnerName }</td>

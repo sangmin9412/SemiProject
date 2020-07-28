@@ -102,7 +102,7 @@ public class GoodsController extends HttpServlet implements Servlet {
 			action.execute(request);
 			response.sendRedirect("/backoffice/goodsIpgo.bogd");
 			
-		}
+		} 
 		
 	}
 	

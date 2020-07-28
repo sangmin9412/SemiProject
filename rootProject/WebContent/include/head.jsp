@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% application.setAttribute("imagePath", "http://172.16.3.20:9011"); %>
 <%@ include file = "/include/taglibs.jsp" %>
 <!DOCTYPE html>
 <html>

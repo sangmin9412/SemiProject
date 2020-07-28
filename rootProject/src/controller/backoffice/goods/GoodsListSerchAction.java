@@ -1,5 +1,6 @@
 package controller.backoffice.goods;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +9,14 @@ import controller.PageAction;
 import model.DAO.GoodsDAO;
 import model.DTO.GoodsDTO;
 
-public class GoodsListAction {
+public class GoodsListSerchAction {
 	public void execute(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int page = 1;
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -18,20 +25,11 @@ public class GoodsListAction {
 		int limitPage = 10;
 		
 		String partnerName = request.getParameter("partnerName");
-		
-		String bookNum = null;
 		GoodsDAO dao = new GoodsDAO();
-		List<GoodsDTO> list2 = dao.goodsPnameSelect();
+		System.out.println(partnerName);
+		List<GoodsDTO> list = dao.goodsPartnerSelect(page, limit, partnerName);
 		Integer count = dao.goodsCount();
-		List<GoodsDTO> list = null;
-		if (request.getParameter("partnerName") != null) {
-			request.setAttribute("pName", partnerName);
-			list = dao.goodsPartnerSelect(page, limit, partnerName);
-		} else {			
-			list = dao.goodsSelect(page, limit, bookNum);
-		}
 		request.setAttribute("list", list);
-		request.setAttribute("list2", list2);
 		request.setAttribute("count", count);
 		request.setAttribute("page", page);
 		request.setAttribute("limit", limit);
@@ -40,4 +38,6 @@ public class GoodsListAction {
 		pageAction.page(request, count, limit, limitPage, page, "goodsList.bogd");
 
 	}
+	
+	
 }
