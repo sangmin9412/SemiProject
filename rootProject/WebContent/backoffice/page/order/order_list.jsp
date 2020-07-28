@@ -39,65 +39,40 @@
 		                            <table class="table table-striped table-bordered table-hover">
 		                                <thead>
 		                                    <tr>
-		                                        <th>No</th>
-		                                        <th>도서</th>
+		                                        <th>주문번호</th>
+		                                        <th>도서명</th>
 		                                        <th>구매자</th>
-		                                        <th>판매날짜</th>
 		                                        <th>구매수량</th>
 		                                        <th>가격</th>
+		                                        <th>판매날짜</th>
 		                                        <th>배송상태</th>
 		                                    </tr>
 		                                </thead>
 		                                <tbody>
+		                                	<c:forEach var="dto" items="${list}" varStatus="cnt">
 		                                    <tr>
-		                                        <td>1</td>
-		                                        <td><a href="orderView.bood">책이름이름</a></td>
-		                                        <td>구매자이름</td>
-		                                        <td>2020-01-05</td>
-		                                        <td>1</td>
-		                                        <td>30000</td>
-		                                        <td></td>
+		                                        <td>${dto.orderNum }</td>
+		                                        <td><a href="orderView.bood?orderNum=${dto.orderNum }">${ dto.bookName }</a></td>
+		                                        <td>${dto.userName }</td>
+		                                        <td>${dto.orderQty }</td>
+		                                        <td>${dto.orderTotalPrice }</td>
+		                                        <td>${dto.orderDate }</td>
+		                                        <td>
+		                                        	<c:if test="${ dto.orderDeliveryNum == 1 }">
+		                                        		배송준비
+		                                        	</c:if>
+		                                        	<c:if test="${ dto.orderDeliveryNum == 2 }">
+		                                        		배송중
+		                                        	</c:if>
+		                                        	<c:if test="${ dto.orderDeliveryNum == 3 }">
+		                                        		배송완료
+		                                        	</c:if>
+		                                        </td>
 		                                    </tr>
-		                                    <tr>
-		                                        <td>2</td>
-		                                        <td><a href="orderView.bood">책이름이름</a></td>
-		                                        <td>구매자이름</td>
-		                                        <td>2020-01-05</td>
-		                                        <td>1</td>
-		                                        <td>30000</td>
-		                                        <td></td>
-		                                    </tr>
-		                                    <tr>
-		                                        <td>3</td>
-		                                        <td><a href="orderView.bood">책이름이름</a></td>
-		                                        <td>구매자이름</td>
-		                                        <td>2020-01-05</td>
-		                                        <td>1</td>
-		                                        <td>30000</td>
-		                                        <td></td>
-		                                    </tr>
+		                                    </c:forEach>
 		                                </tbody>
 		                            </table>
-		                            <div class="row">
-			                            <div class="col-sm-12">
-			                            	<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-			                            		<ul class="pagination">
-			                            			<li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
-			                            				<a href="#">Previous</a>
-			                            			</li>
-			                            			<li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a></li>
-			                            			<li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
-			                            				<a href="#">Next</a>
-			                            			</li>
-			                            		</ul>
-			                            	</div>
-			                           </div>
-									</div>
+		                            <%@ include file = "/backoffice/include/paging.jsp" %>
 		                        </div>
 	                        </div>
 	                        <!-- /.panel-body -->

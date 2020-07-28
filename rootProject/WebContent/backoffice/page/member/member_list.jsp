@@ -31,49 +31,18 @@
 		                                    </tr>
 		                                </thead>
 		                                <tbody>
+		                                	<c:forEach var="dto" items="${list}" varStatus="cnt">
 		                                    <tr>
-		                                        <td>1</td>
-		                                        <td>test4</td>
-		                                        <td><a href="memberView.bomem">길동이</a></td>
-		                                        <td>010-0000-1111</td>
-		                                        <td>name@site.com</td>
+		                                        <td>${ ((page-1) * limit) + cnt.count }</td>
+		                                        <td>${dto.userId}</td>
+		                                        <td><a href="memberView.bomem">${dto.userName }</a></td>
+		                                        <td>${dto.userPh1 }</td>
+		                                        <td>${dto.userEmail }</td>
 		                                    </tr>
-		                                    <tr>
-		                                        <td>2</td>
-		                                        <td>test5</td>
-		                                        <td><a href="memberView.bomem">길동홍</a></td>
-		                                        <td>010-0000-1112</td>
-		                                        <td>name@site.com</td>
-		                                    </tr>
-		                                    <tr>
-		                                        <td>3</td>
-		                                        <td>test6</td>
-		                                        <td><a href="memberView.bomem">길동홍</a></td>
-		                                        <td>010-0000-1113</td>
-		                                        <td>name@site.com</td>
-		                                    </tr>
+		                                    </c:forEach>
 		                                </tbody>
 		                            </table>
-		                            <div class="row">
-			                            <div class="col-sm-12">
-			                            	<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-			                            		<ul class="pagination">
-			                            			<li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
-			                            				<a href="#">Previous</a>
-			                            			</li>
-			                            			<li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a></li>
-			                            			<li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
-			                            				<a href="#">Next</a>
-			                            			</li>
-			                            		</ul>
-			                            	</div>
-			                           </div>
-									</div>
+		                            <%@ include file = "/backoffice/include/paging.jsp" %>
 		                        </div>
 	                        </div>
 	                        <!-- /.panel-body -->
