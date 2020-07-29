@@ -45,6 +45,11 @@ public class OrderController extends HttpServlet implements Servlet {
 			action.exeucte(request);
 			response.sendRedirect("orderList.od");
 			
+		} else if (command.equals("/order/orderReturn.od")) {
+			OrderReturnAction action = new OrderReturnAction();
+			action.exeucte(request);
+			response.sendRedirect("orderList.od");
+			
 		}
 		
 	}

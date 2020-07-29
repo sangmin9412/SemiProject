@@ -458,7 +458,7 @@ public class GoodsDAO extends DataBaseInfo{
 			pstmt.setString(6, list.get(0).getBookPrice());
 			pstmt.setString(7, list.get(0).getBookImage());
 			pstmt.setString(8, Qty);
-			pstmt.setString(9, list.get(0).getBookPrice());
+			pstmt.setString(9, Integer.toString(Integer.parseInt(list.get(0).getBookPrice()) * Integer.parseInt(Qty)));
 			pstmt.setString(10, list.get(0).getPartnerName());
 			pstmt.setString(11, list.get(0).getBookCount());
 			int i = pstmt.executeUpdate();
@@ -493,6 +493,7 @@ public class GoodsDAO extends DataBaseInfo{
 				dto.setTotalPrice(rs.getString("TOTAL_PRICE"));
 				dto.setPartnerName(rs.getString("partner_name"));
 				dto.setSumTotalPrice(rs.getString("sum_total_price"));
+				dto.setBookCount(rs.getString("book_count"));
 				list.add(dto);
 			}
 		}catch(Exception e) {e.printStackTrace();}

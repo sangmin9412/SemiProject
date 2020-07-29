@@ -168,7 +168,7 @@ public class GoodsOrderDAO extends DataBaseInfo{
 	public void goodsOrderInsert(GoodsOrderDTOInsert dto) {
 		conn = getConnection();
 		sql = "insert into goodsorder ("+COLUMNS+") "
-				+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '1', '01', null, sysdate, ?, ?) ";
+				+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '1', '00', null, sysdate, ?, ?) ";
 		try {
 			int i = 0;
 			// int num = 1;
@@ -239,6 +239,87 @@ public class GoodsOrderDAO extends DataBaseInfo{
 		}
 			
 		return list;
+	}
+
+	public void goodsOrderCancelUpdate(String bookName, String orderNum, String orderQty) {
+		conn = getConnection();
+		sql = " update goodsorder set "
+				+ " ORDER_CANCEL = 'Y', "
+				+ "	book_count = book_count - ? "
+				+ " where order_num = ? and book_name = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, orderQty);
+			pstmt.setString(2, orderNum);
+			pstmt.setString(3, bookName);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + " 개의 주문취소가 완료되었습니다");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	
+	public void goodsOrderReturnUpdate(String bookName, String orderNum, String s, String orderQty) {
+		List<GoodsOrderDTO> list = new ArrayList<GoodsOrderDTO>();
+		String condition = "";
+		conn = getConnection();
+		sql = " update goodsorder set "
+				+ " ORDER_RETURN_NUM = ? "
+				+ "	book_count = book_count - ? "
+				+ " where order_num = ? and book_name = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			if (s.equals("반품")) {
+				condition = "01";				
+			} else {
+				condition = "11";
+			}
+			pstmt.setString(1, condition);
+			pstmt.setString(2, orderQty);
+			pstmt.setString(3, orderNum);
+			pstmt.setString(4, bookName);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + " 개의 반품/교환이 완료되었습니다");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
+	public void goodsCountUpdateMinus(GoodsOrderDTOInsert dto) {
+		conn = getConnection();
+		sql = " update goods set "
+				+ " book_count = ? "
+				+ " where book_num = ? ";
+		try {
+			int i = 0;
+			// int num = 1;
+			for (String bn : dto.getBookNum()) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, Integer.toString(Integer.parseInt(dto.getBookCount()[i]) - Integer.parseInt(dto.getOrderQty()[i])));
+				pstmt.setString(2, bn);
+				pstmt.executeUpdate();
+				i++;
+			}
+			
+			System.out.println(i + " 개의 상품재고가 수정되었습니다.");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+	}
+	
+	public void goodsCountUpdatePlus(GoodsOrderDTOInsert dto) {
+		
+		
 	}
 	
 }

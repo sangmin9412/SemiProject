@@ -171,14 +171,18 @@
                                     	<input type="hidden" name="bookCount" value="${ gList.bookCount }" />
                                     	<input type="hidden" name="partnerName" value="${ gList.partnerName }" />
                                     	<input type="hidden" name="bookPrice" value="${ gList.bookPrice }" />
-                                    	<input type="hidden" name="orderQty" value="${ qty }" />
+                                    	<c:if test="${ !empty qty }">
+                                    		<input type="hidden" name="orderQty" value="${ qty }" />
+                                    	</c:if>
+                                    	<c:if test="${ empty qty }">
+                                    		<input type="hidden" name="orderQty" value="${ gList.bookQty }" />
+                                    	</c:if>
                                         <td class="product_photo">
                                             <div class="my-goods-summary">
                                                 <div class="thumb sp-thumb">
                                                     <img src="${ imagePath }/partnerBo/page/goods/upload/${ gList.bookImage }" alt="" width="160">
                                                 </div>
                                                 <div class="info">
-                                                    <div class="cate">[${ gList.bookCategory }]</div>
                                                     <div class="tit">${ gList.bookName }</div>
                                                 </div>
                                             </div>
@@ -187,41 +191,23 @@
 											 <div class="my-price"><fmt:formatNumber value="${ gList.bookPrice }" type="number" />원</div>
                                         </td>
                                         <td class="my-qty">
-                                            <span>${ qty }권</span>
+                                        	<c:if test="${ !empty qty }">
+                                            	<span>${ qty }권</span>
+	                                    	</c:if>
+	                                    	<c:if test="${ empty qty }">
+	                                    		<span>${ gList.bookQty }권</span>
+	                                    	</c:if>
                                         </td>
                                         <td class="amount">
-                                            <div class="my-order-price"><fmt:formatNumber value="${ gList.bookPrice * qty }" type="number" />원</div>
+                                        	<c:if test="${ !empty qty }">
+                                           		<div class="my-order-price"><fmt:formatNumber value="${ gList.bookPrice * qty }" type="number" />원</div>
+	                                    	</c:if>
+	                                    	<c:if test="${ empty qty }">
+	                                    		<div class="my-order-price"><fmt:formatNumber value="${ gList.bookPrice * gList.bookQty }" type="number" />원</div>
+	                                    	</c:if>
                                         </td>
                                     </tr>
                                     </c:forEach>
-                                    <tr style="border-bottom: 1px dotted #cdcdcd">
-                                    	<input type="hidden" name="bookName" value="유튜버들" />
-                                    	<input type="hidden" name="bookNum" value="20" />
-                                    	<input type="hidden" name="bookCount" value="20" />
-                                    	<input type="hidden" name="partnerName" value="에스프레소Test" />
-                                    	<input type="hidden" name="bookPrice" value="16000" />
-                                    	<input type="hidden" name="orderQty" value="3" />
-                                        <td class="product_photo">
-                                            <div class="my-goods-summary">
-                                                <div class="thumb sp-thumb">
-                                                    <img src="${ imagePath }/partnerBo/page/goods/upload/youtube.jpg" alt="" width="160">
-                                                </div>
-                                                <div class="info">
-                                                    <div class="cate">[경제/경영]</div>
-                                                    <div class="tit">유튜버들</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="consumer_price">
-											 <div class="my-price"><fmt:formatNumber value="16000" type="number" />원</div>
-                                        </td>
-                                        <td class="my-qty">
-                                            <span>3권</span>
-                                        </td>
-                                        <td class="amount">
-                                            <div class="my-order-price"><fmt:formatNumber value="${ 16000 * 3 }" type="number" />원</div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -337,7 +323,7 @@
                                     <tr>
                                         <th scope="row">결제금액</th>
                                         <td>
-                                            <strong class="total-price"><fmt:formatNumber value="${ gList.bookPrice * qty }" type="number" /> 원</strong>
+                                            <strong class="total-price"><fmt:formatNumber value="${ tp }" type="number" /> 원</strong>
                                         </td>
                                     </tr>
                                     <tr>

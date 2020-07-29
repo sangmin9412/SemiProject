@@ -73,13 +73,6 @@ public class MemberController extends HttpServlet implements Servlet {
 			action.execute(request);
 			response.sendRedirect("memberCartList.mem");
 			
-		} else if (command.equals("/mem/memberCartOrder.mem")) {
-			MemberCartListAction action = new MemberCartListAction();
-			action.execute(request);
-			String path = "/main/order/oredr_step_01.jsp";
-			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-			dispatcher.forward(request, response);
-			
 		}
 		
 	}
