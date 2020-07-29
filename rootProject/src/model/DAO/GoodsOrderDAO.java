@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.DTO.GoodsOrderDTO;
+import model.DTO.GoodsOrderDTOInsert;
 
 public class GoodsOrderDAO extends DataBaseInfo{
 	final String COLUMNS = " book_name, book_num, book_count, partner_name, book_price, user_id, user_name, user_ph1, user_email, user_addr, order_name, order_num, order_delivery_num, order_return_num, order_cancel, order_date, order_qty, order_total_price ";
@@ -145,8 +146,99 @@ public class GoodsOrderDAO extends DataBaseInfo{
 		return list;
 	}
 	
-	
-	
-	
+	public int goodsNumber() {
+		int result = 0;
+		conn = getConnection();
+		sql = "select seq_goodsorder.nextval as num from dual";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt("num");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+	}
+
+	public void goodsOrderInsert(GoodsOrderDTOInsert dto) {
+		conn = getConnection();
+		sql = "insert into goodsorder ("+COLUMNS+") "
+				+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '1', '01', null, sysdate, ?, ?) ";
+		try {
+			int i = 0;
+			// int num = 1;
+			for (String bn : dto.getBookNum()) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getBookName()[i]);
+				pstmt.setString(2, dto.getBookNum()[i]);
+				pstmt.setString(3, Integer.toString(Integer.parseInt(dto.getBookCount()[i]) - Integer.parseInt(dto.getOrderQty()[i])));
+				pstmt.setString(4, dto.getPartnerName()[i]);
+				pstmt.setString(5, dto.getBookPrice()[i]);
+				pstmt.setString(6, dto.getUserId());
+				pstmt.setString(7, dto.getUserName());
+				pstmt.setString(8, dto.getUserPh1());
+				pstmt.setString(9, dto.getUserEmail());
+				pstmt.setString(10, dto.getUserAddr());
+				pstmt.setString(11, dto.getOrderName());
+				pstmt.setString(12, dto.getOrderNum());
+				pstmt.setString(13, dto.getOrderQty()[i]);
+				pstmt.setString(14, Integer.toString(Integer.parseInt(dto.getOrderQty()[i]) * Integer.parseInt(dto.getBookPrice()[i])));
+				pstmt.executeUpdate();
+				i++;
+			}
+			
+			System.out.println(i + " 개의 주문정보가 등록되었습니다.");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+	}
+
+	public List<GoodsOrderDTO> goodsOrderUserSelect(String userId) {
+		List<GoodsOrderDTO> list = new ArrayList<GoodsOrderDTO>();
+		conn = getConnection();
+		sql = " select * from goodsorder where user_id = ? order by order_date desc ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				GoodsOrderDTO dto = new GoodsOrderDTO();
+				dto.setBookName(rs.getString("book_name"));
+				dto.setBookNum(rs.getString("book_num"));
+				dto.setBookCount(rs.getString("book_count"));
+				dto.setPartnerName(rs.getString("partner_name"));
+				dto.setBookPrice(rs.getString("book_price"));
+				dto.setUserId(rs.getString("user_id"));
+				dto.setUserName(rs.getString("user_name"));
+				dto.setUserPh1(rs.getString("user_ph1"));
+				dto.setUserEmail(rs.getString("user_email"));
+				dto.setUserAddr(rs.getString("user_addr"));
+				dto.setOrderName(rs.getString("order_name"));
+				dto.setOrderNum(rs.getString("order_num"));
+				dto.setOrderDeliveryNum(rs.getString("order_delivery_num"));
+				dto.setOrderReturnNum(rs.getString("order_return_num"));
+				dto.setOrderCancel(rs.getString("order_cancel"));
+				dto.setOrderDate(rs.getString("order_date"));
+				dto.setOrderQty(rs.getString("order_qty"));
+				dto.setOrderTotalPrice(rs.getString("order_total_price"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+			
+		return list;
+	}
 	
 }

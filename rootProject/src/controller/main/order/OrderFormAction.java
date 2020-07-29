@@ -19,18 +19,24 @@ public class OrderFormAction {
 			e.printStackTrace();
 		}
 		
+		GoodsDAO goodsDao = new GoodsDAO();
+		MemberDAO memberDao = new MemberDAO();
+		
 		HttpSession session = request.getSession();
 		String userId = session.getAttribute("logId").toString();
 		String bookNum = request.getParameter("bookNum");
 		String qty = request.getParameter("Qty");
+		List<GoodsDTO> goodsList = null;
 		
-		GoodsDAO goodsDao = new GoodsDAO();
-		MemberDAO memberDao = new MemberDAO();
+		if (request.getParameter("bookNum") != null) {
+			goodsList = goodsDao.goodsSelect(1, 1, bookNum);
+		} else {
+			goodsList = goodsDao.cartSelect(userId);
+		}
 		
-		List<GoodsDTO> goodsList = goodsDao.goodsSelect(1, 1, bookNum);
 		List<MemberDTO> memberList = memberDao.memberSelect(1, 1, userId);
 		
-		request.setAttribute("goodsList", goodsList.get(0));
+		request.setAttribute("goodsList", goodsList);
 		request.setAttribute("memberList", memberList.get(0));
 		request.setAttribute("qty", qty);
 		

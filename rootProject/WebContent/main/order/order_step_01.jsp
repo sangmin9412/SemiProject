@@ -137,7 +137,7 @@
 			</style>
 			
 			<div class="order">
-				<form action="#" name="frm" method="post">
+				<form action="orderWrite.od" name="frm" method="post">
 					<div class="section_order_mticket">
 						<h3>주문서작성</h3>
 						<div class="order_step">
@@ -164,32 +164,64 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
+                                	<c:forEach items="${ goodsList }" var="gList" varStatus="cnt">
                                     <tr style="border-bottom: 1px dotted #cdcdcd">
+                                    	<input type="hidden" name="bookName" value="${ gList.bookName }" />
+                                    	<input type="hidden" name="bookNum" value="${ gList.bookNum }" />
+                                    	<input type="hidden" name="bookCount" value="${ gList.bookCount }" />
+                                    	<input type="hidden" name="partnerName" value="${ gList.partnerName }" />
+                                    	<input type="hidden" name="bookPrice" value="${ gList.bookPrice }" />
+                                    	<input type="hidden" name="orderQty" value="${ qty }" />
                                         <td class="product_photo">
                                             <div class="my-goods-summary">
                                                 <div class="thumb sp-thumb">
-                                                    <img src="${ imagePath }/partnerBo/page/goods/upload/${ goodsList.bookImage }" alt="" width="160">
+                                                    <img src="${ imagePath }/partnerBo/page/goods/upload/${ gList.bookImage }" alt="" width="160">
                                                 </div>
                                                 <div class="info">
-                                                    <div class="cate">[${ goodsList.bookCategory }]</div>
-                                                    <div class="tit">${ goodsList.bookName }</div>
+                                                    <div class="cate">[${ gList.bookCategory }]</div>
+                                                    <div class="tit">${ gList.bookName }</div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="consumer_price">
-											 <div class="my-price"><fmt:formatNumber value="${ goodsList.bookPrice }" type="number" />원</div>
+											 <div class="my-price"><fmt:formatNumber value="${ gList.bookPrice }" type="number" />원</div>
                                         </td>
                                         <td class="my-qty">
                                             <span>${ qty }권</span>
                                         </td>
                                         <td class="amount">
-                                            
-                                            <div class="my-order-price"><fmt:formatNumber value="${ goodsList.bookPrice * qty }" type="number" />원</div>
-                                            
+                                            <div class="my-order-price"><fmt:formatNumber value="${ gList.bookPrice * qty }" type="number" />원</div>
                                         </td>
-                                    </tr>                                    
-                                
+                                    </tr>
+                                    </c:forEach>
+                                    <tr style="border-bottom: 1px dotted #cdcdcd">
+                                    	<input type="hidden" name="bookName" value="유튜버들" />
+                                    	<input type="hidden" name="bookNum" value="20" />
+                                    	<input type="hidden" name="bookCount" value="20" />
+                                    	<input type="hidden" name="partnerName" value="에스프레소Test" />
+                                    	<input type="hidden" name="bookPrice" value="16000" />
+                                    	<input type="hidden" name="orderQty" value="3" />
+                                        <td class="product_photo">
+                                            <div class="my-goods-summary">
+                                                <div class="thumb sp-thumb">
+                                                    <img src="${ imagePath }/partnerBo/page/goods/upload/youtube.jpg" alt="" width="160">
+                                                </div>
+                                                <div class="info">
+                                                    <div class="cate">[경제/경영]</div>
+                                                    <div class="tit">유튜버들</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="consumer_price">
+											 <div class="my-price"><fmt:formatNumber value="16000" type="number" />원</div>
+                                        </td>
+                                        <td class="my-qty">
+                                            <span>3권</span>
+                                        </td>
+                                        <td class="amount">
+                                            <div class="my-order-price"><fmt:formatNumber value="${ 16000 * 3 }" type="number" />원</div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -213,7 +245,7 @@
                                         <th scope="row">휴대전화 </th>
                                         <td>
                                             <div class="tel_space">
-                                                <input type="text" name="userPh1" maxlength="13" class="inorder_txt" value="${ memberList.userPh1 }" style="width: 270px;">
+                                                <input type="text" maxlength="13" class="inorder_txt" value="${ memberList.userPh1 }" style="width: 270px;" readonly>
                                             </div>
                                         </td>
                                     </tr>
@@ -305,7 +337,7 @@
                                     <tr>
                                         <th scope="row">결제금액</th>
                                         <td>
-                                            <strong class="total-price"><fmt:formatNumber value="${ goodsList.bookPrice * qty }" type="number" /> 원</strong>
+                                            <strong class="total-price"><fmt:formatNumber value="${ gList.bookPrice * qty }" type="number" /> 원</strong>
                                         </td>
                                     </tr>
                                     <tr>
@@ -313,19 +345,19 @@
                                         <td>
                                             <div class="radio-form">
                                                 <span class="use-chk">
-                                                    <input name="myPayMethod" type="radio" class="input_rdo radio" value="C" onclick="onchangePayMethod('Card')" checked="" id="select_payment1">
+                                                    <input name="myPayMethod" type="radio" class="input_rdo radio" value="C" onclick="" checked="" id="select_payment1">
                                                     <label for="select_payment1" class="first">
                                                         <span>신용카드</span>
                                                     </label>
-                                                    <input name="myPayMethod" type="radio" class="input_rdo radio" value="D" onclick="onchangePayMethod('DirectBank')" id="select_payment2">
+                                                    <input name="myPayMethod" type="radio" class="input_rdo radio" value="D" onclick="" id="select_payment2">
                                                     <label for="select_payment2">
                                                         <span>계좌이체</span>
                                                     </label>
-                                                    <input name="myPayMethod" type="radio" class="input_rdo radio" value="V" onclick="onchangePayMethod('VBank')" id="select_payment3">
+                                                    <input name="myPayMethod" type="radio" class="input_rdo radio" value="V" onclick="" id="select_payment3">
                                                     <label for="select_payment3">
                                                         <span>무통장입금(가상계좌)</span>
                                                     </label>
-                                                    <input name="myPayMethod" type="radio" class="input_rdo radio" value="E" onclick="onchangePayMethod('VBankES')" id="select_payment4">
+                                                    <input name="myPayMethod" type="radio" class="input_rdo radio" value="E" onclick="" id="select_payment4">
                                                     <label for="select_payment4">
                                                         <span>에스크로(가상계좌)</span>
                                                     </label>
@@ -339,7 +371,7 @@
                         
 						<div class="buttons tc">
 							<!-- <a href="/script/card/list_sp.asp" class="btn btn01 btn-over purple">쇼핑계속하기</a> -->
-							<a href="javascript:void(0)" class="btn btn02 btn-over purple">결제하기</a>
+							<a href="javascript:void(0)" class="btn btn02 btn-over purple" onclick="submitFunc()">결제하기</a>
 						</div>
 					</div>
 				</form>
@@ -349,6 +381,48 @@
 		
 		<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 		<script>
+			function submitFunc () {
+				var userName = document.querySelector("[name='userName']");
+				var userPh1 = document.querySelector("[name='userPh1']");
+				var userEmail = document.querySelector("[name='userEmail']");
+				var zip = document.querySelector("[name='zip']");
+				var addr1 = document.querySelector("[name='addr1']");
+				var addr2 = document.querySelector("[name='addr2']");
+				
+				if (userName.value === "") {
+					alert('주문자명을 입력해주세요');
+					userName.focus();
+					return false;
+				}
+				if (userPh1.value === "") {
+					alert('휴대폰번호를 입력해주세요');
+					userPh1.focus();
+					return false;
+				}
+				if (userEmail.value === "") {
+					alert('이메일을 입력해주세요');
+					userEmail.focus();
+					return false;
+				}
+				if (zip.value === "") {
+					alert('배송주소를 입력해주세요');
+					zip.focus();
+					return false;
+				}
+				if (addr1.value === "") {
+					alert('배송주소를 입력해주세요');
+					addr1.focus();
+					return false;
+				}
+				if (addr2.value === "") {
+					alert('배송주소를 입력해주세요');
+					addr2.focus();
+					return false;
+				}
+				
+				document.frm.submit();
+			}
+		
 			function openZipSearch() {
 				new daum.Postcode({
 					oncomplete: function(data) {
