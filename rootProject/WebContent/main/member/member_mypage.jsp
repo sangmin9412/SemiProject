@@ -93,7 +93,7 @@
 							<li><a href="memberMyPage.mem">장바구니</a></li>
 							<li><a href="/cscenter/answerList.ab" class="">1:1 문의</a></li>
 							<li><a href="memberModify.mem" class="">정보수정</a></li>
-							<li><a href="orderCancle.od" class="">주문취소</a></li>
+							<li><a href="/order/orderList.od" class="">주문내역</a></li>
 						</ul>
 					</div>
 				</div>
