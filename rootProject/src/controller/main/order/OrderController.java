@@ -40,6 +40,11 @@ public class OrderController extends HttpServlet implements Servlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
+		} else if (command.equals("/order/orderCancel.od")) {
+			OrderCancelAction action = new OrderCancelAction();
+			action.exeucte(request);
+			response.sendRedirect("orderList.od");
+			
 		}
 		
 	}
