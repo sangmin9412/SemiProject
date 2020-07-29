@@ -95,5 +95,28 @@ public class DataBaseInfo {
 		
 		return result;
 	}
+	
+	public int selectListCount(String tableName, String where1, String where2) {
+		int result = 0;
+		conn = getConnection();
+		sql = "select count(*) as cnt from ? where ? = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, tableName);
+			pstmt.setString(2, where1);
+			pstmt.setString(3, where2);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt("cnt");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return result;
+	}
 
 }

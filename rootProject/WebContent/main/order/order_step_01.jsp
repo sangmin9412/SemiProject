@@ -169,7 +169,7 @@
                                         <td class="product_photo">
                                             <div class="my-goods-summary">
                                                 <div class="thumb sp-thumb">
-                                                    <img src="/pds/special_product/st32_210.jpg" alt="">
+                                                    <img src="${ imagePath }/partnerBo/page/goods/upload/${ goodsList.bookImage }" alt="" width="160">
                                                 </div>
                                                 <div class="info">
                                                     <div class="cate">[${ goodsList.bookCategory }]</div>
@@ -181,11 +181,11 @@
 											 <div class="my-price"><fmt:formatNumber value="${ goodsList.bookPrice }" type="number" />원</div>
                                         </td>
                                         <td class="my-qty">
-                                            <span>100장</span>
+                                            <span>${ qty }권</span>
                                         </td>
                                         <td class="amount">
                                             
-                                            <div class="my-order-price">10,000원</div>
+                                            <div class="my-order-price"><fmt:formatNumber value="${ goodsList.bookPrice * qty }" type="number" />원</div>
                                             
                                         </td>
                                     </tr>                                    
@@ -206,23 +206,21 @@
                                     <tr>
                                         <th scope="row">주문자명 </th>
                                         <td class="yorn">
-                                            <input type="text" name="CusName" class="inorder_txt" style="width: 125px;" maxlength="10" value="">
+                                            <input type="text" name="userName" class="inorder_txt" style="width: 125px;" maxlength="10" value="${ memberList.userName }">
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">휴대전화 </th>
                                         <td>
                                             <div class="tel_space">
-                                                <input type="text" name="oHP1" maxlength="3" class="inorder_txt" value="" style="width: 90px;">
-                                                <input type="text" name="oHP2" maxlength="4" class="inorder_txt" value="" style="width: 90px;">
-                                                <input type="text" name="oHP3" maxlength="4" class="inorder_txt" value="" style="width: 90px;">
+                                                <input type="text" name="userPh1" maxlength="13" class="inorder_txt" value="${ memberList.userPh1 }" style="width: 270px;">
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">이메일 </th>
                                         <td>
-                                            <input type="text" name="Email" class="inorder_txt" style="width: 222px;" maxlength="30" value="">
+                                            <input type="text" name="userEmail" class="inorder_txt" style="width: 222px;" maxlength="30" value="${ memberList.userEmail }">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -239,24 +237,9 @@
                                 </colgroup>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">배송지</th>
-                                        <td>
-                                            <p class="agreement_privacy_pol">
-                                            <input type="radio" name="changeDelInfo" id="chk_addr1" class="input_rdo radio" onclick="setSameMemInfo()" checked="">
-                                            <label for="chk_addr1" class="first">
-                                                <span>주문자정보와 동일</span>
-                                            </label>
-                                            <input type="radio" name="changeDelInfo" id="chk_addr2" class="input_rdo radio" onclick="setNewInfo()">
-                                            <label for="chk_addr2">
-                                                <span>새로운 주소</span>
-                                            </label>    
-                                            </p>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <th scope="row">받는사람</th>
                                         <td class="yorn">
-                                            <input type="text" name="ReqName" class="inorder_txt" style="width: 125px;" maxlength="10" value="">
+                                            <input type="text" class="inorder_txt" style="width: 125px;" maxlength="10" value="${ memberList.userName }">
                                         </td>
                                     </tr>
                                     <tr>
@@ -264,28 +247,16 @@
                                         <td>
                                             <div class="tb-cont-20">
                                                 <div class="tel-input">
-                                                    <input type="hidden" name="Zip1" class="inorder_txt" maxlength="3" title="우편번호" value="" readonly="">
-                                                    <input type="hidden" name="Zip2" class="inorder_txt" maxlength="3" title="우편번호" value="" readonly="">
-                                                    <input type="text" name="zoneCode" class="inorder_txt" maxlength="5" title="우편번호" value="" readonly="">
-                                                    <a href="javascript:void(0);" class="btn-pack purple first" onclick="popOrderDaumZipCode()">우편번호 검색</a>
+                                                    <input type="text" name="zip" class="inorder_txt" maxlength="5" title="우편번호" value="" readonly="">
+                                                    <a href="javascript:void(0);" class="btn-pack purple first" onclick="openZipSearch()">우편번호 검색</a>
                                                     
                                                     <div class="email-area" style="padding-top: 5px;">
-                                                        <input type="text" name="Address" class="inorder_txt" title="주소" value="" maxlength="50" style="text-align: left; width: 565px" readonly="">
+                                                        <input type="text" name="addr1" class="inorder_txt" title="주소" value="" maxlength="50" style="text-align: left; width: 565px" readonly="">
                                                     </div>
                                                     <div class="email-area" style="padding-top: 5px;">
-                                                        <input type="text" name="Address_Detail" class="inorder_txt" title="주소" value="" maxlength="50" style="text-align: left; width: 565px">
+                                                        <input type="text" name="addr2" class="inorder_txt" title="주소" value="" maxlength="50" style="text-align: left; width: 565px">
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">유선전화 </th>
-                                        <td>
-                                            <div class="tel_space">
-                                                <input type="text" name="Tel1" class="inorder_txt" maxlength="4" value="" onkeydown="onlyNumber(event.keyCode);">
-                                                <input type="text" name="Tel2" class="inorder_txt" maxlength="4" value="" onkeydown="onlyNumber(event.keyCode);">
-                                                <input type="text" name="Tel3" class="inorder_txt" maxlength="4" value="" onkeydown="onlyNumber(event.keyCode);">
                                             </div>
                                         </td>
                                     </tr>
@@ -293,9 +264,7 @@
                                         <th scope="row">휴대전화 </th>
                                         <td>
                                             <div class="tel_space">
-                                                <input type="text" name="HP1" maxlength="4" class="inorder_txt" value="" onkeydown="onlyNumber(event.keyCode);">
-                                                <input type="text" name="HP2" maxlength="4" class="inorder_txt" value="" onkeydown="onlyNumber(event.keyCode);">
-                                                <input type="text" name="HP3" maxlength="4" class="inorder_txt" value="" onkeydown="onlyNumber(event.keyCode);">
+                                            	<input type="text" name="userPh1" maxlength="13" class="inorder_txt" value="${ memberList.userPh1 }" style="width: 270px;">
                                             </div>
                                         </td>
                                     </tr>
@@ -336,7 +305,7 @@
                                     <tr>
                                         <th scope="row">결제금액</th>
                                         <td>
-                                            <strong class="total-price">12,500 원</strong>
+                                            <strong class="total-price"><fmt:formatNumber value="${ goodsList.bookPrice * qty }" type="number" /> 원</strong>
                                         </td>
                                     </tr>
                                     <tr>
@@ -378,8 +347,17 @@
 			
 		</main>
 		
+		<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 		<script>
-		
+			function openZipSearch() {
+				new daum.Postcode({
+					oncomplete: function(data) {
+						$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+						$('[name=addr1]').val(data.address);
+						$('[name=addr2]').val(data.buildingName);
+					}
+				}).open();
+			}
 		</script>
 		
 <%@ include file = "/include/footer.jsp" %>

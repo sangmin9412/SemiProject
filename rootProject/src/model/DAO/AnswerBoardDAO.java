@@ -276,6 +276,27 @@ public class AnswerBoardDAO extends DataBaseInfo {
 		}
 		
 	}
+
+	public int answerUserCount(String userId) {
+		int result = 0;
+		conn = getConnection();
+		sql = "select count(*) as cnt from ( select * from answerboard where board_re_ref in ( select board_re_ref from answerboard where user_id = ? ))";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt("cnt");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return result;
+	}
 	
 	
 }

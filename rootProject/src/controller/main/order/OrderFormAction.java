@@ -32,6 +32,7 @@ public class OrderFormAction {
 		
 		request.setAttribute("goodsList", goodsList.get(0));
 		request.setAttribute("memberList", memberList.get(0));
+		request.setAttribute("qty", qty);
 		
 	}
 	

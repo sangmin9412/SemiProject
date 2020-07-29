@@ -22,7 +22,7 @@ public class AnswerListAction {
 		String userId = session.getAttribute("logId").toString();
 		
 		AnswerBoardDAO dao = new AnswerBoardDAO();
-		int count = dao.selectListCount("answerboard");
+		int count = dao.answerUserCount(userId);
 		List<AnswerBoardDTO> list = dao.answerUserSelectAll(page, limitPage, userId);
 		
 		request.setAttribute("answerList", list);
