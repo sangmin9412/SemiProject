@@ -111,7 +111,7 @@
 							<div class="left-area">
 								<a href="javascript:void(0);" class="mypage-btn goods-option-btn" id="allbox">전체선택</a>
 								<a href="javascript:void(0);" class="mypage-btn goods-option-btn" id="clearbox" data-disabled="">선택해제</a>
-								<a href="javascript:void(0);" class="mypage-btn goods-option-btn" data-disabled="">삭제</a>
+								<a href="javascript:void(0);" class="mypage-btn goods-option-btn" onclick="submitFunc('MemberCartRemove.mem')" data-disabled="">삭제</a>
 							</div>
 						</div>
 						<div class="order_info_entered">
@@ -127,7 +127,7 @@
 									<thead>
 										<tr>
 											<th scope="col" class="first-child">
-												<!-- <input name="checkAll1" type="checkbox" value="" checked onchange="allSelect(frm.IsChoice); getBuyPrice(); checkAll1.checked = chkvalue; checkAll2.checked = chkvalue;"> -->
+												
 											</th>
 											<th scope="col">상품이미지/상품번호</th>
 											<th scope="col">판매가격</th>
@@ -135,54 +135,50 @@
 											<th scope="col" class="last-child">주문금액</th>
 										</tr>
 									</thead>
+									
+									<c:forEach items="${ cartList }" var="dto">
 									<tbody>
+									<input type="hidden" name="bookCount" value="${dto.bookCount }">
 										<tr>
 											<td class="vtc-t">
 												<span>
-													<input name="IsChoice" class="checkbox" id="IsChoice1" type="checkbox" value="Y" checked="">
-													<label for="IsChoice1" class="fz0">선택</label>
+													<input name="IsChoice" class="checkbox" id="IsChoice${ dto.cartNum }" type="checkbox" value="${ dto.cartNum }" checked="">
+													
+													<label for="IsChoice${ dto.cartNum }" class="fz0">선택</label>
 												</span>
 											</td>
 											<td class="product_photo">
 												<div class="my-goods-summary">
-													<div class="thumb sp-thumb" style="cursor:pointer;" onclick="goDetail('NBENV', 'EN89')">
-														<img src="/pds/special_product/en89_210.jpg" alt="">
+													<div class="thumb sp-thumb">
+														<img src="${imagePath }/partnerBo/page/goods/upload/${ dto.bookImage }" name="bookImage" alt="" width="160">
 													</div>
 													<div class="info">
-														<div class="cate">[노방봉투]</div>
-														<div class="tit">흰색 노방 현금예단봉투 <span class="cmp">(EN89)</span></div>
-														
+														<div class="cate">[카테고리명]</div>
+														<div class="tit" name="bookName">${ dto.bookName }</div>
 													</div>
 												</div>
 											</td>
-											<td><div class="my-price">11,000원</div></td>
+											<td><div class="my-price" name="bookPrice">${ dto.bookPrice }원</div></td>
 											<td style="font-size: 11px;">
-												
-													<div class="btn-block">
-														<div class="qty-wrap">
-															<a href="javascript:onchangeQtyClick('StyleQty1',-1);" class="btn minus">-</a>
-															<input type="text" name="Qty" id="StyleQty1" class="inorder_txt cmp" style="width:52px;" value="1" readonly="">
-															<a href="javascript:onchangeQtyClick('StyleQty1',1)" class="btn plus">+</a>
-														</div>
+												<div class="btn-block">
+													<div class="qty-wrap">
+														<a href="javascript:void(0);" class="btn minus" onclick="qtyMinus(${dto.bookNum}, ${dto.bookQty})">-</a>
+														<input type="text" name="Qty" id="StyleQty1" class="inorder_txt cmp" style="width:52px;" value="${ dto.bookQty }" readonly="">
+														<a href="javascript:void(0);" class="btn plus" onclick="qtyPlus(${dto.bookNum}, ${dto.bookQty})">+</a>
 													</div>
-													<input type="hidden" name="GQty" value="0">
-													<input type="hidden" name="BQty" value="0">
-													<div class="btn-block">
-														<a href="javascript:void(0);" class="mypage-btn" style="width:52px;" onclick="editInfo('2')">수정</a>
-													</div>
-												
+												</div>
 											</td>
 											<td>
-												<div class="my-order-price">11,000원</div>
+												<div class="my-order-price" name="totalPrice">${dto.totalPrice}원</div>
 											</td>
 										</tr>
 									</tbody>
+									</c:forEach>
 								</table>
 							</div>
 							
 							<div class="buttons tc">
-								<!-- <a href="/script/card/list_sp.asp" class="btn btn01 btn-over purple">쇼핑계속하기</a> -->
-								<a href="javascript:void(0)" class="btn btn02 btn-over purple" onclick="procItem('O');">상품주문하기</a>
+								<a href="javascript:void(0)" class="btn btn02 btn-over purple" onclick="">상품주문하기</a>
 							</div>
 						</div>
 					</div>
@@ -192,6 +188,22 @@
 		</main>
 		
 		<script>
+		function submitFunc(url) {
+			$("[name='frm']").attr('action', url);
+			$("[name='frm']").submit();
+		}
+		
+		function qtyPlus(bookNum, qty) {
+			location.href = '/mem/memberCartAdd.mem?bookNum='+bookNum+'&Qty='+qty+'';
+		}
+		
+		function qtyMinus(bookNum, qty) {
+			if (qty <= 1) {
+				qty = 1;
+			}
+			location.href = '/mem/MemberCartQtyDown.mem?bookNum='+bookNum+'&Qty='+qty+'';
+		}
+		
 		function CartZzimSelcetAll (allbox, clearbox, target, cb) {
 		    var $all = $(allbox);
 		    var $clear = $(clearbox);

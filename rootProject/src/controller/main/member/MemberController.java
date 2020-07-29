@@ -51,16 +51,34 @@ public class MemberController extends HttpServlet implements Servlet {
 		} else if (command.equals("/mem/memberPwFind.mem")) {
 			
 			
-		} else if (command.equals("/mem/memberMyPage.mem")) {
+		} else if (command.equals("/mem/memberCartAdd.mem")) {
+			MemberCartAddAction action = new MemberCartAddAction();
+			action.execute(request);
+			response.sendRedirect("memberCartList.mem");
+			
+		} else if (command.equals("/mem/memberCartList.mem")) {
+			MemberCartListAction action = new MemberCartListAction();
+			action.execute(request);
 			String path = "/main/member/member_mypage.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
-		} else if (command.equals("/mem/memberList.mem")) {
+		} else if (command.equals("/mem/MemberCartQtyDown.mem")) {
+			MemberCartQtyDownAction action = new MemberCartQtyDownAction();
+			action.execute(request);
+			response.sendRedirect("memberCartList.mem");
 			
+		} else if (command.equals("/mem/MemberCartRemove.mem")) {
+			MemberCartRemoveAction action = new MemberCartRemoveAction();
+			action.execute(request);
+			response.sendRedirect("memberCartList.mem");
 			
-		} else if (command.equals("/mem/memberList.mem")) {
-			
+		} else if (command.equals("/mem/memberCartOrder.mem")) {
+			MemberCartListAction action = new MemberCartListAction();
+			action.execute(request);
+			String path = "/main/order/oredr_step_01.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
 			
 		}
 		

@@ -36,7 +36,7 @@
 											<tr class="tr_select pb16">
 												<th scope="row">주문수량</th>
 												<td>
-													<form action="/order/orderStep01.od" name="frm" method="post">
+													<form action="#" name="frm" method="post">
 														<input type="hidden" name="bookNum" value="${ list.bookNum }" />
 													<div class="qty-wrap">
 														<a href="javascript:onchangeQtyClick('StyleQty1',-1);" class="btn minus">-</a>
@@ -51,8 +51,8 @@
 								</div>
 								
 								<div class="v-button col-2">
-									<a href="javascript:void(0);" onclick="sendBasket('')" class="btn btn01">장바구니</a>
-									<a href="javascript:void(0);" class="btn btn02 btn-over black" onclick="document.frm.submit()">주문하기</a>
+									<a href="javascript:void(0);" class="btn btn01" onclick="submitFunc('/mem/memberCartAdd.mem')">장바구니</a>
+									<a href="javascript:void(0);" class="btn btn02 btn-over black" onclick="submitFunc('/order/orderStep01.od')">주문하기</a>
 								</div>
 							</div>
 							<div class="row">
@@ -96,6 +96,12 @@
 		</main>
 		
 		<script>
+			function submitFunc(actionUrl) {
+				var form = $("[name='frm']");
+					form.attr('action', actionUrl);
+					form.submit();
+			}
+		
 			function numberWithCommas(x) {
 			    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			}

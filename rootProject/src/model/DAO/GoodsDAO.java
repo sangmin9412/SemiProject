@@ -3,10 +3,13 @@ package model.DAO;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.DTO.CartDTO;
 import model.DTO.GoodsDTO;
 
 public class GoodsDAO extends DataBaseInfo{
 	final String COLUMNS = " book_isbn, book_name, book_author_name, book_category, partner_name, book_date, book_price, book_page_num, book_length, book_sub, book_image, book_intro, book_author_intro, book_list, book_count, book_regist, partner_num, book_num ";
+	final String CART_COLUMNS = " CART_NUM, BOOK_NUM, USER_ID, BOOK_NAME, BOOK_PRICE, BOOK_IMAGE, BOOK_QTY, book_count, partner_name, TOTAL_PRICE, sum_total_price ";
+	
 	
 	public void goodsInsert(GoodsDTO dto) {
 		conn = getConnection();
@@ -434,6 +437,102 @@ public class GoodsDAO extends DataBaseInfo{
 		}
 		return list;
 	}
+	
+	public void goodsCartAdd(List<GoodsDTO> list, String userId, String Qty) {
+		conn = getConnection();
+		sql = " merge into cart c using (select book_num from goods where book_num=?) g"
+				+ " on (c.book_num = g.book_num and c.user_id=?) "
+				+ " when matched "
+				+ "		then update set book_qty = book_qty + 1, total_price = (book_qty + 1) * book_price"
+				+ " when not matched then"
+				+ " 	insert (c.cart_num, c.book_num, c.user_id, c.book_name, c.book_price, c.book_image, c.book_qty, c.total_price, c.partner_name, c.book_count)"
+				+ " values ((select nvl(max(to_number(cart_num)),0)+1 from cart), ?,?,?,?,?,?,?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, list.get(0).getBookNum());
+			pstmt.setString(2, userId);
+			pstmt.setString(3, list.get(0).getBookNum());
+			pstmt.setString(4, userId);
+			pstmt.setString(5, list.get(0).getBookName());
+			pstmt.setString(6, list.get(0).getBookPrice());
+			pstmt.setString(7, list.get(0).getBookImage());
+			pstmt.setString(8, Qty);
+			pstmt.setString(9, list.get(0).getBookPrice());
+			pstmt.setString(10, list.get(0).getPartnerName());
+			pstmt.setString(11, list.get(0).getBookCount());
+			int i = pstmt.executeUpdate();
+			System.out.println(i +"가 변경되었습니다.");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+	}
+	
+	public List<CartDTO> cartAllSelect(String userId){
+		List<CartDTO> list = new ArrayList<CartDTO>();
+		conn = getConnection(); 
+		sql = "select " + CART_COLUMNS+ ",  "
+			+ " sum(total_price) over (partition by user_id) as sum_total_price"
+			+ " from cart "
+			+ " where user_id = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				CartDTO dto = new CartDTO();
+				dto.setCartNum(rs.getString("CART_NUM"));
+				dto.setBookNum(rs.getString("BOOK_NUM"));
+				dto.setUserId(rs.getString("USER_ID"));
+				dto.setBookName(rs.getString("BOOK_NAME"));
+				dto.setBookPrice(rs.getString("BOOK_PRICE"));
+				dto.setBookImage(rs.getString("BOOK_IMAGE"));
+				dto.setBookQty(rs.getString("BOOK_QTY"));
+				dto.setTotalPrice(rs.getString("TOTAL_PRICE"));
+				dto.setPartnerName(rs.getString("partner_name"));
+				dto.setSumTotalPrice(rs.getString("sum_total_price"));
+				list.add(dto);
+			}
+		}catch(Exception e) {e.printStackTrace();}
+		finally {close();}
+		return list;
+	}
+	
+	public void cartQtyDown(String bookNum, String userId) {
+		conn = getConnection(); 
+		sql = " update cart "
+			+ " set book_qty = book_qty - 1,"
+			+ "     total_Price = (book_qty -1) * book_price "
+			+ " where book_num =? and user_id = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bookNum);
+			pstmt.setString(2, userId);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개가 수정되었습니다.");
+		}catch(Exception e) {e.printStackTrace();}
+		finally {close();}
+	}
+	
+	public void cartRemove(String [] cartNums) {
+		conn = getConnection(); 
+		sql = "delete from cart "
+			+ " where cart_num = ? ";
+		try {
+			int j = 0;
+			pstmt = conn.prepareStatement(sql);
+			for(String cartNum : cartNums) {
+				pstmt.setString(1, cartNum);
+				int i = pstmt.executeUpdate();
+				if( i > 0) { j++; }
+			}
+			System.out.println(j + "개가 삭제되었습니다.");
+		}catch(Exception e) {e.printStackTrace();}
+		finally {close();}
+	}
+	
 	
 	
 	
