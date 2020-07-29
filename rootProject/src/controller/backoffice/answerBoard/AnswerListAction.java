@@ -28,7 +28,7 @@ public class AnswerListAction {
 		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "answerBoardList.boab");
+		pageAction.page(request, count, limit, limitPage, page, "answerBoardList.boab?");
 		
 	}
 	

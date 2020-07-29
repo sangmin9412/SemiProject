@@ -109,9 +109,16 @@
 						</div>
 						<div class="goods_option">
 							<div class="left-area">
+								<c:if test="${ empty cartList }">
+								<a href="javascript:void(0);" class="mypage-btn goods-option-btn" data-disabled="on">전체선택</a>
+								<a href="javascript:void(0);" class="mypage-btn goods-option-btn" data-disabled="on">선택해제</a>
+								<a href="javascript:void(0);" class="mypage-btn goods-option-btn" data-disabled="on">삭제</a>
+								</c:if>
+								<c:if test="${ !empty cartList }">
 								<a href="javascript:void(0);" class="mypage-btn goods-option-btn" id="allbox">전체선택</a>
 								<a href="javascript:void(0);" class="mypage-btn goods-option-btn" id="clearbox" data-disabled="">선택해제</a>
 								<a href="javascript:void(0);" class="mypage-btn goods-option-btn" onclick="submitFunc('MemberCartRemove.mem')" data-disabled="">삭제</a>
+								</c:if>
 							</div>
 						</div>
 						<div class="order_info_entered">
@@ -153,7 +160,7 @@
 														<img src="${imagePath }/partnerBo/page/goods/upload/${ dto.bookImage }" name="bookImage" alt="" width="160">
 													</div>
 													<div class="info">
-														<div class="cate">[카테고리명]</div>
+														<div class="cate">[${ dto.bookCategory }]</div>
 														<div class="tit" name="bookName">${ dto.bookName }</div>
 													</div>
 												</div>

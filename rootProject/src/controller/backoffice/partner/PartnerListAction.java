@@ -27,7 +27,7 @@ public class PartnerListAction {
 		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "partnerList.bopt");
+		pageAction.page(request, count, limit, limitPage, page, "partnerList.bopt?");
 		
 	}
 }

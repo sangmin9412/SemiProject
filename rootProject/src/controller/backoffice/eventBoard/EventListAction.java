@@ -28,7 +28,7 @@ public class EventListAction {
 		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "eventBoardList.boeb");
+		pageAction.page(request, count, limit, limitPage, page, "eventBoardList.boeb?");
 		
 	}
 

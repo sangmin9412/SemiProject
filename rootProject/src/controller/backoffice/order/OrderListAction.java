@@ -42,7 +42,7 @@ public class OrderListAction {
 		
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "orderList.bogd");
+		pageAction.page(request, count, limit, limitPage, page, "orderList.bood?sort="+sort+"&");
 		
  
 		

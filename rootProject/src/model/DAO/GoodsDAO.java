@@ -8,7 +8,18 @@ import model.DTO.GoodsDTO;
 
 public class GoodsDAO extends DataBaseInfo{
 	final String COLUMNS = " book_isbn, book_name, book_author_name, book_category, partner_name, book_date, book_price, book_page_num, book_length, book_sub, book_image, book_intro, book_author_intro, book_list, book_count, book_regist, partner_num, book_num ";
-	final String CART_COLUMNS = " CART_NUM, BOOK_NUM, USER_ID, BOOK_NAME, BOOK_PRICE, BOOK_IMAGE, BOOK_QTY, book_count, partner_name, TOTAL_PRICE, sum_total_price ";
+	/* 
+	 * goods 테이블정보도 같이 갖고 오려고 조인 해봤는데 혹시 에러나면 수정하시거나
+	 * 
+	 *  final String CART_COLUMNS, 
+	 *  public List<CartDTO> cartAllSelect 
+	 *  
+	 *  여기 두군데 적용되어있는 코드 지우고 주석되있는거 푸시고 
+	 *  member_mypage.jsp, order_step_01.jsp 에 bookCategory 불러오는부분 지우시면 되요
+	 *  
+	 */
+	// final String CART_COLUMNS = " CART_NUM, BOOK_NUM, USER_ID, BOOK_NAME, BOOK_PRICE, BOOK_IMAGE, BOOK_QTY, book_count, partner_name, TOTAL_PRICE, sum_total_price ";
+	final String CART_COLUMNS = " c.CART_NUM, c.BOOK_NUM, c.USER_ID, c.BOOK_NAME, c.BOOK_PRICE, c.BOOK_IMAGE, c.BOOK_QTY, c.book_count, c.partner_name, c.TOTAL_PRICE, c.sum_total_price ";
 	
 	
 	public void goodsInsert(GoodsDTO dto) {
@@ -473,16 +484,24 @@ public class GoodsDAO extends DataBaseInfo{
 	public List<CartDTO> cartAllSelect(String userId){
 		List<CartDTO> list = new ArrayList<CartDTO>();
 		conn = getConnection(); 
+		/*
 		sql = "select " + CART_COLUMNS+ ",  "
 			+ " sum(total_price) over (partition by user_id) as sum_total_price"
 			+ " from cart "
 			+ " where user_id = ?";
+		*/
+		sql = "select " + CART_COLUMNS+ ",  "
+				+ " sum(c.total_price) over (partition by c.user_id) as sum_price, "
+				+ " g.book_category "
+				+ " from goods g, cart c "
+				+ " where g.book_num = c.book_num and c.user_id = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				CartDTO dto = new CartDTO();
+				/*
 				dto.setCartNum(rs.getString("CART_NUM"));
 				dto.setBookNum(rs.getString("BOOK_NUM"));
 				dto.setUserId(rs.getString("USER_ID"));
@@ -494,6 +513,19 @@ public class GoodsDAO extends DataBaseInfo{
 				dto.setPartnerName(rs.getString("partner_name"));
 				dto.setSumTotalPrice(rs.getString("sum_total_price"));
 				dto.setBookCount(rs.getString("book_count"));
+				*/
+				dto.setCartNum(rs.getString("CART_NUM"));
+				dto.setBookNum(rs.getString("BOOK_NUM"));
+				dto.setUserId(rs.getString("USER_ID"));
+				dto.setBookName(rs.getString("BOOK_NAME"));
+				dto.setBookPrice(rs.getString("BOOK_PRICE"));
+				dto.setBookImage(rs.getString("BOOK_IMAGE"));
+				dto.setBookQty(rs.getString("BOOK_QTY"));
+				dto.setTotalPrice(rs.getString("TOTAL_PRICE"));
+				dto.setPartnerName(rs.getString("partner_name"));
+				dto.setSumTotalPrice(rs.getString("sum_price"));
+				dto.setBookCount(rs.getString("book_count"));
+				dto.setBookCategory(rs.getString("book_category"));
 				list.add(dto);
 			}
 		}catch(Exception e) {e.printStackTrace();}

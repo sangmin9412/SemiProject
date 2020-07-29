@@ -10,9 +10,11 @@ public class OrderCancelAction {
 		String bookName = request.getParameter("bookName");
 		String orderNum = request.getParameter("orderNum");
 		String orderQty = request.getParameter("orderQty");
+		String bookNum = request.getParameter("bookNum");
 		
 		GoodsOrderDAO dao = new GoodsOrderDAO();
 		dao.goodsOrderCancelUpdate(bookName, orderNum, orderQty);
+		dao.goodsCountUpdatePlus(bookNum, orderQty);
 		
 	}
 	

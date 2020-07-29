@@ -40,7 +40,7 @@ public class GoodsListAction {
 		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "goodsList.bogd");
+		pageAction.page(request, count, limit, limitPage, page, "goodsList.bogd?");
 
 	}
 }

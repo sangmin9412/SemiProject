@@ -27,7 +27,7 @@ public class GoodsIbgoListAction {
 		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "goodsIpgo.bogd");
+		pageAction.page(request, count, limit, limitPage, page, "goodsIpgo.bogd?");
 
 	}
 }

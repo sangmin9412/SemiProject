@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file = "/backoffice/include/head.jsp" %>
+<%@ include file = "/partnerBo/include/head.jsp" %>
 	<div id="wrapper">
-		<%@ include file = "/backoffice/include/header.jsp" %>		
+		<%@ include file = "/partnerBo/include/header.jsp" %>		
 		<div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                        	<c:if test="${ empty sort }">주문리스트</c:if>
-                        	<c:if test="${ sort eq 'shipping' }">배송리스트</c:if>
-                        	<c:if test="${ sort eq 'cancel' }">주문취소 리스트</c:if>
-                        	<c:if test="${ sort eq 'return' }">반품/교환 리스트</c:if>
+                        	판매내역
                         </h1>
                     </div>
                 </div>
@@ -37,67 +34,42 @@
 	                        	</div>
 	                        	<div class="table-responsive">
 		                            <table class="table table-striped table-bordered table-hover">
-		                                <thead>
+		                            	<thead>
 		                                    <tr>
 		                                        <th>No</th>
-		                                        <th>도서</th>
+		                                        <th>도서명</th>
 		                                        <th>구매자</th>
-		                                        <th>판매날짜</th>
 		                                        <th>구매수량</th>
 		                                        <th>가격</th>
+		                                        <th>판매날짜</th>
 		                                        <th>배송상태</th>
 		                                    </tr>
 		                                </thead>
 		                                <tbody>
+		                                	<c:forEach items="${ orderList }" var="dto" varStatus="cnt">
 		                                    <tr>
-		                                        <td>1</td>
-		                                        <td><a href="orderView.bood">책이름이름</a></td>
-		                                        <td>구매자이름</td>
-		                                        <td>2020-01-05</td>
-		                                        <td>1</td>
-		                                        <td>30000</td>
-		                                        <td></td>
+		                                        <td>${ ((page-1) * limit) + cnt.count }</td>
+		                                        <td>${ dto.bookName }</td>
+		                                        <td>${dto.userName }</td>
+		                                        <td>${dto.orderQty }</td>
+		                                        <td>${dto.orderTotalPrice }</td>
+		                                        <td>${dto.orderDate }</td>
+		                                        <td>
+		                                        	<c:if test="${ dto.orderDeliveryNum == 1 }">
+		                                        		배송준비
+		                                        	</c:if>
+		                                        	<c:if test="${ dto.orderDeliveryNum == 2 }">
+		                                        		배송중
+		                                        	</c:if>
+		                                        	<c:if test="${ dto.orderDeliveryNum == 3 }">
+		                                        		배송완료
+		                                        	</c:if>
+		                                        </td>
 		                                    </tr>
-		                                    <tr>
-		                                        <td>2</td>
-		                                        <td><a href="orderView.bood">책이름이름</a></td>
-		                                        <td>구매자이름</td>
-		                                        <td>2020-01-05</td>
-		                                        <td>1</td>
-		                                        <td>30000</td>
-		                                        <td></td>
-		                                    </tr>
-		                                    <tr>
-		                                        <td>3</td>
-		                                        <td><a href="orderView.bood">책이름이름</a></td>
-		                                        <td>구매자이름</td>
-		                                        <td>2020-01-05</td>
-		                                        <td>1</td>
-		                                        <td>30000</td>
-		                                        <td></td>
-		                                    </tr>
+		                                    </c:forEach>
 		                                </tbody>
 		                            </table>
-		                            <div class="row">
-			                            <div class="col-sm-12">
-			                            	<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-			                            		<ul class="pagination">
-			                            			<li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
-			                            				<a href="#">Previous</a>
-			                            			</li>
-			                            			<li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a></li>
-			                            			<li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a></li>
-			                            			<li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
-			                            				<a href="#">Next</a>
-			                            			</li>
-			                            		</ul>
-			                            	</div>
-			                           </div>
-									</div>
+		                            <%@ include file = "/partnerBo/include/paging.jsp" %>
 		                        </div>
 	                        </div>
 	                        <!-- /.panel-body -->
@@ -106,9 +78,9 @@
 	                </div>
                 </div>
 				
-				<%@ include file = "/backoffice/include/footer.jsp" %>
+				<%@ include file = "/partnerBo/include/footer.jsp" %>
             </div>
             <!-- /. PAGE INNER  -->
         </div>
         <!-- /. PAGE WRAPPER  -->
-<%@ include file = "/backoffice/include/script.jsp" %>
+<%@ include file = "/partnerBo/include/script.jsp" %>

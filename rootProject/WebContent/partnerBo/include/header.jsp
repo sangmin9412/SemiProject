@@ -82,7 +82,7 @@
 	                        <a href="#">정산내역</a>
 	                    </li>
 	                    <li>
-	                        <a href="#">판매내역</a>
+	                        <a href="orderList.pood">판매내역</a>
 	                    </li>
 	                </ul>
 	            </li>

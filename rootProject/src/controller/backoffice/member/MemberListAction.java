@@ -34,7 +34,7 @@ public class MemberListAction {
 		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "memberList.bomem");
+		pageAction.page(request, count, limit, limitPage, page, "memberList.bomem?");
 
 		
 	}

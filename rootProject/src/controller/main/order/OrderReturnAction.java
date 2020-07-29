@@ -11,10 +11,11 @@ public class OrderReturnAction {
 		String orderNum = request.getParameter("orderNum");
 		String returnSort = request.getParameter("returnSort");
 		String orderQty = request.getParameter("orderQty");
+		String bookNum = request.getParameter("bookNum");
 		
 		GoodsOrderDAO dao = new GoodsOrderDAO();
 		dao.goodsOrderReturnUpdate(bookName, orderNum, returnSort, orderQty);
-		
+		dao.goodsCountUpdatePlus(bookNum, orderQty);
 	}
 	
 }

@@ -30,7 +30,7 @@ public class FaqListAction {
 		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "faqBoardList.bofb");
+		pageAction.page(request, count, limit, limitPage, page, "faqBoardList.bofb?");
 	}
 
 }

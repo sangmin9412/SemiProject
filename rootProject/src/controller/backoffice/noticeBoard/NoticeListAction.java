@@ -30,7 +30,7 @@ public class NoticeListAction {
 		request.setAttribute("limit", limit);
 		
 		PageAction pageAction = new PageAction();
-		pageAction.page(request, count, limit, limitPage, page, "noticeBoardList.bonb");
+		pageAction.page(request, count, limit, limitPage, page, "noticeBoardList.bonb?");
 	}
 
 }

@@ -31,7 +31,7 @@ public class MemberModifyProAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Timestamp userBirth = new Timestamp(date.getDate());
+		Timestamp userBirth = new Timestamp(date.getTime());
 		
 		
 		dto.setUserId(request.getParameter("userId"));

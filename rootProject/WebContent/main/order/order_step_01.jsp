@@ -183,6 +183,7 @@
                                                     <img src="${ imagePath }/partnerBo/page/goods/upload/${ gList.bookImage }" alt="" width="160">
                                                 </div>
                                                 <div class="info">
+                                                	<div class="cate">[${ gList.bookCategory }]</div>
                                                     <div class="tit">${ gList.bookName }</div>
                                                 </div>
                                             </div>
@@ -323,7 +324,12 @@
                                     <tr>
                                         <th scope="row">결제금액</th>
                                         <td>
-                                            <strong class="total-price"><fmt:formatNumber value="${ tp }" type="number" /> 원</strong>
+                                        	<c:if test="${ !empty qty }">
+                                        		<strong class="total-price"><fmt:formatNumber value="${ goodsList[0].bookPrice * qty }" type="number" /> 원</strong>
+                                            </c:if>
+                                            <c:if test="${ empty qty }">                                            
+                                            	<strong class="total-price"><fmt:formatNumber value="${ goodsList[0].sumTotalPrice }" type="number" /> 원</strong>
+                                            </c:if>
                                         </td>
                                     </tr>
                                     <tr>

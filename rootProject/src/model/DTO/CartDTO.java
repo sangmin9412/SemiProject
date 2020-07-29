@@ -12,7 +12,14 @@ public class CartDTO {
 	String partnerName;
 	String sumTotalPrice;
 	String bookCount;
+	String bookCategory;
 	
+	public String getBookCategory() {
+		return bookCategory;
+	}
+	public void setBookCategory(String bookCategory) {
+		this.bookCategory = bookCategory;
+	}
 	public String getBookCount() {
 		return bookCount;
 	}

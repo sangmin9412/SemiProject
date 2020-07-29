@@ -16,8 +16,12 @@ public class OrderController extends HttpServlet implements Servlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
-		if (command.equals("")) {
-			
+		if (command.equals("/partnerBo/orderList.pood")) {
+			OrderListAction action = new OrderListAction();
+			action.execute(request);
+			String path = "/partnerBo/page/order/order_list.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
 			
 		}
 	}

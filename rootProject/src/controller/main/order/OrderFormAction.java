@@ -26,6 +26,7 @@ public class OrderFormAction {
 		HttpSession session = request.getSession();
 		String userId = session.getAttribute("logId").toString();
 		String bookNum = request.getParameter("bookNum");
+		int tp = 0;
 		
 		if (request.getParameter("bookNum") != null) {
 			String qty = request.getParameter("Qty");
@@ -33,13 +34,15 @@ public class OrderFormAction {
 			request.setAttribute("goodsList", goodsList);
 			request.setAttribute("qty", qty);
 		} else {
-			int tp = 0;
+			
 			List<CartDTO> goodsList = goodsDao.cartAllSelect(userId);
+			request.setAttribute("goodsList", goodsList);
+			/*
 			for (CartDTO cartDTO : goodsList) {
 				tp += Integer.parseInt(cartDTO.getTotalPrice());
 			}
-			request.setAttribute("goodsList", goodsList);
 			request.setAttribute("tp", tp);
+			*/
 		}
 		
 		
