@@ -147,7 +147,8 @@
                                     <col style="width: 120px">
                                     <col style="width: 120px">
                                     <col style="width: 120px">
-                                    <col style="width: 120px">
+                                    <col style="width: 100px">
+                                    <col style="width: 100px">
                                 </colgroup>
                                 <thead>
                                     <tr>
@@ -155,6 +156,7 @@
                                         <th scope="col">상품금액</th>
                                         <th scope="col">수량</th>
                                         <th scope="col">주문금액</th>
+                                        <th scope="col">배송상태</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -179,7 +181,37 @@
                                             <div class="my-order-price"><fmt:formatNumber value="${ goodsList.bookPrice * goodsList.orderQty }" type="number" />원</div>
                                         </td>
                                         <td>
-                                        	<a href="#" class="btn-pack">취소</a>
+                                        	<c:if test="${ goodsList.orderDeliveryNum eq '1' }">
+                                        		<span>배송준비</span>
+                                        	</c:if>
+                                        	<c:if test="${ goodsList.orderDeliveryNum eq '2' }">
+                                        		<span>배송중</span>
+                                        	</c:if>
+                                        	<c:if test="${ goodsList.orderDeliveryNum eq '3' }">
+                                        		<span>배송완료</span>
+                                        	</c:if>
+                                        </td>
+                                        <td>
+                                        	<c:if test="${ goodsList.orderReturnNum == '00' && empty goodsList.orderCancel && goodsList.orderDeliveryNum != '3' }">
+                                        		<a href="orderReturn.od?orderNum=${ goodsList.orderNum }&bookName=${ goodsList.bookName }&orderQty=${ goodsList.orderQty }&returnSort=반품" class="btn-pack">반품신청</a>
+                                        		<a href="orderReturn.od?orderNum=${ goodsList.orderNum }&bookName=${ goodsList.bookName }&orderQty=${ goodsList.orderQty }&returnSort=교환" class="btn-pack" style="margin-top: 5px;">교환신청</a>
+                                        		<a href="orderCancel.od?orderNum=${ goodsList.orderNum }&bookName=${ goodsList.bookName }" class="btn-pack" style="margin-top: 5px;">취소</a>
+                                        	</c:if>
+                                        	<c:if test="${ goodsList.orderReturnNum eq '01' }">
+                                        		<span>반품신청완료</span>
+                                        	</c:if>
+                                        	<c:if test="${ goodsList.orderReturnNum eq '11' }">
+                                        		<span>교환신청완료</span>
+                                        	</c:if>
+                                        	<c:if test="${ goodsList.orderReturnNum eq '02' }">
+                                        		<span>반품완료</span>
+                                        	</c:if>
+                                        	<c:if test="${ goodsList.orderReturnNum eq '12' }">
+                                        		<span>교환완료</span>
+                                        	</c:if>
+                                        	<c:if test="${ !empty goodsList.orderCancel }">
+                                        		<span>취소완료</span>
+                                        	</c:if>
                                         </td>
                                     </tr>
                                     </c:forEach>

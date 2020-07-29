@@ -46,14 +46,14 @@ public class OrderInsertAction {
 		dto.setUserAddr(userAddr);
 		dto.setOrderNum(orderNum);
 		if (bookName.length > 1) {
-			dto.setOrderName(bookName[0] + "외 " + bookName.length + "권");			
+			dto.setOrderName(bookName[0] + "외 " + (bookName.length - 1) + "권");			
 		} else {
 			dto.setOrderName(bookName[0]);
 		}
 		dto.setOrderQty(orderQty);
 		
 		dao.goodsOrderInsert(dto);
-		
+		dao.goodsCountUpdateMinus(dto);
 		
 	}
 	

@@ -17,7 +17,7 @@
 					<li><a>${ logId }님</a></li>
 					<li><a href="/mainLogOut.main">로그아웃</a></li>
 					<li><a href="/mem/memberModify.mem">정보수정</a></li>
-					<li><a href="/mem/memberMyPage.mem">마이페이지</a></li>
+					<li><a href="/mem/memberCartList.mem">마이페이지</a></li>
 					</c:if>
 					<li class="cs"><a href="javascript:void(0);">고객센터</a>
 						<div class="csmenu">

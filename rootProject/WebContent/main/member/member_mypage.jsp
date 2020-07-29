@@ -90,7 +90,7 @@
 					<h2>${ logId },  님</h2>
 					<div class="cs_menu">
 						<ul>
-							<li><a href="memberMyPage.mem">장바구니</a></li>
+							<li><a href="memberCartList.mem">장바구니</a></li>
 							<li><a href="/cscenter/answerList.ab" class="">1:1 문의</a></li>
 							<li><a href="memberModify.mem" class="">정보수정</a></li>
 							<li><a href="/order/orderList.od" class="">주문내역</a></li>
@@ -178,7 +178,7 @@
 							</div>
 							
 							<div class="buttons tc">
-								<a href="javascript:void(0)" class="btn btn02 btn-over purple" onclick="">상품주문하기</a>
+								<a href="javascript:void(0)" class="btn btn02 btn-over purple" onclick="submitFunc('/order/orderStep01.od')">상품주문하기</a>
 							</div>
 						</div>
 					</div>

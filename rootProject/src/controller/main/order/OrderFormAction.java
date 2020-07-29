@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import model.DAO.GoodsDAO;
 import model.DAO.MemberDAO;
+import model.DTO.CartDTO;
 import model.DTO.GoodsDTO;
 import model.DTO.MemberDTO;
 
@@ -25,20 +26,25 @@ public class OrderFormAction {
 		HttpSession session = request.getSession();
 		String userId = session.getAttribute("logId").toString();
 		String bookNum = request.getParameter("bookNum");
-		String qty = request.getParameter("Qty");
-		List<GoodsDTO> goodsList = null;
 		
 		if (request.getParameter("bookNum") != null) {
-			goodsList = goodsDao.goodsSelect(1, 1, bookNum);
+			String qty = request.getParameter("Qty");
+			List<GoodsDTO> goodsList = goodsDao.goodsSelect(1, 1, bookNum);
+			request.setAttribute("goodsList", goodsList);
+			request.setAttribute("qty", qty);
 		} else {
-			goodsList = goodsDao.cartSelect(userId);
+			int tp = 0;
+			List<CartDTO> goodsList = goodsDao.cartAllSelect(userId);
+			for (CartDTO cartDTO : goodsList) {
+				tp += Integer.parseInt(cartDTO.getTotalPrice());
+			}
+			request.setAttribute("goodsList", goodsList);
+			request.setAttribute("tp", tp);
 		}
 		
-		List<MemberDTO> memberList = memberDao.memberSelect(1, 1, userId);
 		
-		request.setAttribute("goodsList", goodsList);
+		List<MemberDTO> memberList = memberDao.memberSelect(1, 1, userId);
 		request.setAttribute("memberList", memberList.get(0));
-		request.setAttribute("qty", qty);
 		
 	}
 	
