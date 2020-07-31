@@ -60,6 +60,58 @@ public class GoodsOrderDAO extends DataBaseInfo{
 		return list;
 	}
 	
+	public List<GoodsOrderDTO> goodsOrderSelectView(int page, int limit, String orderNum, String bookName){
+		List<GoodsOrderDTO> list = new ArrayList<GoodsOrderDTO>();
+		int startRow = (page - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		String condition = "";
+		if (orderNum != null && bookName != null) {
+			condition = " and order_num = ? and book_name = ? ";
+		}
+		conn = getConnection();
+		sql = " select * from ( select rownum rn, "+COLUMNS+" from ( select "+COLUMNS+" from goodsorder where 1=1 "+condition+" order by order_date desc )) where rn between ? and ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			if(orderNum != null) {
+				pstmt.setString(1, orderNum);
+				pstmt.setString(2, bookName);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+			}else {
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, endRow);
+			}
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				GoodsOrderDTO dto = new GoodsOrderDTO();
+				dto.setBookName(rs.getString("book_name"));
+				dto.setBookNum(rs.getString("book_num"));
+				dto.setBookCount(rs.getString("book_count"));
+				dto.setPartnerName(rs.getString("partner_name"));
+				dto.setBookPrice(rs.getString("book_price"));
+				dto.setUserId(rs.getString("user_id"));
+				dto.setUserName(rs.getString("user_name"));
+				dto.setUserPh1(rs.getString("user_ph1"));
+				dto.setUserEmail(rs.getString("user_email"));
+				dto.setUserAddr(rs.getString("user_addr"));
+				dto.setOrderName(rs.getString("order_name"));
+				dto.setOrderNum(rs.getString("order_num"));
+				dto.setOrderDeliveryNum(rs.getString("order_delivery_num"));
+				dto.setOrderReturnNum(rs.getString("order_return_num"));
+				dto.setOrderCancel(rs.getString("order_cancel"));
+				dto.setOrderDate(rs.getString("order_date"));
+				dto.setOrderQty(rs.getString("order_qty"));
+				dto.setOrderTotalPrice(rs.getString("order_total_price"));
+				list.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+	
 	public Integer goodsOrderCount() {
 		Integer result = 0;
 		conn = getConnection();
@@ -138,6 +190,24 @@ public class GoodsOrderDAO extends DataBaseInfo{
 			pstmt.setString(1, orderNum);
 			int i = pstmt.executeUpdate();
 			System.out.println(i + "개가 배송처리 되었습니다.");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+	
+	public List<GoodsOrderDTO> goodsOrderReturn(String orderNum, String bookName) {
+		List<GoodsOrderDTO> list = new ArrayList<GoodsOrderDTO>();
+		conn = getConnection(); 
+		sql = " update goodsorder set order_return_num='02' where order_num=? and book_name=? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, orderNum);
+			pstmt.setString(2, bookName);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개가 반품교환 처리 되었습니다.");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -245,6 +315,7 @@ public class GoodsOrderDAO extends DataBaseInfo{
 		conn = getConnection();
 		sql = " update goodsorder set "
 				+ " ORDER_CANCEL = 'Y', "
+				+ " order_delivery_num = '4', "
 				+ "	book_count = to_number(book_count) + ? "
 				+ " where order_num = ? and book_name = ? ";
 		try {
@@ -272,6 +343,7 @@ public class GoodsOrderDAO extends DataBaseInfo{
 		conn = getConnection();
 		sql = " update goodsorder set "
 				+ " ORDER_RETURN_NUM = ?,"
+				+ " order_delivery_num = '5', "
 				+ "	book_count = to_number(book_count) + ? "
 				+ " where order_num = ? and book_name = ? ";
 		try {

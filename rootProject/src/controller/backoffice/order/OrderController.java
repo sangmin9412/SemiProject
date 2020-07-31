@@ -32,13 +32,17 @@ public class OrderController extends HttpServlet implements Servlet {
 			dispatcher.forward(request, response);
 			
 		} else if (command.equals("/backoffice/orderCancelList.bood")) {
+			OrderListAction action = new OrderListAction();
 			request.setAttribute("sort", "cancel");
+			action.execute(request);
 			String path = "/backoffice/page/order/order_list.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 			
 		} else if (command.equals("/backoffice/orderReturnList.bood")) {
+			OrderListAction action = new OrderListAction();
 			request.setAttribute("sort", "return");
+			action.execute(request);
 			String path = "/backoffice/page/order/order_list.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
@@ -52,6 +56,11 @@ public class OrderController extends HttpServlet implements Servlet {
 			
 		} else if (command.equals("/backoffice/orderViewPro.bood")) {
 			OrderViewProAction action = new OrderViewProAction();
+			action.execute(request);
+			response.sendRedirect("/backoffice/orderView.bood");
+			
+		} else if (command.equals("/backoffice/orderViewReturn.bood")) {
+			OrderViewReturnAction action = new OrderViewReturnAction();
 			action.execute(request);
 			response.sendRedirect("/backoffice/orderView.bood");
 			

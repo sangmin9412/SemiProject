@@ -20,20 +20,18 @@
 	                        <div class="panel-heading"></div>
 	                        <div class="panel-body">
 	                        	<form action="" name="" method="post" role="form">
-	                                <c:forEach var="dto" items="${list}" varStatus="cnt">
 	                                <div class="form-group">
 	                                    <label>도서</label>
-	                                    <p class="form-control-static">${dto.bookName }</p>
+	                                    <p class="form-control-static">${list[0].bookName }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>출판사</label>
-	                                    <p class="form-control-static">${dto.partnerName }</p>
+	                                    <p class="form-control-static">${list[0].partnerName }</p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>가격</label>
-	                                    <p class="form-control-static">${dto.bookPrice }원</p>
+	                                    <p class="form-control-static">${list[0].bookPrice }원</p>
 	                                </div>
-	                                </c:forEach>
 	                                <div class="form-group">
 	                                    <label>아이디</label>
 	                                    <p class="form-control-static">${list[0].userId }</p>
@@ -95,6 +93,9 @@
 	                                <a href="orderList.bood?sort=${ sortVal }" class="btn btn-default">목록으로</a>
 	                                <c:if test="${ sortVal eq 'all' || sortVal eq 'new' }">
 	                                <a href="orderViewPro.bood?orderNum=${list[0].orderNum }" class="btn btn-default">상품배송</a>
+	                                </c:if>
+	                                <c:if test="${ sortVal eq 'return'}">
+	                                <a href="orderViewReturn.bood?orderNum=${list[0].orderNum }&bookName=${list[0].bookName}" class="btn btn-default">반품/교환확인</a>
 	                                </c:if>
 	                                <!-- <a href="javascript:history.back()" class="btn btn-default">목록으로</a> -->
 	                            </form>

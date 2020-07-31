@@ -22,6 +22,10 @@ public class OrderListAction {
 			sortNum = "2";
 		}else if(sort.equals("end")) {
 			sortNum = "3";
+		}else if(sort.equals("cancel")) {
+			sortNum = "4";
+		}else if(sort.equals("return")) {
+			sortNum = "5";
 		}
 		
 		int page = 1;
@@ -39,7 +43,6 @@ public class OrderListAction {
 		request.setAttribute("page", page);
 		request.setAttribute("limit", limit);
 		request.setAttribute("sortVal", sort);
-		
 		
 		PageAction pageAction = new PageAction();
 		pageAction.page(request, count, limit, limitPage, page, "orderList.bood?sort="+sort+"&");

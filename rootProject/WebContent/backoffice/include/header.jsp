@@ -112,10 +112,10 @@
 	                        <a href="/backoffice/orderShippingList.bood?sort=end">배송완료</a>
 	                    </li>
 	                    <li>
-	                        <a href="/backoffice/orderCancelList.bood">주문취소</a>
+	                        <a href="/backoffice/orderCancelList.bood?sort=cancel">주문취소</a>
 	                    </li>
 	                    <li>
-	                        <a href="/backoffice/orderReturnList.bood">반품/교환</a>
+	                        <a href="/backoffice/orderReturnList.bood?sort=return">반품/교환</a>
 	                    </li>
 	                </ul>
 	            </li>

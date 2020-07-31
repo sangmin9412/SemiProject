@@ -52,7 +52,7 @@
 		                                	<c:forEach var="dto" items="${list}" varStatus="cnt">
 		                                    <tr>
 		                                        <td>${dto.orderNum }</td>
-		                                        <td><a href="orderView.bood?sort=${ sortVal }&orderNum=${dto.orderNum }">${ dto.bookName }</a></td>
+		                                        <td><a href="orderView.bood?sort=${ sortVal }&orderNum=${dto.orderNum }&bookName=${dto.bookName}">${ dto.bookName }</a></td>
 		                                        <td>${dto.userName }</td>
 		                                        <td>${dto.orderQty }</td>
 		                                        <td>${dto.orderTotalPrice }</td>
@@ -66,6 +66,12 @@
 		                                        	</c:if>
 		                                        	<c:if test="${ dto.orderDeliveryNum == 3 }">
 		                                        		배송완료
+		                                        	</c:if>
+		                                        	<c:if test="${ dto.orderDeliveryNum == 4 }">
+		                                        		주문취소
+		                                        	</c:if>
+		                                        	<c:if test="${ dto.orderDeliveryNum == 5 }">
+		                                        		반품/교환
 		                                        	</c:if>
 		                                        </td>
 		                                    </tr>
